@@ -3,9 +3,7 @@ import { useEffect, useState } from 'react'
 import { requestedInfo, receivedInfo } from '../utils/constants'
 import { useRouter } from 'next/router'
 
-
 import axios from 'axios'
-
 
 const Home: NextPage = () => {
   const [selectedOrg, setSelectedOrg] = useState('')
@@ -116,14 +114,16 @@ const Home: NextPage = () => {
     myFormData.append('chosenOrgs', JSON.stringify(chosenOrgs))
     const formDataObj = Object.fromEntries(myFormData.entries())
     ;(formDataObj.requestedInfo as any) = myFormData.getAll('requestedInfo')
-    console.log({formDataObj})
+    console.log({ formDataObj })
     // axios
     //   .post('http://localhost:5000/create-pdf', formDataObj)
     //   .then((res) => console.log(res))
   }
 
   const getOrg = async (selected: string) => {
-    const response = await axios(`https://chafafiya-api-json-server.herokuapp.com/${selected}`)
+    const response = await axios(
+      `https://chafafiya-api-json-server.herokuapp.com/${selected}`
+    )
     setOrganitations(response?.data)
   }
 
@@ -167,8 +167,6 @@ const Home: NextPage = () => {
 
   return (
     <div className="font-arabic" dir="rtl">
-     
-     
       <div className="bg-cyan-600 px-14 py-4 text-3xl text-white">
         <h1>إيداع طلب الحصول على المعلومات</h1>
       </div>
@@ -439,17 +437,22 @@ const Home: NextPage = () => {
                 />
                 <label>طلب استعجالي</label>
               </div>
-              <p>
-                (يتم اللجوء إلى الطلب الإستعجالي في الحالات التي يكون فيها
-                الحصول على المعلومات ضروريا لحماية حياة وسلامة وحرية الأشخاص)
-              </p>
-              <textarea
-                className="w-full rounded-md border border-gray-300 p-3 text-sm text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
-                placeholder="تبرير دوافع الطلب الإستعجالي"
-                name="urgentMessage"
-                rows={4}
-              ></textarea>
-              {showFile && <input type="file" name="urgentFile" />}
+              {showFile && (
+                <div>
+                  <p>
+                    (يتم اللجوء إلى الطلب الإستعجالي في الحالات التي يكون فيها
+                    الحصول على المعلومات ضروريا لحماية حياة وسلامة وحرية
+                    الأشخاص)
+                  </p>
+                  <textarea
+                    className="w-full rounded-md border border-gray-300 p-3 text-sm text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
+                    placeholder="تبرير دوافع الطلب الإستعجالي"
+                    name="urgentMessage"
+                    rows={4}
+                  ></textarea>
+                  <input type="file" name="urgentFile" />
+                </div>
+              )}
             </div>
           </div>
           <div className="mb-4 flex gap-20 border-2 px-14 py-8">
