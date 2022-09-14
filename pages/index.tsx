@@ -4,6 +4,7 @@ import { requestedInfo, receivedInfo } from '../utils/constants'
 import { useRouter } from 'next/router'
 
 import axios from 'axios'
+import Link from 'next/link'
 
 const Home: NextPage = () => {
   const [selectedOrg, setSelectedOrg] = useState('')
@@ -170,6 +171,9 @@ const Home: NextPage = () => {
       <div className="bg-cyan-600 px-14 py-4 text-3xl text-white">
         <h1>إيداع طلب الحصول على المعلومات</h1>
       </div>
+      <Link href={'/searchengine'} passHref>
+      <button>Recherche</button>
+      </Link>
       <div className="p-10">
         <form onSubmit={handleSubmit}>
           <div className="mb-4 flex gap-20 border-2 px-14 py-8">
