@@ -172,7 +172,10 @@ const Home: NextPage = () => {
         <h1>إيداع طلب الحصول على المعلومات</h1>
       </div>
       <Link href={'/searchengine'} passHref>
-      <button>Recherche</button>
+      <button className="p-2 bg-cyan-600 text-white m-2">Recherche</button>
+      </Link>
+      <Link href={'/responsable'} passHref>
+      <button className="p-2 bg-cyan-600 text-white m-2">Responsable</button>
       </Link>
       <div className="p-10">
         <form onSubmit={handleSubmit}>
