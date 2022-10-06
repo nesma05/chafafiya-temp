@@ -15,8 +15,8 @@ const ConverHistory = ({ requestFollow, user }: any) => {
   }
 
   return (
-    <div className="flex w-full max-w-2xl flex-grow flex-col overflow-hidden rounded-lg bg-white shadow-xl">
-      <div className={`flex ${user === 'citizen' ? 'h-auto':'h-[500px]'} flex-grow flex-col overflow-auto px-4`}>
+    <div className="flex w-full max-w-2xl flex-grow flex-col overflow-hidden rounded-lg bg-white">
+      <div className={`flex ${user === 'citizen' ? 'h-auto':'h-[calc(100vh-417px)]'} flex-grow flex-col overflow-auto px-4`}>
         <div className={`${user === 'citizen' ? 'm-end':'m-start'} mb-6 flex w-full max-w-xs gap-2`}>
           <div>
             <div className={`rounded-l-lg rounded-br-lg p-3 ${user === 'citizen'? 'bg-blue-600 p-3 text-white': 'bg-gray-300'} `}>

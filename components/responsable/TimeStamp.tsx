@@ -1,5 +1,8 @@
 export default function Example() {
   return (
+    <div>
+      <h2 className="font-medium mb-3 text-lg">مسار الطلب</h2>
+   
     <ol className="relative border-r border-gray-400 p-4 dark:border-gray-700">
       <li className="mb-6 ml-4">
         <div className="absolute -right-1.5 mt-1.5 h-3 w-3 rounded-full border border-white bg-gray-400 dark:border-gray-900 dark:bg-gray-700"></div>
@@ -36,5 +39,6 @@ export default function Example() {
         </time>
       </li>
     </ol>
+    </div>
   )
 }

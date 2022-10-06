@@ -2,8 +2,9 @@ import { NextPage } from 'next'
 import Image from 'next/image'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
+import React from 'react'
 import { useEffect, useState } from 'react'
-import { AvatarIcon, CopyIcon, SearchIcon } from '../../components/icons'
+import { AttachmentIcon, AvatarIcon, CopyIcon, SearchIcon } from '../../components/icons'
 import ConverHistory from '../../components/responsable/ConverHistory'
 import { responsableList } from '../../components/responsable/ResSideBar'
 import TimeStamp from '../../components/responsable/TimeStamp'
@@ -11,17 +12,9 @@ import { requester } from '../../utils/constants'
 import { requestFollow } from '../../utils/constants'
 
 const ResRequest: NextPage = ({ request}: any) => {
-  //const [singleReq, setSingleReq] = useState<ResList>()
   const { query } = useRouter()
   console.log('query', query)
 
-  // useEffect(()=>{
-  //   const request = requestFollow.filter(
-  //     (request: any) => request.code === query.requestId
-  //   )[0]
-  //   console.log('request',request)
-  //   //setSingleReq(request)
-  // },[])
   return (
     <div dir="rtl">
       <header className="px-10 py-4">
@@ -113,50 +106,10 @@ const ResRequest: NextPage = ({ request}: any) => {
                 <TimeStamp />
               </div>
             </div>
-            <div className="w-[55%] border-l-2 py-8">
-              {/* <div className="flex w-full flex-grow flex-col overflow-hidden rounded-lg bg-white">
-                <div className="flex h-[500px] flex-grow flex-col overflow-auto px-4">
-                  <div className="m-start mb-6 flex w-full max-w-xs gap-2">
-                    <div>
-                      <div className="rounded-l-lg rounded-br-lg bg-gray-300 p-3">
-                        <p className="text-sm">{request?.contenu_demande}</p>
-                      </div>
-                      <span className="text-xs leading-none text-gray-500">
-                        {request?.date_demande}
-                      </span>
-                    </div>
-                  </div>
-                  {request?.historique.map((hist: any) => (
-                    <div
-                      key={hist.title}
-                      className={`${
-                        hist.owner !== 'me' ? 'm-start' : 'm-end'
-                      } mt-2 mb-6 flex w-fit  gap-2`}
-                    >
-                      <div>
-                        <div
-                          className={`${
-                            hist.owner !== 'me'
-                              ? 'rounded-r-lg rounded-bl-lg bg-gray-300'
-                              : 'rounded-l-lg rounded-br-lg bg-blue-600 text-white'
-                          } w-[350px] p-3 text-sm `}
-                        >
-                          <p className="font-medium"> {hist.title} </p>
-                          <p>{hist.detail}</p>
-                          {hist.annexes?.map((anex: any) => (
-                            <p>{anex.titre}</p>
-                          ))}
-                        </div>
-                        <span className="text-xs leading-none text-gray-500">
-                          {hist.date}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div> */}
+            <div className="w-[47%] border-l-2 pt-6">
+             
                <ConverHistory requestFollow={request} user="responsable"/>
-              <div className="border-2 px-1">
+              <div className="px-1">
                 <div className="flex gap-2">
                   <select className="mt-2 block bg-white py-2 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500">
                     <option> تمديد مدة المعالجة</option>
@@ -172,8 +125,16 @@ const ResRequest: NextPage = ({ request}: any) => {
                 <textarea
                   className="w-full py-2 px-4"
                   placeholder="نص الرد على الطلب"
-                  rows={5}
+                  rows={4}
                 ></textarea>
+                <div className='p-1.5 bg-gray-300 flex justify-between'>
+                  <label htmlFor="inputFileResp" className='flex items-center gap-2 cursor-pointer w-fit'>
+                    <span className='text-xl'><AttachmentIcon/></span>
+                    <span>إضافة مرفقات</span>
+                    <input type="file" name="" id="inputFileResp" className='hidden'/>
+                  </label>
+                  <button className='py-1 px-2 bg-blue-600 text-white border-2 border-slate-900'>إرسال الإجابة</button>
+                </div>
               </div>
             </div>
             <div className="flex-1 p-2">
@@ -190,7 +151,7 @@ const ResRequest: NextPage = ({ request}: any) => {
                 </button>
               </div>
               <div>
-                <div className="mt-2">
+                <div className="mt-2 overflow-y-auto  px-1 h-[calc(100vh-330px)]">
                   <div className="mb-4">
                     <span>مرسل إلى </span>
                     <span>أحمد الوكيلي (رئيس قسم المالية)</span>
@@ -217,6 +178,20 @@ const ResRequest: NextPage = ({ request}: any) => {
                       اليوم 12:30
                     </span>
                   </div>
+                </div>
+                <div className='flex items-center gap-2 border-t-2'>
+                <textarea
+                  className="w-full py-2 px-4"
+                  placeholder="إكتب نص الرسالة هنا ..."
+                  rows={1}
+                ></textarea>
+                
+                  <label htmlFor="inputFileColl" className='cursor-pointer w-fit'>
+                    <span className='text-xl'><AttachmentIcon/></span>
+                    <input type="file" name="" id="inputFileColl" className='hidden'/>
+                  </label>
+                  <button className='text-blue-600 underline'>إرسال </button>
+                
                 </div>
               </div>
             </div>
