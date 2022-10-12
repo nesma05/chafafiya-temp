@@ -4,16 +4,32 @@ import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { useEffect, useState } from 'react'
-import { AttachmentIcon, AvatarIcon, CopyIcon, SearchIcon } from '../../components/icons'
+import {
+  AttachmentIcon,
+  AvatarIcon,
+  CloseIcon,
+  CopyIcon,
+  SearchIcon,
+} from '../../components/icons'
 import ConverHistory from '../../components/responsable/ConverHistory'
 import { responsableList } from '../../components/responsable/ResSideBar'
 import TimeStamp from '../../components/responsable/TimeStamp'
 import { requester } from '../../utils/constants'
 import { requestFollow } from '../../utils/constants'
 
-const ResRequest: NextPage = ({ request}: any) => {
+const ResRequest: NextPage = ({ request }: any) => {
   const { query } = useRouter()
-  console.log('query', query)
+  const [files, setFiles] = useState<any>([])
+console.log('files', files)
+  const handelFileInput = (e: any) => {
+    const file = e.target.files[0]
+    setFiles([...files, file])
+  }
+
+  const handleRemoveFile = (fileName:any)=>{
+    const filteredFiles = files.filter((file:any)=> file.name !== fileName)
+    setFiles(filteredFiles)
+  }
 
   return (
     <div dir="rtl">
@@ -37,7 +53,7 @@ const ResRequest: NextPage = ({ request}: any) => {
           </div>
         </div>
       </header>
-      <div className="flex border-t-2 ">
+      <div className="flex border-t-2">
         <div className="h-[700px] w-[70px] border-l-2 border-gray-300">
           <div className="pt-20">
             <ul>
@@ -60,7 +76,7 @@ const ResRequest: NextPage = ({ request}: any) => {
           </div>
         </div>
         <div className="flex-1">
-          <div className="p-6 cursor-pointer">
+          <div className="cursor-pointer p-6">
             <NextLink href={'/responsable'} passHref>
               <p>الرجوع إلى لائحة الطلبات</p>
             </NextLink>
@@ -107,8 +123,7 @@ const ResRequest: NextPage = ({ request}: any) => {
               </div>
             </div>
             <div className="w-[47%] border-l-2 pt-6">
-             
-               <ConverHistory requestFollow={request} user="responsable"/>
+              <ConverHistory requestFollow={request} user="responsable" />
               <div className="px-1">
                 <div className="flex gap-2">
                   <select className="mt-2 block bg-white py-2 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500">
@@ -127,14 +142,43 @@ const ResRequest: NextPage = ({ request}: any) => {
                   placeholder="نص الرد على الطلب"
                   rows={4}
                 ></textarea>
-                <div className='p-1.5 bg-gray-300 flex justify-between'>
-                  <label htmlFor="inputFileResp" className='flex items-center gap-2 cursor-pointer w-fit'>
-                    <span className='text-xl'><AttachmentIcon/></span>
+                <div className="flex justify-between bg-gray-300 p-1.5">
+                  <label
+                    htmlFor="inputFileResp"
+                    className="flex w-fit cursor-pointer items-center gap-2"
+                  >
+                    <span className="text-xl">
+                      <AttachmentIcon />
+                    </span>
                     <span>إضافة مرفقات</span>
-                    <input type="file" name="" id="inputFileResp" className='hidden'/>
+                    <input
+                      type="file"
+                      name=""
+                      id="inputFileResp"
+                      className="hidden"
+                      onChange={handelFileInput}
+                    />
                   </label>
-                  <button className='py-1 px-2 bg-blue-600 text-white border-2 border-slate-900'>إرسال الإجابة</button>
+                  <button className="border-2 border-slate-900 bg-blue-600 py-1 px-2 text-white">
+                    إرسال الإجابة
+                  </button>
                 </div>
+                <ul>
+                  {files.map((file: any) => (
+                    <li
+                      key={file.name}
+                      className="m-1 flex w-fit items-center gap-1 rounded-full bg-blue-200 py-1 px-3"
+                    >
+                      <span>{file.name}</span>
+                      <span
+                        className="cursor-pointer"
+                        onClick={()=>handleRemoveFile(file.name)}
+                      >
+                        <CloseIcon />
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
             <div className="flex-1 p-2">
@@ -151,7 +195,7 @@ const ResRequest: NextPage = ({ request}: any) => {
                 </button>
               </div>
               <div>
-                <div className="mt-2 overflow-y-auto  px-1 h-[calc(100vh-330px)]">
+                <div className="mt-2 h-[calc(100vh-330px)]  overflow-y-auto px-1">
                   <div className="mb-4">
                     <span>مرسل إلى </span>
                     <span>أحمد الوكيلي (رئيس قسم المالية)</span>
@@ -179,19 +223,28 @@ const ResRequest: NextPage = ({ request}: any) => {
                     </span>
                   </div>
                 </div>
-                <div className='flex items-center gap-2 border-t-2'>
-                <textarea
-                  className="w-full py-2 px-4"
-                  placeholder="إكتب نص الرسالة هنا ..."
-                  rows={1}
-                ></textarea>
-                
-                  <label htmlFor="inputFileColl" className='cursor-pointer w-fit'>
-                    <span className='text-xl'><AttachmentIcon/></span>
-                    <input type="file" name="" id="inputFileColl" className='hidden'/>
+                <div className="flex items-center gap-2 border-t-2">
+                  <textarea
+                    className="w-full py-2 px-4"
+                    placeholder="إكتب نص الرسالة هنا ..."
+                    rows={1}
+                  ></textarea>
+
+                  <label
+                    htmlFor="inputFileColl"
+                    className="w-fit cursor-pointer"
+                  >
+                    <span className="text-xl">
+                      <AttachmentIcon />
+                    </span>
+                    <input
+                      type="file"
+                      name=""
+                      id="inputFileColl"
+                      className="hidden"
+                    />
                   </label>
-                  <button className='text-blue-600 underline'>إرسال </button>
-                
+                  <button className="text-blue-600 underline">إرسال </button>
                 </div>
               </div>
             </div>

@@ -16,10 +16,24 @@ const ConverHistory = ({ requestFollow, user }: any) => {
 
   return (
     <div className="flex w-full max-w-2xl flex-grow flex-col overflow-hidden rounded-lg bg-white">
-      <div className={`flex ${user === 'citizen' ? 'h-auto':'h-[calc(100vh-417px)]'} flex-grow flex-col overflow-auto px-4`}>
-        <div className={`${user === 'citizen' ? 'm-end':'m-start'} mb-6 flex w-full max-w-xs gap-2`}>
+      <div
+        className={`flex ${
+          user === 'citizen' ? 'h-auto' : 'h-[calc(100vh-417px)]'
+        } flex-grow flex-col overflow-auto px-4`}
+      >
+        <div
+          className={`${
+            user === 'citizen' ? 'm-end' : 'm-start'
+          } mb-6 flex w-full max-w-xs gap-2`}
+        >
           <div>
-            <div className={`rounded-l-lg rounded-br-lg p-3 ${user === 'citizen'? 'bg-blue-600 p-3 text-white': 'bg-gray-300'} `}>
+            <div
+              className={`rounded-l-lg rounded-br-lg p-3 ${
+                user === 'citizen'
+                  ? 'bg-blue-600 p-3 text-white'
+                  : 'bg-gray-300'
+              } `}
+            >
               <p className="text-sm">{requestFollow.contenu_demande}</p>
             </div>
             <span className="text-xs leading-none text-gray-500">
@@ -27,8 +41,9 @@ const ConverHistory = ({ requestFollow, user }: any) => {
             </span>
           </div>
         </div>
-        {requestFollow.historique.map((hist: any) => (
+        {requestFollow.historique.map((hist: any, index: any) => (
           <div
+            key={index}
             className={`${
               (hist.owner === 'me' && user === 'citizen') ||
               (hist.owner !== 'me' && user !== 'citizen')
@@ -46,7 +61,7 @@ const ConverHistory = ({ requestFollow, user }: any) => {
                 <p className="font-medium"> {hist.title} </p>
                 <p>{hist.detail}</p>
                 {hist.annexes?.map((anex: any) => (
-                  <p>{anex.titre}</p>
+                  <p key={anex.title}>{anex.titre}</p>
                 ))}
               </div>
               <span className="text-xs leading-none text-gray-500">
