@@ -191,13 +191,7 @@ export const PlusIcon = () => {
       preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 24 24"
     >
-      <path
-        fill="none"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeWidth="2"
-        d="M12 20v-8m0 0V4m0 8h8m-8 0H4"
-      />
+      <path fill="currentColor" d="M15 2.013H9V9H2v6h7v6.987h6V15h7V9h-7z" />
     </svg>
   )
 }
