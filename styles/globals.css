@@ -8,13 +8,13 @@
 
 @font-face {
   font-family: 'Droid Arabic Naskh';
-  src: url('../public/DroidNaskh-Bold.ttf') format('truetype');
+  src: url('/DroidNaskh-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: 'Droid Arabic Naskh';
-  src: url('../public/DroidNaskh-Regular.ttf') format('truetype');
+  src: url('/DroidNaskh-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
