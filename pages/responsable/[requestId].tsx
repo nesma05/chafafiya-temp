@@ -2,13 +2,14 @@ import { NextPage } from 'next'
 import Image from 'next/image'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {
   AttachmentIcon,
   AvatarIcon,
   CloseIcon,
-  CopyIcon,
+  EmailIcon,
+  LacationIcon,
+  PhoneIcon,
   SearchIcon,
 } from '../../components/icons'
 import ConverHistory from '../../components/responsable/ConverHistory'
@@ -20,14 +21,14 @@ import { requestFollow } from '../../utils/constants'
 const ResRequest: NextPage = ({ request }: any) => {
   const { query } = useRouter()
   const [files, setFiles] = useState<any>([])
-console.log('files', files)
+
   const handelFileInput = (e: any) => {
     const file = e.target.files[0]
     setFiles([...files, file])
   }
 
-  const handleRemoveFile = (fileName:any)=>{
-    const filteredFiles = files.filter((file:any)=> file.name !== fileName)
+  const handleRemoveFile = (fileName: any) => {
+    const filteredFiles = files.filter((file: any) => file.name !== fileName)
     setFiles(filteredFiles)
   }
 
@@ -57,11 +58,6 @@ console.log('files', files)
         <div className="h-[700px] w-[70px] border-l-2 border-gray-300">
           <div className="pt-20">
             <ul>
-              <li className={`flex w-full cursor-pointer items-center p-2 `}>
-                <span className="mx-3 border-2 border-black p-0.5">
-                  <CopyIcon />
-                </span>
-              </li>
               {responsableList.map((resList: any, i: any) => (
                 <li
                   key={i}
@@ -95,19 +91,19 @@ console.log('files', files)
                 </p>
                 <p className="flex items-center gap-3">
                   <span>
-                    <AvatarIcon />
+                    <LacationIcon />
                   </span>
                   <span>{requester.address}</span>
                 </p>
                 <p className="flex items-center gap-3">
                   <span>
-                    <AvatarIcon />
+                    <EmailIcon />
                   </span>
                   <span>{requester.email}</span>
                 </p>
                 <p className="flex items-center gap-3">
                   <span>
-                    <AvatarIcon />
+                    <PhoneIcon />
                   </span>
                   <span>{requester.phone}</span>
                 </p>
@@ -172,7 +168,7 @@ console.log('files', files)
                       <span>{file.name}</span>
                       <span
                         className="cursor-pointer"
-                        onClick={()=>handleRemoveFile(file.name)}
+                        onClick={() => handleRemoveFile(file.name)}
                       >
                         <CloseIcon />
                       </span>

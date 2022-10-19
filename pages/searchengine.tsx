@@ -1,60 +1,48 @@
 import type { NextPage } from 'next'
-import SearchResults from '../components/SearchResults'
 import { useRouter } from 'next/router'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import config from '../utils/config'
 import Response from '../utils/response'
+import { NoteIcon, SearchIcon } from '../components/icons'
+import Navbar from '../components/Header/Navbar'
+import NextLink from 'next/link'
+import SearchResultsHeader from '../components/searchFilter/SearchResultsHeader'
+import SearchInput from '../components/searchFilter/SearchInput'
+import Filters from '../components/searchFilter/Filters'
+import Results from '../components/searchFilter/FiltersResults'
+import GlSearchResults from '../components/searchFilter/GlSearchResults'
+import FilterContext from '../context/filterContext'
+import TabsTitles from '../components/searchFilter/TabsTitles'
+import FiltersSearchResults from '../components/searchFilter/FiltersSearchResults'
+import GlSearchResultsSection from '../components/searchFilter/GlSearchResultsSection'
 
-const SearchEngine: NextPage = ({ results }: any) => {
+const SearchEngine: NextPage = ({ results, dir }: any) => {
   const router = useRouter()
-  const searchInput = useRef<HTMLInputElement>(null)
-  console.log(results)
 
-  const handleSearch = (e: any) => {
-    e.preventDefault()
-    const term = searchInput.current?.value
-    if (!term) return
+  const [toggleIndex, setToggleIndex] = useState(1)
 
-    router.push(`/searchengine?term=${term}`)
+  const handleTggle = (index: any) => {
+    setToggleIndex(index)
   }
 
   return (
-    <>
-      <div>
-        <div className="mx-auto mt-8 mb-0 max-w-xl space-y-4">
-          <div className="relative mx-auto w-[80%]">
-            <input
-              ref={searchInput}
-              type="text"
-              className="w-full rounded-md border border-gray-300 p-3 pr-12 text-sm shadow-sm focus:outline-gray-400"
-              placeholder="Qu'est ce que vous cherchez"
-            />
-
-            <button
-              onClick={handleSearch}
-              className="absolute inset-y-0 right-0 inline-flex items-center overflow-hidden bg-gray-300 px-3"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                role="img"
-                width="1.5em"
-                height="1.5em"
-                preserveAspectRatio="xMidYMid meet"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fill="currentColor"
-                  d="M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392l.604.646l2.121-2.121l-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5s5 2.243 5 5s-2.243 5-5 5z"
-                />
-              </svg>
-            </button>
-          </div>
-          <hr></hr>
-         {router.query.term && <SearchResults results={results} />}
+    <FilterContext>
+      <div dir={dir}>
+        {/* <Navbar /> */}
+        <SearchResultsHeader />
+        <div className="my-8 mx-10 max-w-sm space-y-4">
+        <SearchInput button='yes'/>
         </div>
+        <hr></hr>
+        <TabsTitles results={results} toggleIndex={toggleIndex} handleTggle={handleTggle} />
+        <FiltersSearchResults toggleIndex={toggleIndex} />
+        <GlSearchResultsSection
+          toggleIndex={toggleIndex}
+          router={router}
+          results={results}
+        />
       </div>
-    </>
+    </FilterContext>
   )
 }
 

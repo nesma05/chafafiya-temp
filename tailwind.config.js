@@ -5,9 +5,14 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily:{
-        arabic:['Noto Naskh Arabic'],
-        lato:['Lato']
+      fontFamily: {
+        arabic: ['Droid Arabic Naskh'],
+        lato: ['Lato'],
+      },
+      colors:{
+        main:'#0B53A2',
+        secondary:'#8BC9FF',
+        extra:'#2DA38B'
       }
     },
   },

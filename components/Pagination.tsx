@@ -1,54 +1,105 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useState } from 'react'
 
-const Pagination = () => {
-  const router = useRouter()
-  const startIndex = Number(router.query.start) || 0
-  const term = router.query.term
+const Pagination = ({
+  data,
+  currentPage,
+  setCurrentPage,
+  rowsPerPage,
+  dataList,
+  pageNumberLimit,
+  maxPageNumberLimit,
+  setmaxPageNumberLimit,
+  minPageNumberLimit,
+  setminPageNumberLimit,
+}: any) => {
+  const pageNumbers: number[] = []
+  console.log('maxPageNumberLimit', maxPageNumberLimit)
+  console.log('pageNumbers', pageNumbers)
 
+  //   const [pageNumberLimit] = useState(5)
+  //   const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5)
+  //   const [minPageNumberLimit, setminPageNumberLimit] = useState(0)
+  const handleNextbtn = () => {
+    setCurrentPage(currentPage + 1)
+
+    if (currentPage + 1 > maxPageNumberLimit) {
+      setmaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit)
+      setminPageNumberLimit(minPageNumberLimit + pageNumberLimit)
+    }
+  }
+
+  const handlePrevbtn = () => {
+    setCurrentPage(currentPage - 1)
+
+    if ((currentPage - 1) % pageNumberLimit == 0) {
+      setmaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit)
+      setminPageNumberLimit(minPageNumberLimit - pageNumberLimit)
+    }
+  }
+  for (let i = 1; i <= Math.ceil(dataList.length / rowsPerPage); i++) {
+    pageNumbers.push(i)
+  }
+
+  const paginate = (pageNumber: any) => setCurrentPage(pageNumber)
   return (
-    <div className="m-4 flex justify-around font-medium text-blue-800">
-      {startIndex >= 10 && (
-        <Link href={`/searchengine?term=${term}&start=${startIndex - 10}`}>
-          <div className="flex cursor-pointer flex-col items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              role="img"
-              width="1em"
-              height="1em"
-              preserveAspectRatio="xMidYMid meet"
-              viewBox="0 0 1024 1024"
-            >
-              <path
-                fill="currentColor"
-                d="m272.9 512l265.4-339.1c4.1-5.2.4-12.9-6.3-12.9h-77.3c-4.9 0-9.6 2.3-12.6 6.1L186.8 492.3a31.99 31.99 0 0 0 0 39.5l255.3 326.1c3 3.9 7.7 6.1 12.6 6.1H532c6.7 0 10.4-7.7 6.3-12.9L272.9 512zm304 0l265.4-339.1c4.1-5.2.4-12.9-6.3-12.9h-77.3c-4.9 0-9.6 2.3-12.6 6.1L490.8 492.3a31.99 31.99 0 0 0 0 39.5l255.3 326.1c3 3.9 7.7 6.1 12.6 6.1H836c6.7 0 10.4-7.7 6.3-12.9L576.9 512z"
-              />
-            </svg>
-            <p>Précedent</p>
-          </div>
-        </Link>
-      )}
-      <Link href={`/searchengine?term=${term}&start=${startIndex + 10}`}>
-        <div className="flex cursor-pointer flex-col items-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            role="img"
-            width="1em"
-            height="1em"
-            preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 1024 1024"
-          >
-            <path
-              fill="currentColor"
-              d="M533.2 492.3L277.9 166.1c-3-3.9-7.7-6.1-12.6-6.1H188c-6.7 0-10.4 7.7-6.3 12.9L447.1 512L181.7 851.1A7.98 7.98 0 0 0 188 864h77.3c4.9 0 9.6-2.3 12.6-6.1l255.3-326.1c9.1-11.7 9.1-27.9 0-39.5zm304 0L581.9 166.1c-3-3.9-7.7-6.1-12.6-6.1H492c-6.7 0-10.4 7.7-6.3 12.9L751.1 512L485.7 851.1A7.98 7.98 0 0 0 492 864h77.3c4.9 0 9.6-2.3 12.6-6.1l255.3-326.1c9.1-11.7 9.1-27.9 0-39.5z"
-            />
-          </svg>
-          <p>Suivant</p>
+    <>
+      {data.length > 0 && (
+        <div className="my-10 w-full text-center">
+          <nav>
+            <ul className="inline-flex items-center -space-x-px">
+              {minPageNumberLimit > 0 && (
+                <li>
+                  <button
+                    onClick={handlePrevbtn}
+                    disabled={currentPage == pageNumbers[0] ? true : false}
+                    className="ml-0 block cursor-pointer rounded-l-lg border border-gray-300 bg-white py-2 px-3 leading-tight text-gray-500 hover:bg-gray-300 hover:text-gray-700"
+                  >
+                    Prev
+                  </button>
+                </li>
+              )}
+
+              {pageNumbers.map((number: any) => {
+                if (
+                  number < maxPageNumberLimit + 1 &&
+                  number > minPageNumberLimit
+                ) {
+                  return (
+                    <li
+                      key={number}
+                      className={`cursor-pointer border border-gray-300 bg-white py-2 px-3 leading-tight text-gray-500 hover:bg-gray-300 hover:text-gray-700  ${
+                        currentPage == number
+                          ? 'border border-blue-300 bg-blue-200 hover:bg-blue-100 hover:text-blue-700'
+                          : ''
+                      }`}
+                      onClick={() => paginate(number)}
+                    >
+                      {number}
+                    </li>
+                  )
+                } else {
+                  return null
+                }
+              })}
+
+              {maxPageNumberLimit < pageNumbers.length && <li>
+                <button
+                  onClick={handleNextbtn}
+                  disabled={
+                    currentPage == pageNumbers[pageNumbers.length - 1]
+                      ? true
+                      : false
+                  }
+                  className="block cursor-pointer rounded-r-lg border border-gray-300 bg-white py-2 px-3 leading-tight text-gray-500 hover:bg-gray-300 hover:text-gray-700"
+                >
+                  Next
+                </button>
+              </li>}
+            </ul>
+          </nav>
         </div>
-      </Link>
-    </div>
+      )}
+    </>
   )
 }
 

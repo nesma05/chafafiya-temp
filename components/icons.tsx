@@ -94,13 +94,13 @@ export const DocumentIcon = () => {
       width="1em"
       height="1em"
       preserveAspectRatio="xMidYMid meet"
-      viewBox="0 0 48 48"
+      viewBox="0 0 32 32"
     >
-      <g fill="currentColor" fillRule="evenodd" clipRule="evenodd">
-        <path d="M14 6a2 2 0 0 0-2 2v28a2 2 0 0 0 2 2h11v2H14a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4h-3v-2h3a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H14Z" />
-        <path d="M18 11a1 1 0 0 1 1-1h10a1 1 0 1 1 0 2H19a1 1 0 0 1-1-1Zm-4 6a1 1 0 0 1 1-1h18a1 1 0 1 1 0 2H15a1 1 0 0 1-1-1Zm0 4a1 1 0 0 1 1-1h18a1 1 0 1 1 0 2H15a1 1 0 0 1-1-1Zm0 4a1 1 0 0 1 1-1h18a1 1 0 1 1 0 2H15a1 1 0 0 1-1-1Zm14 10a2 2 0 1 0 0-4a2 2 0 0 0 0 4Zm0 2a4 4 0 1 0 0-8a4 4 0 0 0 0 8Z" />
-        <path d="M27 35h-2v9l3-1.5l3 1.5v-9h-2v5.764l-1-.5l-1 .5V35Z" />
-      </g>
+      <path
+        fill="currentColor"
+        d="m25.7 9.3l-7-7c-.2-.2-.4-.3-.7-.3H8c-1.1 0-2 .9-2 2v24c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V10c0-.3-.1-.5-.3-.7zM18 4.4l5.6 5.6H18V4.4zM24 28H8V4h8v6c0 1.1.9 2 2 2h6v16z"
+      />
+      <path fill="currentColor" d="M10 22h12v2H10zm0-6h12v2H10z" />
     </svg>
   )
 }
@@ -386,6 +386,416 @@ export const AttachmentIcon = () => {
         fill="currentColor"
         d="M17 10h7v2h-7zm-1 5h8v2h-8zm-1 5h9v2h-9zm-6-1a5.005 5.005 0 0 1-5-5V3h2v11a3 3 0 0 0 6 0V5a1 1 0 0 0-2 0v10H8V5a3 3 0 0 1 6 0v9a5.005 5.005 0 0 1-5 5z"
       />
+    </svg>
+  )
+}
+export const LacationIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      preserveAspectRatio="xMidYMid meet"
+      viewBox="0 0 20 20"
+    >
+      <path
+        fill="currentColor"
+        d="M10 2.009c-2.762 0-5 2.229-5 4.99c0 4.774 5 11 5 11s5-6.227 5-11c0-2.76-2.238-4.99-5-4.99zm0 7.751a2.7 2.7 0 1 1 0-5.4a2.7 2.7 0 0 1 0 5.4z"
+      />
+    </svg>
+  )
+}
+export const EmailIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      preserveAspectRatio="xMidYMid meet"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M12.72 2.03A9.991 9.991 0 0 0 2.03 12.72C2.39 18.01 7.01 22 12.31 22H16c.55 0 1-.45 1-1s-.45-1-1-1h-3.67c-3.73 0-7.15-2.42-8.08-6.03c-1.49-5.8 3.91-11.21 9.71-9.71C17.58 5.18 20 8.6 20 12.33v1.1c0 .79-.71 1.57-1.5 1.57s-1.5-.78-1.5-1.57v-1.25c0-2.51-1.78-4.77-4.26-5.12a5.008 5.008 0 0 0-5.66 5.87a4.996 4.996 0 0 0 3.72 3.94c1.84.43 3.59-.16 4.74-1.33c.89 1.22 2.67 1.86 4.3 1.21c1.34-.53 2.16-1.9 2.16-3.34v-1.09c0-5.31-3.99-9.93-9.28-10.29zM12 15c-1.66 0-3-1.34-3-3s1.34-3 3-3s3 1.34 3 3s-1.34 3-3 3z"
+      />
+    </svg>
+  )
+}
+export const PhoneIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      preserveAspectRatio="xMidYMid meet"
+      viewBox="0 0 36 36"
+    >
+      <g transform="rotate(-90 18 18)">
+        <path
+          fill="currentColor"
+          d="M27.73 35.44a4.72 4.72 0 0 1-1-.11a33.91 33.91 0 0 1-16.62-8.75a32.71 32.71 0 0 1-9-16.25a4.58 4.58 0 0 1 1.35-4.28l4-3.85A2 2 0 0 1 8 1.66a2 2 0 0 1 1.45.87l5 7.39a1.6 1.6 0 0 1-.11 1.9l-2.51 3A18.94 18.94 0 0 0 16 20.71a19.26 19.26 0 0 0 6.07 4.09l3.11-2.47a1.64 1.64 0 0 1 1.86-.12l7.55 4.88A2 2 0 0 1 35 30.2l-3.9 3.86a4.74 4.74 0 0 1-3.37 1.38ZM7.84 3.64l-4 3.85a2.54 2.54 0 0 0-.75 2.4a30.7 30.7 0 0 0 8.41 15.26a31.9 31.9 0 0 0 15.64 8.23a2.75 2.75 0 0 0 2.5-.74l3.9-3.86l-7.29-4.71l-3.34 2.66a1 1 0 0 1-.92.17a20.06 20.06 0 0 1-7.36-4.75a19.49 19.49 0 0 1-4.87-7.2A1 1 0 0 1 10 14l2.7-3.23Z"
+          className="clr-i-outline clr-i-outline-path-1"
+        />
+        <path fill="none" d="M0 0h36v36H0z" />
+      </g>
+    </svg>
+  )
+}
+
+export const CalendarIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      preserveAspectRatio="xMidYMid meet"
+      viewBox="0 0 24 24"
+    >
+      <path fill="currentColor" d="M8 15h3v3h2v-3h3v-2h-3v-3h-2v3H8z" />
+      <path
+        fill="currentColor"
+        d="M19 4h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm.002 16H5V8h14l.002 12z"
+      />
+    </svg>
+  )
+}
+
+export const ResearchIcon = (props: any) => {
+  return (
+    <svg
+      id="Layer_1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      x="0px"
+      y="0px"
+      width="1em"
+      height="1em"
+      viewBox="0 0 45 33"
+      style={{
+        enableBackground: 'new 0 0 45 33',
+      }}
+      xmlSpace="preserve"
+      role="img"
+      {...props}
+    >
+      <style type="text/css">
+        {
+          '\n\t.st0{fill:#92C8F6;}\n\t.st1{fill:#122E51;}\n\t.st2{clip-path:url(#SVGID_2_);}\n\t.st3{clip-path:url(#SVGID_4_);}\n\t.st4{clip-path:url(#SVGID_6_);}\n\t.st5{clip-path:url(#SVGID_8_);fill:#92C8F6;}\n\t.st6{clip-path:url(#SVGID_10_);fill:none;stroke:#122E51;stroke-width:2;stroke-miterlimit:10;}\n\t.st7{clip-path:url(#SVGID_12_);}\n\t.st8{clip-path:url(#SVGID_14_);fill:#92C8F6;}\n\t.st9{clip-path:url(#SVGID_16_);fill:none;stroke:#122E51;stroke-width:2;stroke-miterlimit:10;}\n\t.st10{clip-path:url(#SVGID_18_);}\n\t.st11{clip-path:url(#SVGID_20_);fill:#FFFFFF;}\n\t.st12{clip-path:url(#SVGID_22_);}\n\t.st13{clip-path:url(#SVGID_24_);fill:none;stroke:#122E51;stroke-width:4;stroke-miterlimit:10;}\n\t.st14{clip-path:url(#SVGID_26_);}\n\t.st15{clip-path:url(#SVGID_28_);fill:#FFFFFF;}\n\t.st16{clip-path:url(#SVGID_4_);fill:none;stroke:#122E51;stroke-width:2;stroke-miterlimit:10;}\n\t.st17{fill:none;}\n\t.st18{fill:#FFFFFF;}\n\t.st19{fill:#92C8F6;stroke:#122E51;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}\n\t.st20{fill:none;stroke:#122E51;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}\n\t.st21{fill:none;stroke:#122E51;stroke-width:2;stroke-miterlimit:10;}\n\t.st22{fill:#FFFFFF;stroke:#122E51;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}\n'
+        }
+      </style>
+      <g>
+        <defs>
+          <rect id="SVGID_1_" x={68.2} y={24.1} width={59.2} height={42.2} />
+        </defs>
+        <clipPath id="SVGID_2_">
+          <use
+            xlinkHref="#SVGID_1_"
+            style={{
+              overflow: 'visible',
+            }}
+          />
+        </clipPath>
+        <g className="st2">
+          <defs>
+            <rect
+              id="SVGID_3_"
+              x={27.8}
+              y={-976.4}
+              width={1024}
+              height={2765}
+            />
+          </defs>
+          <clipPath id="SVGID_4_">
+            <use
+              xlinkHref="#SVGID_3_"
+              style={{
+                overflow: 'visible',
+              }}
+            />
+          </clipPath>
+          <g className="st3">
+            <defs>
+              <path
+                id="SVGID_5_"
+                d="M91.3,53.8V32.2c0-1.3-3.7-2.4-8.4-2.4c-4.7,0-8.4,1.1-8.4,2.4v21.7c1.5-0.4,5.3-0.7,8.4-0.7 C86,53.2,88.2,53.4,91.3,53.8z"
+              />
+            </defs>
+            <clipPath id="SVGID_6_">
+              <use
+                xlinkHref="#SVGID_5_"
+                style={{
+                  overflow: 'visible',
+                }}
+              />
+            </clipPath>
+            <g className="st4">
+              <defs>
+                <rect
+                  id="SVGID_7_"
+                  x={27.8}
+                  y={-976.4}
+                  width={1024}
+                  height={2765}
+                />
+              </defs>
+              <clipPath id="SVGID_8_">
+                <use
+                  xlinkHref="#SVGID_7_"
+                  style={{
+                    overflow: 'visible',
+                  }}
+                />
+              </clipPath>
+            </g>
+          </g>
+          <g className="st3">
+            <defs>
+              <rect
+                id="SVGID_9_"
+                x={27.8}
+                y={-976.4}
+                width={1024}
+                height={2765}
+              />
+            </defs>
+            <clipPath id="SVGID_10_">
+              <use
+                xlinkHref="#SVGID_9_"
+                style={{
+                  overflow: 'visible',
+                }}
+              />
+            </clipPath>
+          </g>
+          <g className="st3">
+            <defs>
+              <path
+                id="SVGID_11_"
+                d="M108,53.8V32.2c0-1.3-3.7-2.4-8.4-2.4c-4.7,0-8.4,1.1-8.4,2.4v21.7c3-0.4,5.3-0.7,8.4-0.7 C102.8,53.2,106.5,53.4,108,53.8z"
+              />
+            </defs>
+            <clipPath id="SVGID_12_">
+              <use
+                xlinkHref="#SVGID_11_"
+                style={{
+                  overflow: 'visible',
+                }}
+              />
+            </clipPath>
+            <g className="st7">
+              <defs>
+                <rect
+                  id="SVGID_13_"
+                  x={27.8}
+                  y={-976.4}
+                  width={1024}
+                  height={2765}
+                />
+              </defs>
+              <clipPath id="SVGID_14_">
+                <use
+                  xlinkHref="#SVGID_13_"
+                  style={{
+                    overflow: 'visible',
+                  }}
+                />
+              </clipPath>
+            </g>
+          </g>
+          <g className="st3">
+            <defs>
+              <rect
+                id="SVGID_15_"
+                x={27.8}
+                y={-976.4}
+                width={1024}
+                height={2765}
+              />
+            </defs>
+            <clipPath id="SVGID_16_">
+              <use
+                xlinkHref="#SVGID_15_"
+                style={{
+                  overflow: 'visible',
+                }}
+              />
+            </clipPath>
+          </g>
+          <g className="st3">
+            <defs>
+              <path
+                id="SVGID_17_"
+                d="M106.5,53.7c-0.4-0.4-0.4-1,0-1.4c0.4-0.4,1-0.4,1.4,0l6.5,6.7c0.4,0.4,0.4,1,0,1.4 c-0.4,0.4-1,0.4-1.4,0L106.5,53.7z"
+              />
+            </defs>
+            <clipPath id="SVGID_18_">
+              <use
+                xlinkHref="#SVGID_17_"
+                style={{
+                  overflow: 'visible',
+                }}
+              />
+            </clipPath>
+            <g className="st10">
+              <defs>
+                <rect
+                  id="SVGID_19_"
+                  x={27.8}
+                  y={-976.4}
+                  width={1024}
+                  height={2765}
+                />
+              </defs>
+              <clipPath id="SVGID_20_">
+                <use
+                  xlinkHref="#SVGID_19_"
+                  style={{
+                    overflow: 'visible',
+                  }}
+                />
+              </clipPath>
+            </g>
+          </g>
+          <g className="st3">
+            <defs>
+              <path
+                id="SVGID_21_"
+                d="M106.9,53.4c-0.2-0.2-0.2-0.5,0-0.7c0.2-0.2,0.5-0.2,0.7,0l6.5,6.7c0.2,0.2,0.2,0.5,0,0.7 c-0.2,0.2-0.5,0.2-0.7,0L106.9,53.4z M89.6,52.7l18-17.4L131.4,60l-18,17.4L89.6,52.7z"
+              />
+            </defs>
+            <clipPath id="SVGID_22_">
+              <use
+                xlinkHref="#SVGID_21_"
+                style={{
+                  overflow: 'visible',
+                }}
+              />
+            </clipPath>
+            <g className="st12">
+              <defs>
+                <rect
+                  id="SVGID_23_"
+                  x={27.8}
+                  y={-976.4}
+                  width={1024}
+                  height={2765}
+                />
+              </defs>
+              <clipPath id="SVGID_24_">
+                <use
+                  xlinkHref="#SVGID_23_"
+                  style={{
+                    overflow: 'visible',
+                  }}
+                />
+              </clipPath>
+            </g>
+          </g>
+          <g className="st3">
+            <defs>
+              <ellipse id="SVGID_25_" cx={103.5} cy={48.8} rx={7.3} ry={7.4} />
+            </defs>
+            <clipPath id="SVGID_26_">
+              <use
+                xlinkHref="#SVGID_25_"
+                style={{
+                  overflow: 'visible',
+                }}
+              />
+            </clipPath>
+            <g className="st14">
+              <defs>
+                <rect
+                  id="SVGID_27_"
+                  x={27.8}
+                  y={-976.4}
+                  width={1024}
+                  height={2765}
+                />
+              </defs>
+              <clipPath id="SVGID_28_">
+                <use
+                  xlinkHref="#SVGID_27_"
+                  style={{
+                    overflow: 'visible',
+                  }}
+                />
+              </clipPath>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g>
+        <path
+          className="st0"
+          d="M18.6,26.2v-23c0-1.4-3.9-2.6-9-2.6c-5.1,0-9,1.2-9,2.6v23c1.6-0.4,5.6-0.7,9-0.7C13,25.5,15.4,25.8,18.6,26.2 z"
+        />
+        <path
+          className="st1"
+          d="M0.7,27.2c-0.2,0-0.4-0.1-0.6-0.2c-0.2-0.2-0.4-0.5-0.4-0.8v-23c0-2.6,5.4-3.6,10-3.6c4.6,0,10,0.9,10,3.6v23 c0,0.3-0.1,0.6-0.3,0.8s-0.5,0.3-0.8,0.2c-3.4-0.5-5.7-0.7-8.9-0.7c-3.6,0-7.3,0.3-8.7,0.7C0.8,27.2,0.7,27.2,0.7,27.2z M9.6,24.5 c2.9,0,5.1,0.2,8,0.6V3.2c-0.2-0.4-2.9-1.6-8-1.6c-5.1,0-7.8,1.2-8,1.7l0,21.7C3.8,24.6,7.1,24.5,9.6,24.5z"
+        />
+      </g>
+      <g>
+        <path
+          className="st0"
+          d="M36.6,26.2v-23c0-1.4-3.9-2.6-9-2.6c-5.1,0-9,1.2-9,2.6v23c3.3-0.4,5.6-0.7,9-0.7C31,25.5,35,25.8,36.6,26.2z"
+        />
+        <path
+          className="st1"
+          d="M36.6,27.2c-0.1,0-0.2,0-0.3,0c-1.4-0.4-5.1-0.7-8.7-0.7c-3.2,0-5.5,0.2-8.9,0.7c-0.3,0-0.6,0-0.8-0.2 s-0.3-0.5-0.3-0.8v-23c0-2.6,5.4-3.6,10-3.6s10,0.9,10,3.6v23c0,0.3-0.1,0.6-0.4,0.8C37,27.1,36.8,27.2,36.6,27.2z M27.6,1.6 c-5.1,0-7.8,1.2-8,1.7l0,21.8c2.9-0.4,5.1-0.6,8-0.6c2.6,0,5.9,0.2,8,0.5V3.2C35.4,2.8,32.8,1.6,27.6,1.6z"
+        />
+      </g>
+      <g>
+        <path
+          className="st1"
+          d="M13.1,9.8H5.4c-0.6,0-1-0.4-1-1s0.4-1,1-1h7.8c0.6,0,1,0.4,1,1S13.7,9.8,13.1,9.8z"
+        />
+      </g>
+      <g>
+        <path
+          className="st1"
+          d="M13.1,14.5H5.4c-0.6,0-1-0.4-1-1s0.4-1,1-1h7.8c0.6,0,1,0.4,1,1S13.7,14.5,13.1,14.5z"
+        />
+      </g>
+      <g>
+        <path
+          className="st1"
+          d="M13.1,19.2H5.4c-0.6,0-1-0.4-1-1s0.4-1,1-1h7.8c0.6,0,1,0.4,1,1S13.7,19.2,13.1,19.2z"
+        />
+      </g>
+      <g>
+        <path
+          className="st1"
+          d="M31.9,9.8h-7.7c-0.6,0-1-0.4-1-1s0.4-1,1-1h7.7c0.6,0,1,0.4,1,1S32.5,9.8,31.9,9.8z"
+        />
+      </g>
+      <g>
+        <path
+          className="st1"
+          d="M31.9,14.5h-7.7c-0.6,0-1-0.4-1-1s0.4-1,1-1h7.7c0.6,0,1,0.4,1,1S32.5,14.5,31.9,14.5z"
+        />
+      </g>
+      <g>
+        <path
+          className="st1"
+          d="M31.9,19.2h-7.7c-0.6,0-1-0.4-1-1s0.4-1,1-1h7.7c0.6,0,1,0.4,1,1S32.5,19.2,31.9,19.2z"
+        />
+      </g>
+      <g>
+        <g>
+          <path
+            className="st1"
+            d="M42.4,32.8c-0.6,0-1.3-0.2-1.8-0.7L35.5,27c-1-1-1-2.6,0-3.5c1-1,2.6-1,3.5,0l5.1,5.1c1,1,1,2.6,0,3.5 C43.7,32.5,43.1,32.8,42.4,32.8z M37.3,24.7c-0.1,0-0.3,0-0.4,0.1c-0.2,0.2-0.2,0.5,0,0.7l5.1,5.1c0.2,0.2,0.5,0.2,0.7,0 c0.2-0.2,0.2-0.5,0-0.7l-5.1-5.1C37.6,24.7,37.4,24.7,37.3,24.7z"
+          />
+        </g>
+        <g>
+          <circle className="st18" cx={33.1} cy={20.6} r={7} />
+          <path
+            className="st1"
+            d="M33.1,28.6c-4.4,0-8-3.6-8-8s3.6-8,8-8c4.4,0,8,3.6,8,8S37.5,28.6,33.1,28.6z M33.1,14.6c-3.3,0-6,2.7-6,6 s2.7,6,6,6c3.3,0,6-2.7,6-6S36.4,14.6,33.1,14.6z"
+          />
+        </g>
+      </g>
     </svg>
   )
 }
