@@ -203,14 +203,11 @@ export const MinusIcon = () => {
       width="1em"
       height="1em"
       preserveAspectRatio="xMidYMid meet"
-      viewBox="0 0 24 24"
+      viewBox="0 0 16 16"
     >
       <path
-        fill="none"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeWidth="2"
-        d="M20 12H4"
+        fill="currentColor"
+        d="M0 6.5v3a.5.5 0 0 0 .5.5h15a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5H.5a.5.5 0 0 0-.5.5z"
       />
     </svg>
   )

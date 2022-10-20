@@ -27,6 +27,7 @@ const PresentationSection = () => {
           layout="fill"
           objectFit="cover"
           alt="présentation"
+          priority
         />
       </div>
     </>
