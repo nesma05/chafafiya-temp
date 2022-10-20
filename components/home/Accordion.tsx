@@ -31,7 +31,7 @@ const Accordion = ({ content }: any) => {
         {content.inputType === 'button' && (
           <div className='text-center mt-auto mb-4'>
           <NextLink href={content.link} passHref>
-            <button className="bg-main py-1.5 px-2 sm:px-3 text-white">
+            <button className="bg-main py-1.5 px-2 sm:px-3 text-white rounded-md">
               {content.inputText}
             </button>
           </NextLink>
