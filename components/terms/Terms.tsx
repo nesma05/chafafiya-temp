@@ -16,7 +16,7 @@ const Terms = ({ letter, termsList }: any) => {
         {open ? <span className='m-start'><MinusIcon/></span> :<span className='m-start'><PlusIcon/></span>}
       </div>
       <div
-        className={`overflow-hidden rounded bg-white border p-2 text-sm transition-all duration-500 ease-in-out ${
+        className={`overflow-hidden rounded bg-white p-2 text-sm transition-all duration-500 ease-in-out ${
           open ? 'max-h-[1000px]' : 'max-h-0 py-0'
         }`}
       >
