@@ -1,6 +1,8 @@
-import { useState } from 'react'
-import { CloseIcon } from '../icons'
+import { useEffect, useState } from 'react'
+import { CloseIcon, SearchIcon } from '../icons'
+import FilteredTerms from './FilteredTerms'
 import Terms from './Terms'
+import ToggleDrawer from './ToggleDrawer'
 
 const dictionaryList = [
   {
@@ -14,7 +16,7 @@ const dictionaryList = [
       {
         title: 'إدانة',
         explanation:
-          'الأغلبية مصطلح يستخدم لوصف ذلك القسم من مجموعة تكّون أكثر من النصف. وقد يستعمل المصطلح أيضا لوصف (أكثرية نسبية) أو أكثرية (Plurality) أي أكبر عدد من الأصوات أو الناخبين عندما يكون هناك اختيار بين بديلين أو أكثر من المرشحين في الإنتخابات غير أن العدد يقل عن %50 من مجموع الأصوات. ',
+          'إدانة مصطلح يستخدم لوصف ذلك القسم من مجموعة تكّون أكثر من النصف. وقد يستعمل المصطلح أيضا لوصف (أكثرية نسبية) أو أكثرية (Plurality) أي أكبر عدد من الأصوات أو الناخبين عندما يكون هناك اختيار بين بديلين أو أكثر من المرشحين في الإنتخابات غير أن العدد يقل عن %50 من مجموع الأصوات. ',
       },
     ],
   },
@@ -24,12 +26,12 @@ const dictionaryList = [
       {
         title: 'بلدية',
         explanation:
-          'الأغلبية مصطلح يستخدم لوصف ذلك القسم من مجموعة تكّون أكثر من النصف. وقد يستعمل المصطلح أيضا لوصف (أكثرية نسبية) أو أكثرية (Plurality) أي أكبر عدد من الأصوات أو الناخبين عندما يكون هناك اختيار بين بديلين أو أكثر من المرشحين في الإنتخابات غير أن العدد يقل عن %50 من مجموع الأصوات. ',
+          'بلدية مصطلح يستخدم لوصف ذلك القسم من مجموعة تكّون أكثر من النصف. وقد يستعمل المصطلح أيضا لوصف (أكثرية نسبية) أو أكثرية (Plurality) أي أكبر عدد من الأصوات أو الناخبين عندما يكون هناك اختيار بين بديلين أو أكثر من المرشحين في الإنتخابات غير أن العدد يقل عن %50 من مجموع الأصوات. ',
       },
       {
         title: 'برلمان',
         explanation:
-          'الأغلبية مصطلح يستخدم لوصف ذلك القسم من مجموعة تكّون أكثر من النصف. وقد يستعمل المصطلح أيضا لوصف (أكثرية نسبية) أو أكثرية (Plurality) أي أكبر عدد من الأصوات أو الناخبين عندما يكون هناك اختيار بين بديلين أو أكثر من المرشحين في الإنتخابات غير أن العدد يقل عن %50 من مجموع الأصوات. ',
+          'برلمان مصطلح يستخدم لوصف ذلك القسم من مجموعة تكّون أكثر من النصف. وقد يستعمل المصطلح أيضا لوصف (أكثرية نسبية) أو أكثرية (Plurality) أي أكبر عدد من الأصوات أو الناخبين عندما يكون هناك اختيار بين بديلين أو أكثر من المرشحين في الإنتخابات غير أن العدد يقل عن %50 من مجموع الأصوات. ',
       },
     ],
   },
@@ -39,12 +41,12 @@ const dictionaryList = [
       {
         title: 'تعاونية',
         explanation:
-          'الأغلبية مصطلح يستخدم لوصف ذلك القسم من مجموعة تكّون أكثر من النصف. وقد يستعمل المصطلح أيضا لوصف (أكثرية نسبية) أو أكثرية (Plurality) أي أكبر عدد من الأصوات أو الناخبين عندما يكون هناك اختيار بين بديلين أو أكثر من المرشحين في الإنتخابات غير أن العدد يقل عن %50 من مجموع الأصوات. ',
+          'تعاونية مصطلح يستخدم لوصف ذلك القسم من مجموعة تكّون أكثر من النصف. وقد يستعمل المصطلح أيضا لوصف (أكثرية نسبية) أو أكثرية (Plurality) أي أكبر عدد من الأصوات أو الناخبين عندما يكون هناك اختيار بين بديلين أو أكثر من المرشحين في الإنتخابات غير أن العدد يقل عن %50 من مجموع الأصوات. ',
       },
       {
         title: 'تسوية',
         explanation:
-          'الأغلبية مصطلح  أكثرية أي أكبر عدد من الأصوات أو الناخبين عندما يكون هناك اختيار بين بديلين أو أكثر من المرشحين في الإنتخابات غير أن العدد يقل عن %50 من مجموع الأصوات. ',
+          'تسوية مصطلح  أكثرية أي أكبر عدد من الأصوات أو الناخبين عندما يكون هناك اختيار بين بديلين أو أكثر من المرشحين في الإنتخابات غير أن العدد يقل عن %50 من مجموع الأصوات. ',
       },
     ],
   },
@@ -52,16 +54,25 @@ const dictionaryList = [
 
 const Drawer = () => {
   const [showDrawer, setShowDrawer] = useState(false)
+  const [searchText, setSearchText] = useState('')
+  const [listTerms, setListTerms] = useState<object[]>([])
+  useEffect(() => {
+    console.log('dictionaryList', dictionaryList)
+    const terms = dictionaryList
+      .map((term: any) => {
+        return [...term.termsList]
+      })
+      .flat()
+    console.log('terms', terms)
+   
+      setListTerms(terms)
+    
+
+    console.log('dictionaryList2', dictionaryList)
+  }, [])
   return (
     <>
-      <div className="fixed bottom-0 z-40 w-screen sm:w-fit sm:right-4 ">
-        <button
-          onClick={() => setShowDrawer(true)}
-          className=" w-full bg-main px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-fit sm:rounded-t-lg "
-        >
-          قاموس/مصطلحات
-        </button>
-      </div>
+      <ToggleDrawer handleDrawer={setShowDrawer} />
       <div>
         <div
           className={`fixed right-0 top-0 z-40 h-screen w-80 bg-blue-900 ${
@@ -74,8 +85,20 @@ const Drawer = () => {
           >
             <CloseIcon />
           </button>
+          <div className="relative mt-10 w-full">
+            <input
+              type="text"
+              className="w-full rounded-md border px-3 py-1.5 pr-12 text-sm shadow-sm focus:border-main focus:outline-main"
+              placeholder="ابحث عن مصطلح"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+            />
 
-          <div className="mt-10">
+            <span className="absolute inset-y-0 right-0 inline-flex items-center overflow-hidden  px-3  text-xl text-gray-400">
+              <SearchIcon />
+            </span>
+          </div>
+          {/* <div className="mt-4">
             {dictionaryList.map((dict: any) => (
               <Terms
                 key={dict.letter}
@@ -83,7 +106,26 @@ const Drawer = () => {
                 termsList={dict.termsList}
               />
             ))}
-          </div>
+          </div> */}
+          {searchText ? (
+            <div className="mt-4">
+              {listTerms
+                .filter((t: any) => t.title.includes(searchText))
+                .map((term: any) => (
+                  <FilteredTerms key={term.title} term={term} />
+                ))}
+            </div>
+          ) : (
+            <div className="mt-4">
+              {dictionaryList.map((dict: any) => (
+                <Terms
+                  key={dict.letter}
+                  letter={dict.letter}
+                  termsList={dict.termsList}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </>
