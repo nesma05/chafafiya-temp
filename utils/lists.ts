@@ -21,7 +21,7 @@ export const menuList = [
       },
       {
         text: 'مراجع',
-        link: '/',
+        link: '/documents',
       },
       {
         text: 'اختبار المعلومات Quiz',
