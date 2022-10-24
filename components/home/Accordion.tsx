@@ -9,7 +9,7 @@ const Accordion = ({ content }: any) => {
   return (
     <div className="w-full lg:w-[30%] divide-y-2">
       <div
-        className="h-[90px] w-full  p-5 bg-secondary/30 hover:bg-secondary/50 font-bold flex items-center cursor-pointer gap-2 shadow-xl"
+        className="h-[90px] w-full p-5 bg-secondary/30 hover:bg-secondary/50 font-bold flex items-center cursor-pointer gap-2 shadow-xl"
         onClick={() => {
           setOpen(!open)
         }}
@@ -19,7 +19,7 @@ const Accordion = ({ content }: any) => {
         {open ? <span className='m-start'><MinusIcon/></span> :<span className='m-start'><PlusIcon/></span>}
       </div>
       <div
-        className={`flex flex-col overflow-hidden rounded shadow-xl bg-white p-3 text-sm font-medium transition-all duration-500 ease-in-out ${
+        className={`flex flex-col overflow-hidden rounded shadow-xl bg-white p-3 text-sm transition-all duration-500 ease-in-out ${
           open ? 'h-[300px]' : 'h-0 py-0'
         }`}
       >

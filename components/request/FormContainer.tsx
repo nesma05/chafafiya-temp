@@ -27,7 +27,7 @@ function FormContainer({ dir, title, children }: any) {
   }
 
   return (
-    <div>
+    <div className="font-arabic">
       <div className="bg-cyan-600 px-14 py-4 text-3xl text-white">
         <h1>{title}</h1>
       </div>

@@ -65,11 +65,11 @@ export const menuList = [
       },
       {
         text: 'تتبع الطلب',
-        link: '/checkRequest',
+        link: '/followReq',
       },
       {
         text: 'تقديم شكاية للمؤسسة المعنية',
-        link: '/',
+        link: '/checkRequest',
       },
       {
         text: 'تقديم شكاية للجنة الحق في الحصول على المعلومات',
