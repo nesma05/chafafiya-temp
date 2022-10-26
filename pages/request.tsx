@@ -10,10 +10,10 @@ import Navbar from '../components/Header/Navbar'
 
 const Request: NextPage = ({ dir }: any) => {
   return (
-    <div dir={dir}>
+    <div className='font-arabic' dir={dir}>
       <Navbar />
       <FormContext>
-        <FormContainer dir={dir} title={'إيداع طلب الحصول على المعلومات'}>
+        <FormContainer title={'إيداع طلب الحصول على المعلومات'}>
           <AdministrationSection />
           <RequestTypeSection />
           <PersonalInfoSection />

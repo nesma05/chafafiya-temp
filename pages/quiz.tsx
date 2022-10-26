@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import { useState } from 'react'
 import Navbar from '../components/Header/Navbar'
 import { NoteIcon } from '../components/icons'
+import PageTitle from '../components/PageTitle'
 
 const questionsList = [
   {
@@ -99,12 +100,15 @@ const Home: NextPage = ({ dir }: any) => {
   return (
     <div className='font-arabic' dir={dir}>
       <Navbar />
-      <div>
-        <div className="my-4 mx-auto w-[60%] text-center">
-          <h1 className="text-xl font-medium underline">
+      <PageTitle>
+          
             ما مقدار معرفتك بالقانون 13-31 المتعلق بالحق في الحصول على
             المعلومات؟
-          </h1>
+         
+          </PageTitle>
+      <div className="mt-20 ">
+        <div className="my-4 mx-auto w-[60%] text-center">
+          
           <p className="my-10 font-medium text-gray-700">
             يعتبر حق الحصول على اCعلومات حقا من الحقوق والحريات اfساسية التي نص
             عليها الدستور الصادر بتنفيذه الظهير الشريف رقم 91.11.1 بتاريخ 29

@@ -7,4 +7,7 @@ module.exports = {
     // The default locale you want to be used when visiting a non-locale prefixed path e.g. `/hello`
     defaultLocale: 'fr',
   },
+  images: {
+    domains: ['www.cdai.ma'],
+  },
 }

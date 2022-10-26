@@ -5,7 +5,7 @@ function RequestOwnerDetails() {
   return (
     <div className="basis-2/3">
     <div className="flex justify-between">
-      <div className="text-sm">
+      <div>
         <input
           type="radio"
           name="requester"
@@ -17,7 +17,7 @@ function RequestOwnerDetails() {
           مواطن(ة) مغربي(ة)، رقم البطاقة الوطنية للتعريف *
         </label>
       </div>
-      <div className="text-sm">
+      <div>
         <input
           type="radio"
           name="requester"

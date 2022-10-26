@@ -4,7 +4,7 @@ function RequestTypeDetails() {
   const [showUrgent, setShowUrgent] = useState(false)
   return (
     <div className="flex basis-2/3 flex-col gap-3">
-      <div className="text-lg">
+      <div className="">
         <input
           type="radio"
           name="requestType"
@@ -14,7 +14,7 @@ function RequestTypeDetails() {
         />
         <label>طلب عادي</label>
       </div>
-      <div className="text-lg">
+      <div className="">
         <input
           type="radio"
           name="requestType"

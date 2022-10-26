@@ -1,10 +1,8 @@
 import axios from 'axios'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { requestState } from '../../context/formContext'
+import PageTitle from '../PageTitle'
 
-function FormContainer({ dir, title, children }: any) {
-  const { locale, locales, asPath } = useRouter()
+function FormContainer({ title, children }: any) {
 
   const {
     chosenState: { chosenOrgs },
@@ -14,13 +12,13 @@ function FormContainer({ dir, title, children }: any) {
     e.preventDefault()
     const myFormData = new FormData(e.target)
     myFormData.append('chosenOrgs', JSON.stringify(chosenOrgs))
-    
-    const formDataObj = Object.fromEntries(myFormData.entries()) 
+
+    const formDataObj = Object.fromEntries(myFormData.entries())
 
     const requestedInfo = myFormData.getAll('requestedInfo')
-    Object.assign(formDataObj, {requestedInfo})
+    Object.assign(formDataObj, { requestedInfo })
     console.log({ formDataObj })
-    
+
     axios
       .post('http://localhost:5000/create-pdf', formDataObj)
       .then((res) => console.log(res))
@@ -28,9 +26,11 @@ function FormContainer({ dir, title, children }: any) {
 
   return (
     <div className="font-arabic">
-      <div className="bg-cyan-600 px-14 py-4 text-3xl text-white">
-        <h1>{title}</h1>
-      </div>
+      <PageTitle>
+        {title}
+   
+      </PageTitle>
+
       <div className="p-10">
         <form onSubmit={handleSubmit}>{children}</form>
       </div>
