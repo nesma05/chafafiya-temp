@@ -4,12 +4,15 @@ import { NextIcon, PreviousIcon } from './icons'
 
 const BreadCrumb = () => {
   const { locale, locales, asPath } = useRouter()
+  const pathNames = asPath.split('/')
+  console.log('pathNames',pathNames)
   return (
     <nav className="flex" aria-label="Breadcrumb">
       <ol className="flex text-sm">
         <NextLink href={'/'} passHref>
           <li className="mx-1">الرئيسية</li>
         </NextLink>
+
         <li>{locale === 'ar' ? <PreviousIcon /> : <NextIcon />}</li>
         <NextLink href={'/'} passHref>
           <li className="mx-1">تقديم الطلب</li>

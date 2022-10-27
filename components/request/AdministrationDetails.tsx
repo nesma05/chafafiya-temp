@@ -142,14 +142,14 @@ function AdministrationDetails() {
   }
 
   const getOrg = async (selected: string) => {
-    const response = await axios(`http://localhost:4001/${selected}`)
+    const response = await axios(`https://chafafiya-api-json-server.herokuapp.com/${selected}`)
     //setOrganitations(response?.data)
     setLists({ ...lists, organitations: response?.data })
   }
 
   const getSubAdm = async (selected: string) => {
     const response = await axios(
-      `http://localhost:4001/subAdministrations?idOrg=${formInputs.idOrg}&niveau=${selected}`
+      `https://chafafiya-api-json-server.herokuapp.com/subAdministrations?idOrg=${formInputs.idOrg}&niveau=${selected}`
     )
     //setSubAdministrations(response?.data)
     setLists({ ...lists, subAdministrations: response?.data })
@@ -157,7 +157,7 @@ function AdministrationDetails() {
 
   const getProv = async (selected: string) => {
     const response = await axios(
-      `http://localhost:4001/subRegions?region=${selected}`
+      `https://chafafiya-api-json-server.herokuapp.com/subRegions?region=${selected}`
     )
     //setProvinces(response?.data)
     setLists({ ...lists, provinces: response?.data })
@@ -165,7 +165,7 @@ function AdministrationDetails() {
 
   const getColl = async (selected: string) => {
     const response = await axios(
-      `http://localhost:4001/provinces?subRegion=${selected}`
+      `https://chafafiya-api-json-server.herokuapp.com/provinces?subRegion=${selected}`
     )
     //setCollectives(response?.data)
     setLists({ ...lists, collectives: response?.data })
