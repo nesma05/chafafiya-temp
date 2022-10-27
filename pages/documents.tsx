@@ -1,8 +1,9 @@
 import type { NextPage } from 'next'
-import { useRouter } from 'next/router'
+import NextLink from 'next/link'
 import DocumentsSection from '../components/documents/DocumentsSection'
 import Navbar from '../components/Header/Navbar'
-import Drawer from '../components/terms/Drawer'
+import PageTitle from '../components/PageTitle'
+
 
 const documentsList = [{
   thumbnail:"/img/document-1.jpg",
@@ -22,6 +23,7 @@ const Documents: NextPage = ({ dir }: any) => {
   return (
     <div className='font-arabic' dir={dir}>
       <Navbar />
+
       <div className="my-10 mx-auto w-[90%]">
         <h2 className="text-xl font-medium underline">
           وثائق قانونية وتنظيمية

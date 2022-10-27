@@ -6,10 +6,12 @@ import {requestFollow} from '../../utils/constants'
 import { AvatarIcon } from '../../components/icons'
 import ResSideBar from '../../components/responsable/ResSideBar'
 import ResDetails from '../../components/responsable/ResDetails'
+import PageTitle from '../../components/PageTitle'
 const Responsable: NextPage = ({ dir }: any) => {
 
   return (
     <div dir='rtl'>
+      
     <header className="px-10 py-4">
       <div className="flex items-center justify-between">
         <NextLink href={'/'} passHref>
@@ -26,6 +28,10 @@ const Responsable: NextPage = ({ dir }: any) => {
         </div>
       </div>
     </header>
+    <PageTitle>Responsable</PageTitle>
+      <NextLink href={'/responsable/table'} passHref>
+        <button>table</button>
+      </NextLink>
     <div className="flex border-t-2 border-gray-300">
     <ResSideBar/>
     <ResDetails rows={requestFollow}/>
