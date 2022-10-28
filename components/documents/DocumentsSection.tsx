@@ -16,14 +16,13 @@ const DocumentsSection = ({ documentsList }: any) => {
   const getDocument = (doc: any) => {
     setTempDoc(doc)
     setModal(true)
-    console.log('clicked')
   }
   return (
     <>
       <ModalInfo doc={tempDoc} handleClose={handleClose} modal={modal} />
       <div className="my-6 mx-auto flex flex-wrap gap-4">
-        {documentsList.map((doc: any) => (
-          <DocumentInfo doc={doc} handleClick={() => getDocument(doc)} />
+        {documentsList.map((doc: any, index:any) => (
+          <DocumentInfo key={index} doc={doc} handleClick={() => getDocument(doc)} />
         ))}
       </div>
     </>

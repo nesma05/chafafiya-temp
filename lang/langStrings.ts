@@ -10,7 +10,8 @@ export const LangStrings = {
     quiz:'quiz',
     table:'table',
     request:'request',
-    home:'accueil'
+    home:'accueil',
+    documents:'documents'
   },
   ar: {
     administration: "المؤسسة أو الهيئة المعنية",
@@ -23,6 +24,7 @@ export const LangStrings = {
     quiz:'الإختبار',
     table:'الجدول',
     request:'أيداع الطلب',
-    home:'الرئيسية'
+    home:'الرئيسية',
+    documents:'وثائق'
   },
 }

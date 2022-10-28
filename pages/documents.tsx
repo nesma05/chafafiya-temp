@@ -25,9 +25,9 @@ const Documents: NextPage = ({ dir }: any) => {
       <Navbar />
 
       <div className="my-10 mx-auto w-[90%]">
-        <h2 className="text-xl font-medium underline">
+        <PageTitle>
           وثائق قانونية وتنظيمية
-        </h2>
+        </PageTitle>
         <DocumentsSection documentsList={documentsList}/>
       </div>
     </div>
