@@ -34,7 +34,7 @@ const Responsable: NextPage = ({ dir }: any) => {
       <NextLink href={'/responsable/table'} passHref>
         <button>table</button>
       </NextLink>
-      <div className="flex border-t-2 border-gray-300">
+      <div className="mt-20 flex border-t-2 border-gray-300">
         <ResSideBar />
         <ResDetails rows={requestFollow} />
       </div>
