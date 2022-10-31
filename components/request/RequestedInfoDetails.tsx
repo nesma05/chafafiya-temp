@@ -54,9 +54,9 @@ function RequestedInfoDetails() {
       <p className="mb-2">
         الطريقة المرغوب فيها للحصول على المعلومات *
       </p>
-      <div className="flex flex-wrap justify-between">
+      <div className="flex flex-wrap gap-1">
         {receivedInfo.map((reqInfo: any, index) => (
-          <div key={index} className="flex basis-1/3 gap-2">
+          <div key={index} className="flex basis-[30%] items-center gap-2">
             <input type="radio" name="recievedInfo" value={reqInfo} />
             <label>{reqInfo}</label>
           </div>
