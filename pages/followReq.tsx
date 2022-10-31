@@ -3,6 +3,7 @@ import Navbar from '../components/Header/Navbar'
 import { requestFollow } from '../utils/constants'
 import Image from 'next/image'
 import ConverHistory from '../components/responsable/ConverHistory'
+import Footer from '../components/footer'
 
 const FollowReq: NextPage = ({ dir }: any) => {
   // const {locale,locales,asPath} = useRouter()
@@ -31,6 +32,7 @@ const FollowReq: NextPage = ({ dir }: any) => {
        
         <ConverHistory requestFollow={requestFollow[0]} user="citizen"/>
       </div>
+      <Footer/>
     </div>
   )
 }

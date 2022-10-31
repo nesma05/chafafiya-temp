@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import { useState } from 'react'
+import Footer from '../components/footer'
 import Navbar from '../components/Header/Navbar'
 import { NoteIcon } from '../components/icons'
 import PageTitle from '../components/PageTitle'
@@ -187,6 +188,7 @@ const Home: NextPage = ({ dir }: any) => {
           </div>
         )}
       </div>
+      <Footer/>
     </div>
   )
 }

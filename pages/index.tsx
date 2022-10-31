@@ -8,6 +8,7 @@ import AccordionSection from '../components/home/AccordionSection'
 import PresentationSection from '../components/home/PresentaionSection'
 import Drawer from '../components/terms/Drawer'
 import SubTitle from '../components/home/SubTitle'
+import Footer from '../components/footer'
 
 const Home: NextPage = ({ dir }: any) => {
  
@@ -21,7 +22,8 @@ const Home: NextPage = ({ dir }: any) => {
         <BoxSection/>
         <SubTitle/>
         <AccordionSection/>
-        <IconBoxSection/>       
+        <IconBoxSection/> 
+        <Footer/>      
     </div>
   ) 
 }

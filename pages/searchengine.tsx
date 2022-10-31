@@ -15,6 +15,7 @@ import FilterContext from '../context/filterContext'
 import TabsTitles from '../components/searchFilter/TabsTitles'
 import FiltersSearchResults from '../components/searchFilter/FiltersSearchResults'
 import GlSearchResultsSection from '../components/searchFilter/GlSearchResultsSection'
+import Footer from '../components/footer'
 
 const SearchEngine: NextPage = ({ results, dir }: any) => {
   const router = useRouter()
@@ -28,7 +29,7 @@ const SearchEngine: NextPage = ({ results, dir }: any) => {
   return (
     <FilterContext>
       <div dir={dir}>
-        {/* <Navbar /> */}
+        <Navbar />
         <SearchResultsHeader />
         <div className="my-8 mx-10 max-w-sm space-y-4">
         <SearchInput button='yes'/>
@@ -41,6 +42,7 @@ const SearchEngine: NextPage = ({ results, dir }: any) => {
           router={router}
           results={results}
         />
+        <Footer/>
       </div>
     </FilterContext>
   )

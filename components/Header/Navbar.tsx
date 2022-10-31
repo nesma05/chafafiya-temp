@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import NextLink from 'next/link'
 import MenuItem from './MenuItem'
 import { menuList } from '../../utils/lists'
@@ -13,7 +13,8 @@ const Navbar = () => {
   const menuRef = useRef<HTMLLIElement[]>([])
 
   return (
-    <header className="px-1 py-4 text-sm sm:px-10">
+    <>
+    <header className="px-1 py-4 text-sm sm:px-10 bg-white">
       <div className="flex items-center justify-between">
         <NextLink href={'/'} passHref>
           <div className="relative h-[50px] w-[190px] sm:h-[70px] sm:w-[215px]">
@@ -35,7 +36,8 @@ const Navbar = () => {
           <LangSwitch />
         </div>
       </div>
-      <div className="relative flex flex-wrap items-center justify-between py-3 px-2">
+      </header>
+      <div className="z-10 sticky top-0 bg-white flex flex-wrap gap-2 items-center justify-between py-3 md:px-12 px-2 ">
         <nav className="order-last flex items-center md:order-none">
           <ul className="relative hidden gap-6 font-light text-main md:flex">
             {menuList.map((menu: any) => (
@@ -92,12 +94,12 @@ const Navbar = () => {
           <div className="max-w-[200px]">
             <SearchInput />
           </div>
-          <button className="mx-3 rounded-md bg-secondary py-2 px-3">
+          <button className="mx-3 rounded-md bg-secondary text-sm py-1.5 px-2">
             تسجيل الدخول
           </button>
         </div>
       </div>
-    </header>
+      </>
   )
 }
 

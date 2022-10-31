@@ -71,7 +71,7 @@ const langSwitch = () => {
       <ul
         className={`absolute top-11 left-2 z-50 divide-y border-2 bg-white transition duration-200 ease-in-out ${
           open
-            ? 'visible -translate-y-3 opacity-100'
+            ? 'visible -translate-y-2 opacity-100'
             : 'invisible translate-y-0 opacity-0'
         }`}
       >

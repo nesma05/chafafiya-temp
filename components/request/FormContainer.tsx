@@ -3,7 +3,6 @@ import { requestState } from '../../context/formContext'
 import PageTitle from '../PageTitle'
 
 function FormContainer({ title, children }: any) {
-
   const {
     chosenState: { chosenOrgs },
   } = requestState()
@@ -26,12 +25,8 @@ function FormContainer({ title, children }: any) {
 
   return (
     <div className="font-arabic">
-      <PageTitle>
-        {title}
-   
-      </PageTitle>
-
-      <div className="p-10">
+      <PageTitle>{title}</PageTitle>
+      <div className="mt-20 p-10">
         <form onSubmit={handleSubmit}>{children}</form>
       </div>
     </div>

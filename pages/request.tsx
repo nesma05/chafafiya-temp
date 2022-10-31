@@ -7,6 +7,7 @@ import RequesterSection from '../components/request/RequesterSection'
 import RequestedInfoSection from '../components/request/RequestedInfoSection'
 import FormContext from '../context/formContext'
 import Navbar from '../components/Header/Navbar'
+import Footer from '../components/footer'
 
 const Request: NextPage = ({ dir }: any) => {
   return (
@@ -26,6 +27,7 @@ const Request: NextPage = ({ dir }: any) => {
           </div>
         </FormContainer>
       </FormContext>
+      <Footer/>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import NextLink from 'next/link'
 import DocumentsSection from '../components/documents/DocumentsSection'
+import Footer from '../components/footer'
 import Navbar from '../components/Header/Navbar'
 import PageTitle from '../components/PageTitle'
 
@@ -31,6 +32,7 @@ const Documents: NextPage = ({ dir }: any) => {
       <div className="my-10 mx-auto w-[90%]">
         <DocumentsSection documentsList={documentsList} />
       </div>
+      <Footer/>
     </div>
   )
 }

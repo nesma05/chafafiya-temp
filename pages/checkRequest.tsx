@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { RefreshIcon } from '../components/icons'
 import Navbar from '../components/Header/Navbar'
+import Footer from '../components/footer'
 
 const CheckRequest: NextPage = ({ dir }: any) => {
   // const {locale,locales,asPath} = useRouter()
@@ -91,6 +92,7 @@ const CheckRequest: NextPage = ({ dir }: any) => {
           </form>
         </div>
       </div>
+      <Footer/>
     </div>
   )
 }
