@@ -23,7 +23,7 @@ const footer = () => {
     },
   ]
   return (
-    <footer className="shadow-top bg-white py-8 px-10 sm:px-[120px] ">
+    <footer className="shadow-top bg-white py-8 px-10 sm:px-[180px] ">
       <div className="md:flex md:gap-8">
         <NextLink href={'/'} passHref>
           <div className="mb-8 relative h-[50px] w-[190px] sm:h-[70px] sm:w-[215px]">
