@@ -94,7 +94,7 @@ const Navbar = () => {
           <div className="max-w-[200px]">
             <SearchInput />
           </div>
-          <button className="mx-3 rounded-md bg-secondary text-sm py-1.5 px-2">
+          <button className="mx-3 rounded-md bg-secondary text-sm py-3 px-2">
             تسجيل الدخول
           </button>
         </div>

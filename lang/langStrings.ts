@@ -11,7 +11,8 @@ export const LangStrings = {
     table:'table',
     request:'request',
     home:'accueil',
-    documents:'documents'
+    documents:'documents',
+    searchengine:'recherche'
   },
   ar: {
     administration: "المؤسسة أو الهيئة المعنية",
@@ -23,8 +24,9 @@ export const LangStrings = {
     responsable:'المسؤول',
     quiz:'الإختبار',
     table:'الجدول',
-    request:'أيداع الطلب',
+    request:'إيداع الطلب',
     home:'الرئيسية',
-    documents:'وثائق'
+    documents:'وثائق',
+    searchengine:'البحث'
   },
 }
