@@ -14,7 +14,7 @@ const Navbar = () => {
 
   return (
     <>
-    <header className="px-1 border border-b-gray-300 text-sm sm:px-10 bg-white">
+    <header className="px-1 border border-b-gray-100 text-sm sm:px-10 bg-white">
       <div className="flex items-center justify-between">
         <NextLink href={'/'} passHref>
           <div className="relative h-[50px] w-[190px] sm:h-[70px] sm:w-[215px]">

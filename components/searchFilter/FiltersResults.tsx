@@ -48,7 +48,7 @@ const FiltersResults = () => {
 
   return (
     <>
-      <div className="text-md font-arabic sm:basis-3/4">
+      <div className="text-sm sm:basis-3/5">
         <div>
           <h3 className="font-bold">{tr('infoTotal')}</h3>
           <input
@@ -58,7 +58,7 @@ const FiltersResults = () => {
             placeholder="البحث في النتائج"
           />
           <div className="mb-2 flex flex-wrap">
-            <h4 className="ml-1 text-lg">الوزارات</h4>
+            <h4 className="ml-1">الوزارات</h4>
             {ministries.map((ministry:any) => (
               <div
                 onClick={()=>handleMinistries(ministry)}
@@ -71,7 +71,7 @@ const FiltersResults = () => {
             ))}
           </div>
           <div className="mb-6 flex flex-wrap">
-            <h4 className="ml-1 text-lg">المحاور</h4>
+            <h4 className="ml-1">المحاور</h4>
             {anexes.map((anex:any) => (
               <div
                 onClick={()=>handleAnexes(anex)}
@@ -89,16 +89,18 @@ const FiltersResults = () => {
         <div>
           {dataList().map((info: any) => (
             <div key={info.id} className="mb-4">
-              <h2 className="my-3 cursor-pointer text-xl text-sky-700 transition-colors duration-300 hover:text-sky-500">
+              <h2 className="my-3 cursor-pointer text-sm text-sky-700 transition-colors duration-300 hover:text-sky-500">
                 {info.title}
               </h2>
-              <span className="border-2 bg-gray-200 py-1 px-2">المحور</span>
+              <div className='flex flex-wrap items-center'>
+              <span className="border-2 bg-gray-200 p-2 mb-4">المحور</span>
               {info.anexes.map((anex: any) => (
-                <div className="inline-block" key={anex}>
+                <div className="mb-4" key={anex}>
                   <span className="border-2 p-1">{anex}</span>
                 </div>
               ))}
-              <p className="mt-3 mb-5">{info.institut}</p>
+              </div>
+              <p className="mb-2">{info.institut}</p>
               {info.files.map((file: any) => (
                 <span
                   key={file}

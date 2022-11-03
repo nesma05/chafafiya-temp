@@ -29,7 +29,7 @@ const SearchEngine: NextPage = ({ results, dir }: any) => {
 
   return (
     <FilterContext>
-      <div dir={dir}>
+      <div dir={dir} className='font-arabic'>
         <Navbar />
         <PageTitle> ابحث عن المعلومة قبل تقديم الطلب</PageTitle>
         <div className='px-20 mt-[120px]'>

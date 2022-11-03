@@ -50,7 +50,7 @@ const Filters = () => {
 
   return (
     <>
-      <div className="text-md flex flex-col gap-2 font-arabic sm:basis-1/4">
+      <div className="text-sm flex flex-col gap-2 sm:basis-2/5">
         <h3 className="font-bold">{tr('typeAdmin')}</h3>
         <div>
           <input
@@ -107,7 +107,7 @@ const Filters = () => {
             className={`${
               showMinistriesSection && showAllMinistries
                 ? 'max-h-[2000px]'
-                : 'max-h-[200px]'
+                : 'max-h-[220px]'
             } overflow-hidden transition-all duration-300`}
           >
             {ministriesList
