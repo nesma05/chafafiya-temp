@@ -8,7 +8,7 @@ const DocumentInfo = ({ doc, handleClick }: any) => {
     <>
       <div
         onClick={handleClick}
-        className="h-[350px] w-[250px] cursor-pointer rounded-lg border-2 border-slate-700  p-1 shadow-lg"
+        className="h-[350px] w-[250px] cursor-pointer rounded-lg p-1 shadow-2xl"
       >
         <div className="relative my-1 mx-auto h-[80%] w-[90%]">
           <Image

@@ -37,7 +37,7 @@ const Navbar = () => {
         </div>
       </div>
       </header>
-      <div className="z-10 sticky top-0 bg-white flex flex-wrap gap-2 items-center justify-between py-3 md:px-12 px-2 ">
+      <div className="z-10 sticky top-0 bg-white flex flex-wrap gap-2 items-center justify-between py-3 md:px-12 px-2 shadow-xl">
         <nav className="order-last flex items-center md:order-none">
           <ul className="relative hidden gap-6 font-light text-main md:flex">
             {menuList.map((menu: any) => (

@@ -99,17 +99,13 @@ const Home: NextPage = ({ dir }: any) => {
   }
 
   return (
-    <div className='font-arabic' dir={dir}>
+    <div className="font-arabic" dir={dir}>
       <Navbar />
       <PageTitle>
-          
-            ما مقدار معرفتك بالقانون 13-31 المتعلق بالحق في الحصول على
-            المعلومات؟
-         
-          </PageTitle>
-      <div className="mt-20 ">
+        ما مقدار معرفتك بالقانون 13-31 المتعلق بالحق في الحصول على المعلومات؟
+      </PageTitle>
+      <div className=" mt-[120px] mb-20 ">
         <div className="my-4 mx-auto w-[60%] text-center">
-          
           <p className="my-10 font-medium text-gray-700">
             يعتبر حق الحصول على اCعلومات حقا من الحقوق والحريات اfساسية التي نص
             عليها الدستور الصادر بتنفيذه الظهير الشريف رقم 91.11.1 بتاريخ 29
@@ -188,7 +184,7 @@ const Home: NextPage = ({ dir }: any) => {
           </div>
         )}
       </div>
-      <Footer/>
+      <Footer />
     </div>
   )
 }

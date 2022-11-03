@@ -26,7 +26,7 @@ function FormContainer({ title, children }: any) {
   return (
     <div className="font-arabic">
       <PageTitle>{title}</PageTitle>
-      <div className="mt-20 p-10">
+      <div className="mt-20 py-10 px-28">
         <form onSubmit={handleSubmit}>{children}</form>
       </div>
     </div>

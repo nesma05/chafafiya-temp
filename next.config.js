@@ -9,6 +9,6 @@ module.exports = {
   },
  
   images: {
-    domains: ['www.cdai.ma'],
+    domains: ['www.cdai.ma','images.unsplash.com'],
   },
 }

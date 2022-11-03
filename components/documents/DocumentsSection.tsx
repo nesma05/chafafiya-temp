@@ -20,7 +20,7 @@ const DocumentsSection = ({ documentsList }: any) => {
   return (
     <>
       <ModalInfo doc={tempDoc} handleClose={handleClose} modal={modal} />
-      <div className="my-20  mx-auto flex flex-wrap gap-4">
+      <div className="mt-[120px] mb-20  mx-auto flex flex-wrap gap-8">
         {documentsList.map((doc: any, index:any) => (
           <DocumentInfo key={index} doc={doc} handleClick={() => getDocument(doc)} />
         ))}
