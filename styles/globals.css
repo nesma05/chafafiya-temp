@@ -44,12 +44,10 @@
 }
 
 .p-start {
-  margin-inline-start: 50px;
+  margin-inline-start: 33px;
 }
 
-.m-end {
-  margin-inline-end: auto;
-}
+
 
 .shadow-top {
   box-shadow: -2px 0px 16px -2px rgba(0, 0, 0, 0.1);
@@ -65,5 +63,5 @@
   transform: skewX(-10deg);
   position:absolute;
   z-index: 1;
-  inset-inline-end:-80px
+  inset-inline-end:-70px
 }
