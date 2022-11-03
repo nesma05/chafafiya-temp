@@ -4,11 +4,7 @@ import { NoteIcon } from '../icons'
 const SearchResultsHeader = () => {
     return (
         <div>
-        <div className="border-y-2 border-slate-700 bg-gray-200 py-10 px-16">
-          <h1 className="text-2xl font-medium">
-            ابحث عن المعلومة قبل تقديم الطلب
-          </h1>
-        </div>
+       
         <div className='flex items-center gap-4 mx-10 my-8 p-4 bg-gray-200'>
           <span className='text-2xl'><NoteIcon/></span>  
           <div>

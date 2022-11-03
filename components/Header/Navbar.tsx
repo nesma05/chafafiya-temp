@@ -14,7 +14,7 @@ const Navbar = () => {
 
   return (
     <>
-    <header className="px-1 py-4 text-sm sm:px-10 bg-white">
+    <header className="px-1 border border-b-gray-300 text-sm sm:px-10 bg-white">
       <div className="flex items-center justify-between">
         <NextLink href={'/'} passHref>
           <div className="relative h-[50px] w-[190px] sm:h-[70px] sm:w-[215px]">
@@ -37,7 +37,7 @@ const Navbar = () => {
         </div>
       </div>
       </header>
-      <div className="z-10 sticky top-0 bg-white flex flex-wrap gap-2 items-center justify-between py-3 md:px-12 px-2 shadow-xl">
+      <div className="z-10 sticky top-0 bg-white flex flex-wrap gap-2 items-center justify-between py-3 md:px-12 px-2 shadow-md">
         <nav className="order-last flex items-center md:order-none">
           <ul className="relative hidden gap-6 font-light text-main md:flex">
             {menuList.map((menu: any) => (

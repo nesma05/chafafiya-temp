@@ -8,7 +8,7 @@ const Hero = () => {
 
   return (
     <section className="bg-white ">
-      <div className="mx-auto grid h-[500px] max-w-md sm:max-w-screen-xl lg:grid-cols-12 lg:gap-8 xl:gap-0">
+      <div className="mx-auto grid h-[600px] w-full lg:grid-cols-12 lg:gap-8 xl:gap-0">
         <div className="flex flex-col items-center justify-center lg:col-span-6 relative hero-text">
           <div className='p-start'>
             <h1 className="mb-4 max-w-xl text-3xl font-extrabold leading-snug sm:text-4xl sm:leading-snug ">
@@ -19,7 +19,7 @@ const Hero = () => {
               التفاصيل لتكتشف حقيقة وأساس تلك السعادة البشرية، فلا أحد يرفض أو
               يكره أو يتجنب الشعور بالسعادة، ولكن بفضل هؤ
             </p>
-            <div className="mb-6 max-w-sm">
+            <div className="mb-6 max-w-lg">
               <SearchInput button="yes" />
             </div>
           </div>

@@ -16,6 +16,7 @@ import TabsTitles from '../components/searchFilter/TabsTitles'
 import FiltersSearchResults from '../components/searchFilter/FiltersSearchResults'
 import GlSearchResultsSection from '../components/searchFilter/GlSearchResultsSection'
 import Footer from '../components/footer'
+import PageTitle from '../components/PageTitle'
 
 const SearchEngine: NextPage = ({ results, dir }: any) => {
   const router = useRouter()
@@ -30,19 +31,28 @@ const SearchEngine: NextPage = ({ results, dir }: any) => {
     <FilterContext>
       <div dir={dir}>
         <Navbar />
+        <PageTitle> ابحث عن المعلومة قبل تقديم الطلب</PageTitle>
+        <div className='px-20 mt-[120px]'>
         <SearchResultsHeader />
-        <div className="my-8 mx-10 max-w-sm space-y-4">
-        <SearchInput button='yes'/>
+        <div className="my-8 mx-10 w-[80%] space-y-4">
+          <SearchInput button="yes" />
+        </div>
         </div>
         <hr></hr>
-        <TabsTitles results={results} toggleIndex={toggleIndex} handleTggle={handleTggle} />
-        <FiltersSearchResults toggleIndex={toggleIndex} />
-        <GlSearchResultsSection
-          toggleIndex={toggleIndex}
-          router={router}
-          results={results}
-        />
-        <Footer/>
+        <div className="px-20 py-10">
+          <TabsTitles
+            results={results}
+            toggleIndex={toggleIndex}
+            handleTggle={handleTggle}
+          />
+          <FiltersSearchResults toggleIndex={toggleIndex} />
+          <GlSearchResultsSection
+            toggleIndex={toggleIndex}
+            router={router}
+            results={results}
+          />
+        </div>
+        <Footer />
       </div>
     </FilterContext>
   )
