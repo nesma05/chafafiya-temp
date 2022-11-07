@@ -33,7 +33,7 @@ const ResRequest: NextPage = ({ request }: any) => {
   }
 
   return (
-    <div dir="rtl">
+    <div dir="rtl" className='font-arabic'>
       <header className="px-10 py-4">
         <div className="flex items-center justify-between">
           <NextLink href={'/'} passHref>

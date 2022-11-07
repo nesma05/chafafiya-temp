@@ -1,16 +1,16 @@
 import { NextPage } from 'next'
-import Navbar from '../components/Header/Navbar'
+import Navbar from '../components/Layout/Header/Navbar'
 import { requestFollow } from '../utils/constants'
 import Image from 'next/image'
 import ConverHistory from '../components/responsable/ConverHistory'
-import Footer from '../components/footer'
+import Footer from '../components/Layout/Footer'
 
 const FollowReq: NextPage = ({ dir }: any) => {
   // const {locale,locales,asPath} = useRouter()
   return (
-    <div className='font-arabic' dir={dir}>
+    <div className="font-arabic" dir={dir}>
       <Navbar />
-      <div className="m-20 flex justify-between items-start">
+      <div className="m-20 flex items-start justify-between">
         <div className="w-2/6 bg-gray-200 p-3 pb-10">
           <p className="font-medium underline">الرقم الترتيبي لتسجيل الطلب:</p>
           <p>{requestFollow[0].code}</p>
@@ -29,10 +29,10 @@ const FollowReq: NextPage = ({ dir }: any) => {
           </p>
           <p>{requestFollow[0].note}</p>
         </div>
-       
-        <ConverHistory requestFollow={requestFollow[0]} user="citizen"/>
+
+        <ConverHistory requestFollow={requestFollow[0]} user="citizen" />
       </div>
-      <Footer/>
+      <Footer />
     </div>
   )
 }

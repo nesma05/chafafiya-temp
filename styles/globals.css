@@ -47,7 +47,9 @@
   margin-inline-start: 33px;
 }
 
-
+.flip {
+  transform: scaleX(-1)
+}
 
 .shadow-top {
   box-shadow: -2px 0px 16px -2px rgba(0, 0, 0, 0.1);
@@ -64,4 +66,14 @@
   position:absolute;
   z-index: 1;
   inset-inline-end:-70px
+}
+
+.subTitle:after {
+  content:'';
+  position: absolute;
+  bottom: -10px;
+  inset-inline-start:0;
+  height: 15%;
+  width: 50%;
+  background-color: #8BC9FF;
 }

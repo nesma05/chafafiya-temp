@@ -1,5 +1,6 @@
 import { CalendarIcon, DocumentIcon, ResearchIcon } from '../icons'
 import Accordion from './Accordion'
+import SubTitle from './SubTitle'
 
 const accordionContent = [
   {
@@ -11,7 +12,7 @@ const accordionContent = [
       '• أو عبر المواقع الخدماتية التي توفر هذه المعلومات',
       '• أو عبر مواقع المؤسسات والهيئات',
     ],
-    icon: <ResearchIcon/>,
+    icon: <ResearchIcon />,
     inputText: 'تقديم الطلب',
     inputType: 'search',
   },
@@ -44,7 +45,8 @@ const accordionContent = [
 
 const AccordionSection = () => {
   return (
-    <div className="mb-20  mx-auto flex justify-between w-[80%] flex-wrap gap-2.5">
+    <div className="mx-auto my-20 flex w-[80%] flex-wrap justify-between gap-2.5">
+      <SubTitle>قم بالبحث وحدد ما إذا كنت بحاجة إلى تقديم طلب</SubTitle>
       {accordionContent.map((content: any) => (
         <Accordion key={content.title} content={content} />
       ))}

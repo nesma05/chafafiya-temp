@@ -1,7 +1,7 @@
-import Image from 'next/image'
 import NextLink from 'next/link'
-import { FacebookIcon, InstagramIcon, TwitterIcon, YoutubeIcon } from './icons'
-import { menuList } from '../utils/lists'
+import { FacebookIcon, InstagramIcon, TwitterIcon, YoutubeIcon } from '../icons'
+import { menuList } from '../../utils/lists'
+import Logo from './Logo'
 
 const footer = () => {
   const socialIcons = [
@@ -25,17 +25,7 @@ const footer = () => {
   return (
     <footer className="shadow-top bg-white py-8 px-10 sm:px-[180px] ">
       <div className="md:flex md:gap-8">
-        <NextLink href={'/'} passHref>
-          <div className="mb-8 relative h-[50px] w-[190px] sm:h-[70px] sm:w-[215px]">
-            <Image
-              src={'/img/chafafiya-logo.png'}
-              layout="fill"
-              objectFit="contain"
-              alt="website logo"
-              priority
-            />
-          </div>
-        </NextLink>
+        <Logo/>
         <div className="gap-4 md:flex">
           {menuList.map((list: any) => (
             <div key={list.title}>

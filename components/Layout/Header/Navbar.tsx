@@ -1,11 +1,11 @@
-import Image from 'next/image'
 import { useRef, useState } from 'react'
 import NextLink from 'next/link'
 import MenuItem from './MenuItem'
-import { menuList } from '../../utils/lists'
+import { menuList } from '../../../utils/lists'
 import LangSwitch from './LangSwitch'
 import MenuItemMobile from './MenuItemMobile'
-import SearchInput from '../searchFilter/SearchInput'
+import SearchInput from '../../searchFilter/SearchInput'
+import Logo from '../Logo'
 
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
@@ -14,30 +14,21 @@ const Navbar = () => {
 
   return (
     <>
-    <header className="px-1 border border-b-gray-100 text-sm sm:px-10 bg-white">
-      <div className="flex items-center justify-between">
-        <NextLink href={'/'} passHref>
-          <div className="relative h-[50px] w-[190px] sm:h-[70px] sm:w-[215px]">
-            <Image
-              src={'/img/chafafiya-logo.png'}
-              layout="fill"
-              objectFit="contain"
-              alt="website logo"
-              priority
-            />
+      <header className="relative z-50 border border-b-gray-100 bg-white px-1 text-sm sm:px-10">
+        <div className="flex items-center justify-between">
+          <Logo />
+
+          <div className="flex items-center">
+            <NextLink href={'/responsable'} passHref>
+              <button className="mx-2 rounded-md bg-main py-1.5 px-2 text-white sm:px-3">
+                خاص بالإدارة
+              </button>
+            </NextLink>
+            <LangSwitch />
           </div>
-        </NextLink>
-        <div className="flex items-center">
-          <NextLink href={'/responsable'} passHref>
-            <button className="mx-2 rounded-md bg-main py-1.5 px-2 text-white sm:px-3">
-              خاص بالإدارة
-            </button>
-          </NextLink>
-          <LangSwitch />
         </div>
-      </div>
       </header>
-      <div className="z-10 sticky top-0 bg-white flex flex-wrap gap-2 items-center justify-between py-3 md:px-12 px-2 shadow-md">
+      <div className="sticky top-0 z-10 flex flex-wrap items-center justify-between gap-2 bg-white py-3 px-2 shadow-md md:px-12">
         <nav className="order-last flex items-center md:order-none">
           <ul className="relative hidden gap-6 font-light text-main md:flex">
             {menuList.map((menu: any) => (
@@ -94,12 +85,12 @@ const Navbar = () => {
           <div className="max-w-[200px]">
             <SearchInput />
           </div>
-          <button className="mx-3 rounded-md bg-secondary text-sm py-3 px-2">
+          <button className="mx-3 rounded-md bg-secondary py-3 px-2 text-sm">
             تسجيل الدخول
           </button>
         </div>
       </div>
-      </>
+    </>
   )
 }
 

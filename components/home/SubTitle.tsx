@@ -1,7 +1,7 @@
-const SubTitle = () => {
+const SubTitle = ({children}:any) => {
   return (
-    <div className="w-[80%] mx-auto mt-20 mb-10 text-main relative after:absolute after:content-[''] after:h-[8px] after:w-[20%] after:bg-secondary">
-      <h2 className="text-2xl w-[400px] font-bold mb-2">قم بالبحث وحدد ما إذا كنت بحاجة إلى تقديم طلب</h2>
+    <div className="w-[100%] mx-auto mb-10 text-main">
+      <h2 className="text-2xl w-fit font-bold mb-2 relative subTitle">{children}</h2>
     </div>
   )
 }

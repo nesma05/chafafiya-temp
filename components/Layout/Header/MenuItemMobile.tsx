@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ChevronDown } from '../icons'
+import { ChevronDown } from '../../icons'
 import NextLink from 'next/link'
 
 const MenuItemMobile = ({ title, subMenu }: any) => {
@@ -9,7 +9,7 @@ const MenuItemMobile = ({ title, subMenu }: any) => {
   return (
     <li className="cursor-pointer p-1">
       <span
-        className="flex items-center justify-between text-main font-bold"
+        className="flex items-center justify-between font-bold text-main"
         onClick={() => {
           setOpen(!open)
           setRotate(!rotate)
@@ -19,7 +19,7 @@ const MenuItemMobile = ({ title, subMenu }: any) => {
         <ChevronDown rotate={rotate} />
       </span>
       <ul
-        className={`font-medium menu-shadow divide-y text-main divide-slate-300 overflow-hidden rounded bg-white text-sm transition-all duration-300 ease-in-out ${
+        className={`menu-shadow divide-y divide-slate-300 overflow-hidden rounded bg-white text-sm font-medium text-main transition-all duration-300 ease-in-out ${
           open ? `max-h-[1000px]` : 'max-h-0'
         }`}
       >

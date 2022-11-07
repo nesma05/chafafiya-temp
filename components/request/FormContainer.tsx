@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { requestState } from '../../context/formContext'
-import PageTitle from '../PageTitle'
+import PageTitle from '../Layout/PageTitle'
 
 function FormContainer({ title, children }: any) {
   const {

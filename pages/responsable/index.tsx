@@ -6,11 +6,11 @@ import { requestFollow } from '../../utils/constants'
 import { AvatarIcon } from '../../components/icons'
 import ResSideBar from '../../components/responsable/ResSideBar'
 import ResDetails from '../../components/responsable/ResDetails'
-import PageTitle from '../../components/PageTitle'
+import PageTitle from '../../components/Layout/PageTitle'
 const Responsable: NextPage = ({ dir }: any) => {
   return (
-    <div dir="rtl">
-      <header className="px-10 py-4">
+    <div dir="rtl" className='font-arabic'>
+      <header className="relative z-50 px-10 py-4 bg-white">
         <div className="flex items-center justify-between">
           <NextLink href={'/'} passHref>
             <Image
@@ -30,7 +30,7 @@ const Responsable: NextPage = ({ dir }: any) => {
           </div>
         </div>
       </header>
-      <PageTitle>Responsable</PageTitle>
+      <PageTitle>المسؤول عن الطلبات</PageTitle>
       <NextLink href={'/responsable/table'} passHref>
         <button>table</button>
       </NextLink>

@@ -1,28 +1,29 @@
 import NextLink from 'next/link'
-import { useEffect, useRef, useState } from 'react'
-import { ChevronDown } from '../icons'
+import { useRef, useState } from 'react'
+import { ChevronDown } from '../../icons'
+import { useClickOutside } from '../../../utils/customHooks'
 
-const useClickOutside = (ref: any, handler: any) => {
-  useEffect(() => {
-    const listener = (e: any) => {
-      const el = ref?.current
+// const useClickOutside = (ref: any, handler: any) => {
+//   useEffect(() => {
+//     const listener = (e: any) => {
+//       const el = ref?.current
 
-      if (!el || el.contains(e.target)) {
-        return
-      }
+//       if (!el || el.contains(e.target)) {
+//         return
+//       }
 
-      handler(e)
-    }
+//       handler(e)
+//     }
 
-    document.addEventListener('mousedown', listener)
-    document.addEventListener('touchstart', listener)
+//     document.addEventListener('mousedown', listener)
+//     document.addEventListener('touchstart', listener)
 
-    return () => {
-      document.removeEventListener('mousedown', listener)
-      document.removeEventListener('touchstart', listener)
-    }
-  })
-}
+//     return () => {
+//       document.removeEventListener('mousedown', listener)
+//       document.removeEventListener('touchstart', listener)
+//     }
+//   })
+// }
 
 const handleMenu = (setOpen: any, setRotate: any) => {
   setOpen(false)
@@ -35,7 +36,7 @@ const MenuItem = ({ title, subMenu }: any) => {
 
   const menuRef = useRef<HTMLLIElement>(null)
   useClickOutside(menuRef, () => handleMenu(setOpen, setRotate))
- 
+
   return (
     <li className="relative z-30  cursor-pointer font-bold" ref={menuRef}>
       <span

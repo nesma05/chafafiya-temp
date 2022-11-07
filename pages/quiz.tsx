@@ -1,9 +1,9 @@
 import type { NextPage } from 'next'
 import { useState } from 'react'
-import Footer from '../components/footer'
-import Navbar from '../components/Header/Navbar'
+import Footer from '../components/Layout/Footer'
+import Navbar from '../components/Layout/Header/Navbar'
 import { NoteIcon } from '../components/icons'
-import PageTitle from '../components/PageTitle'
+import PageTitle from '../components/Layout/PageTitle'
 
 const questionsList = [
   {

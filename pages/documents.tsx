@@ -1,27 +1,10 @@
 import type { NextPage } from 'next'
-import NextLink from 'next/link'
 import DocumentsSection from '../components/documents/DocumentsSection'
-import Footer from '../components/footer'
-import Navbar from '../components/Header/Navbar'
-import PageTitle from '../components/PageTitle'
+import Footer from '../components/Layout/Footer'
+import Navbar from '../components/Layout/Header/Navbar'
+import PageTitle from '../components/Layout/PageTitle'
+import { documentsList } from '../utils/constants'
 
-const documentsList = [
-  {
-    thumbnail: '/img/document-1.jpg',
-    title: 'القانون رقم 08 المتعلق بحماية ا|شخاص الذاتي  ا',
-    description:
-      'نموذج طلب الحصول على اCعلومات نموذج طلب ا,ذن اCسبق الخاص بمعالجة اCعطيات ذات الطابع الشخصي واCتعلق بتدبير طلبات الحصول على اCعلومات من طرف اCؤسسات والهيئات الخاضعة للقانون 13.31 اCتعلق بالحق في الحصول على اCعلومات',
-    url: '/',
-  },
-  {
-    thumbnail: '/img/document-2.png',
-    title:
-      'نموذج طلب اليذن المسبق الخاص بمعالجة المعطيات ذات الطابع الشخصي والمتعلق بتدبير طلبات الحصول على المعلومات من طرف سسات والهيئات الخاضعة للقانون 13.31 المتعلق بالحق في الحصول على المعلومات',
-    description:
-      'طلب الحصول على اCعلومات نموذج طلب ا,ذن اCسبق الخاص بمعالجة اCعطيات ذات الطابع الشخصي واCتعلق بتدبير طلبات الحصول على اCعلومات من طرف اCؤسسات والهيئات الخاضعة للقانون 13.31 اCتعلق بالحق في الحصول على اCعلومات',
-    url: '/',
-  },
-]
 
 const Documents: NextPage = ({ dir }: any) => {
   // const {locale,locales,asPath} = useRouter()
@@ -32,7 +15,7 @@ const Documents: NextPage = ({ dir }: any) => {
       <div className="my-10 mx-auto w-[90%]">
         <DocumentsSection documentsList={documentsList} />
       </div>
-      <Footer/>
+      <Footer />
     </div>
   )
 }

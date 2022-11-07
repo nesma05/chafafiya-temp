@@ -1,7 +1,7 @@
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
-import { ChevronDown } from '../icons'
+import { ChevronDown } from '../../icons'
 
 let useClickOutside = (ref: any, handler: any) => {
   useEffect(() => {
@@ -56,7 +56,7 @@ const langSwitch = () => {
       ref={langRef}
     >
       <div
-        className="py-1.5 px-3 hover:bg-gray-100 rounded-md"
+        className="rounded-md py-1.5 px-3 hover:bg-gray-100"
         onClick={() => {
           setOpen(!open)
           setRotate(!rotate)

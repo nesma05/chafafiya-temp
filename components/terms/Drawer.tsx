@@ -1,56 +1,11 @@
 import { useEffect, useState } from 'react'
 import { CloseIcon, SearchIcon } from '../icons'
-import FilteredTerms from './FilteredTerms'
 import Terms from './Terms'
+import DictionnaryTerms from './DictionnaryTerms'
 import ToggleDrawer from './ToggleDrawer'
+import { dictionaryList } from '../../utils/constants'
 
-const dictionaryList = [
-  {
-    letter: 'أ',
-    termsList: [
-      {
-        title: 'أغلبية',
-        explanation:
-          'الأغلبية مصطلح يستخدم لوصف ذلك القسم من مجموعة تكّون أكثر من النصف. وقد يستعمل المصطلح أيضا لوصف (أكثرية نسبية) أو أكثرية (Plurality) أي أكبر عدد من الأصوات أو الناخبين عندما يكون هناك اختيار بين بديلين أو أكثر من المرشحين في الإنتخابات غير أن العدد يقل عن %50 من مجموع الأصوات. ',
-      },
-      {
-        title: 'إدانة',
-        explanation:
-          'إدانة مصطلح يستخدم لوصف ذلك القسم من مجموعة تكّون أكثر من النصف. وقد يستعمل المصطلح أيضا لوصف (أكثرية نسبية) أو أكثرية (Plurality) أي أكبر عدد من الأصوات أو الناخبين عندما يكون هناك اختيار بين بديلين أو أكثر من المرشحين في الإنتخابات غير أن العدد يقل عن %50 من مجموع الأصوات. ',
-      },
-    ],
-  },
-  {
-    letter: 'ب',
-    termsList: [
-      {
-        title: 'بلدية',
-        explanation:
-          'بلدية مصطلح يستخدم لوصف ذلك القسم من مجموعة تكّون أكثر من النصف. وقد يستعمل المصطلح أيضا لوصف (أكثرية نسبية) أو أكثرية (Plurality) أي أكبر عدد من الأصوات أو الناخبين عندما يكون هناك اختيار بين بديلين أو أكثر من المرشحين في الإنتخابات غير أن العدد يقل عن %50 من مجموع الأصوات. ',
-      },
-      {
-        title: 'برلمان',
-        explanation:
-          'برلمان مصطلح يستخدم لوصف ذلك القسم من مجموعة تكّون أكثر من النصف. وقد يستعمل المصطلح أيضا لوصف (أكثرية نسبية) أو أكثرية (Plurality) أي أكبر عدد من الأصوات أو الناخبين عندما يكون هناك اختيار بين بديلين أو أكثر من المرشحين في الإنتخابات غير أن العدد يقل عن %50 من مجموع الأصوات. ',
-      },
-    ],
-  },
-  {
-    letter: 'ت',
-    termsList: [
-      {
-        title: 'تعاونية',
-        explanation:
-          'تعاونية مصطلح يستخدم لوصف ذلك القسم من مجموعة تكّون أكثر من النصف. وقد يستعمل المصطلح أيضا لوصف (أكثرية نسبية) أو أكثرية (Plurality) أي أكبر عدد من الأصوات أو الناخبين عندما يكون هناك اختيار بين بديلين أو أكثر من المرشحين في الإنتخابات غير أن العدد يقل عن %50 من مجموع الأصوات. ',
-      },
-      {
-        title: 'تسوية',
-        explanation:
-          'تسوية مصطلح  أكثرية أي أكبر عدد من الأصوات أو الناخبين عندما يكون هناك اختيار بين بديلين أو أكثر من المرشحين في الإنتخابات غير أن العدد يقل عن %50 من مجموع الأصوات. ',
-      },
-    ],
-  },
-]
+
 
 const Drawer = () => {
   const [showDrawer, setShowDrawer] = useState(false)
@@ -64,9 +19,8 @@ const Drawer = () => {
       })
       .flat()
     console.log('terms', terms)
-   
-      setListTerms(terms)
-    
+
+    setListTerms(terms)
 
     console.log('dictionaryList2', dictionaryList)
   }, [])
@@ -75,7 +29,7 @@ const Drawer = () => {
       <ToggleDrawer handleDrawer={setShowDrawer} />
       <div>
         <div
-          className={`fixed right-0 top-0 z-40 h-screen w-80 bg-blue-900 ${
+          className={`fixed  right-0 top-0 z-50 h-screen w-80 bg-blue-900 ${
             showDrawer ? 'translate-x-0' : 'translate-x-full'
           } overflow-y-auto bg-white p-4 transition-transform`}
         >
@@ -112,13 +66,13 @@ const Drawer = () => {
               {listTerms
                 .filter((t: any) => t.title.includes(searchText))
                 .map((term: any) => (
-                  <FilteredTerms key={term.title} term={term} />
+                  <Terms key={term.title} term={term} color={'white'} />
                 ))}
             </div>
           ) : (
             <div className="mt-4">
               {dictionaryList.map((dict: any) => (
-                <Terms
+                <DictionnaryTerms
                   key={dict.letter}
                   letter={dict.letter}
                   termsList={dict.termsList}

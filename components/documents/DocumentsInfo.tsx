@@ -5,7 +5,7 @@ const DocumentInfo = ({ doc, handleClick }: any) => {
     return source.length > size ? source.slice(0, size - 1) + '…' : source
   }
   return (
-    <>
+    
       <div
         onClick={handleClick}
         className="h-[350px] w-[250px] cursor-pointer rounded-lg p-1 shadow-2xl"
@@ -23,7 +23,7 @@ const DocumentInfo = ({ doc, handleClick }: any) => {
           {truncate(doc.title, 50)}
         </p>
       </div>
-    </>
+    
   )
 }
 

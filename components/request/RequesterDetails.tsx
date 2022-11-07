@@ -14,7 +14,7 @@ function RequestOwnerDetails() {
           onChange={(e) => setRequester(e.target.value)}
         />
         <label>
-          مواطن(ة) مغربي(ة)، رقم البطاقة الوطنية للتعريف *
+          مواطن(ة) مغربي(ة)، رقم البطاقة الوطنية للتعريف*
         </label>
       </div>
       <div>

@@ -1,7 +1,7 @@
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
-import { NextIcon, PreviousIcon } from './icons'
-import useTranslation from '../utils/customHooks'
+import { NextIcon, PreviousIcon } from '../icons'
+import useTranslation from '../../utils/customHooks'
 
 const BreadCrumb = () => {
   const { locale, asPath } = useRouter()
@@ -18,8 +18,8 @@ const BreadCrumb = () => {
   const { tr } = useTranslation()
   console.log('pathNames', pathNames)
   return (
-    <nav className="flex" aria-label="Breadcrumb">
-      <ol className="flex text-sm">
+    <nav className="flex justify-center mt-3">
+      <ol className="flex  text-sm">
         <li className="mx-1 flex items-center gap-1">
           <NextLink href={'/'} passHref>
             <span className="cursor-pointer hover:underline">{tr('home')}</span>
