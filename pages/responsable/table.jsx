@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import rows from '../../utils/people.json'
 import Pagination from '../../components/Pagination'
-import PageTitle from '../../components/PageTitle'
+import PageTitle from '../../components/Layout/PageTitle'
 
 const Table = ({dir}) => {
   const columns = Object.keys(rows[0])
