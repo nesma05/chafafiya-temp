@@ -8,8 +8,18 @@ import { lawList } from '../utils/constants'
 import { illustrationsList } from '../utils/constants'
 import { videosList } from '../utils/constants'
 import QuestionAnswer from '../components/law/QuestionAnswer'
+import { useState } from 'react'
 
 const Law: NextPage = () => {
+  const [selected, setSelected] = useState(null)
+
+  const handleToggle = (i: any) => {
+    if (selected === i) {
+      return setSelected(null)
+    }
+
+    return setSelected(i)
+  }
   return (
     <div>
       <PageTitle>
@@ -17,8 +27,14 @@ const Law: NextPage = () => {
       </PageTitle>
       <div className="m-auto my-20 w-[80%]">
         <div className="overflow-hidden rounded-t-xl border">
-          {lawList.map((list: any) => (
-            <QuestionAnswer key={list.id} term={list} color={'gray-700'} />
+          {lawList.map((list: any, index: any) => (
+            <QuestionAnswer
+              key={list.id}
+              term={list}
+              handleToggle={handleToggle}
+              index={index}
+              selected={selected}
+            />
           ))}
         </div>
         <div className="mt-14 px-1">
