@@ -46,7 +46,7 @@ type QuastionState = {
 
 const TL_QST = 3
 
-const Home: NextPage = ({ dir }: any) => {
+const Home: NextPage = () => {
   // const {locale,locales,asPath} = useRouter()
   const [questions, setQuestions] = useState<QuastionState[]>([])
   const [number, setNumber] = useState(0)
@@ -99,8 +99,8 @@ const Home: NextPage = ({ dir }: any) => {
   }
 
   return (
-    <div className="font-arabic" dir={dir}>
-      <Navbar />
+    <div>
+      
       <PageTitle>
         ما مقدار معرفتك بالقانون 13-31 المتعلق بالحق في الحصول على المعلومات؟
       </PageTitle>
@@ -184,7 +184,7 @@ const Home: NextPage = ({ dir }: any) => {
           </div>
         )}
       </div>
-      <Footer />
+   
     </div>
   )
 }

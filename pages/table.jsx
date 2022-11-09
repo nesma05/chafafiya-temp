@@ -3,7 +3,7 @@ import { useState } from 'react'
 import rows from '../utils/people.json'
 import Pagination from '../components/Pagination'
 
-const Table = ({ dir }) => {
+const Table = () => {
   const columns = Object.keys(rows[0])
   console.log('length',rows.length)
   const [query, setQuery] = useState({

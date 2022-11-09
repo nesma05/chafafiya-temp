@@ -9,15 +9,14 @@ import { illustrationsList } from '../utils/constants'
 import { videosList } from '../utils/constants'
 import QuestionAnswer from '../components/law/QuestionAnswer'
 
-const Law: NextPage = ({ dir }: any) => {
+const Law: NextPage = () => {
   return (
-    <div className="font-arabic" dir={dir}>
-      <Navbar />
+    <div>
       <PageTitle>
         ما هو القانون رقم 13-31 المتعلق بالحق في الحصول على المعلومات؟
       </PageTitle>
       <div className="m-auto my-20 w-[80%]">
-        <div className='border rounded-t-xl overflow-hidden'>
+        <div className="overflow-hidden rounded-t-xl border">
           {lawList.map((list: any) => (
             <QuestionAnswer key={list.id} term={list} color={'gray-700'} />
           ))}
@@ -34,7 +33,6 @@ const Law: NextPage = ({ dir }: any) => {
           <IllustrationsSection illustrationsList={videosList} type="video" />
         </div>
       </div>
-      <Footer />
     </div>
   )
 }

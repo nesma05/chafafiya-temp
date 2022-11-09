@@ -7,14 +7,11 @@ import IconBoxSection from '../components/home/IconBoxSection'
 import AccordionSection from '../components/home/AccordionSection'
 import PresentationSection from '../components/home/PresentaionSection'
 import Drawer from '../components/terms/Drawer'
-import SubTitle from '../components/home/SubTitle'
 import Footer from '../components/Layout/Footer'
 
-const Home: NextPage = ({ dir }: any) => {
-  // const {locale,locales,asPath} = useRouter()
+const Home: NextPage = () => {
   return (
-    <div className="font-arabic" dir={dir}>
-      <Navbar />
+    <div>
       <Hero />
       <Drawer />
       <PresentationSection />
@@ -22,7 +19,7 @@ const Home: NextPage = ({ dir }: any) => {
       <AccordionSection />
       <IconBoxSection />
       <Footer />
-    </div>
+      </div> 
   )
 }
 

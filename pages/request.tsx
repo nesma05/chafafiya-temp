@@ -6,13 +6,10 @@ import PersonalInfoSection from '../components/request/PersonalInfoSection'
 import RequesterSection from '../components/request/RequesterSection'
 import RequestedInfoSection from '../components/request/RequestedInfoSection'
 import FormContext from '../context/formContext'
-import Navbar from '../components/Layout/Header/Navbar'
-import Footer from '../components/Layout/Footer'
 
-const Request: NextPage = ({ dir }: any) => {
+const Request: NextPage = () => {
   return (
-    <div className="font-arabic" dir={dir}>
-      <Navbar />
+  
       <FormContext>
         <FormContainer title={'إيداع طلب الحصول على المعلومات'}>
           <AdministrationSection />
@@ -27,8 +24,7 @@ const Request: NextPage = ({ dir }: any) => {
           </div>
         </FormContainer>
       </FormContext>
-      <Footer />
-    </div>
+ 
   )
 }
 
