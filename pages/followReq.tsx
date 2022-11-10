@@ -4,7 +4,7 @@ import ConverHistory from '../components/responsable/ConverHistory'
 
 const FollowReq: NextPage = () => {
   return (
-    <div className="m-20 flex items-start justify-between">
+    <div className="my-20 w-[80%] mx-auto flex items-start justify-between">
       <div className="w-2/6 bg-gray-200 p-3 pb-10">
         <p className="font-medium underline">الرقم الترتيبي لتسجيل الطلب:</p>
         <p>{requestFollow[0].code}</p>

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { requestState } from '../../context/formContext'
+import { CloseIcon, PlusIcon } from '../icons'
 
 const showInitialState = {
   showOrgSec: false,
@@ -192,26 +193,12 @@ function AdministrationDetails() {
           <div>
             {chosenOrgs.map((chOrg: any) => (
               <div
-                className="ml-2 mb-2 inline-block cursor-pointer rounded-md bg-cyan-600 px-2 text-white"
+                className="ml-2 mb-2 flex w-fit cursor-pointer rounded-md bg-cyan-600 px-2 py-0.5 text-white"
                 key={chOrg.id}
                 onClick={() => handleRemoveChosenOrg(chOrg.id)}
               >
                 <span>{chOrg.name}</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                  role="img"
-                  width="1.5em"
-                  height="1.5em"
-                  preserveAspectRatio="xMidYMid meet"
-                  viewBox="0 0 16 16"
-                  className="inline-block"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8L4.646 5.354a.5.5 0 0 1 0-.708z"
-                  />
-                </svg>
+                <span><CloseIcon/></span>
               </div>
             ))}
           </div>
@@ -221,7 +208,7 @@ function AdministrationDetails() {
       </div>
       {showElement.showOrgSec ? (
         <div>
-          <div className="text-lg">
+          <div>
             <input
               type="radio"
               name="type"
@@ -234,7 +221,7 @@ function AdministrationDetails() {
               والوزارية)
             </label>
           </div>
-          <div className="text-lg">
+          <div>
             <input
               type="radio"
               name="type"
@@ -244,7 +231,7 @@ function AdministrationDetails() {
             />
             <label>المؤسسات والمقاولات العمومية</label>
           </div>
-          <div className="text-lg">
+          <div>
             <input
               type="radio"
               name="type"
@@ -394,11 +381,11 @@ function AdministrationDetails() {
         </div>
       ) : (
         <button
-          className="flex gap-1 text-blue-900"
+          className="flex gap-1 items-center text-blue-900"
           onClick={() => setShowElement({ ...showElement, showOrgSec: true })}
         >
           <span className="text-md underline"> إضافة مؤسسة أو هيئة معنية </span>{' '}
-          <span className="text-2xl font-bold">+</span>
+          <span className="font-bold"><PlusIcon/></span>
         </button>
       )}
     </div>

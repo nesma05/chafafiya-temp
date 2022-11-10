@@ -13,7 +13,9 @@ export const LangStrings = {
     home:'accueil',
     documents:'documents',
     searchengine:'recherche',
-    law:'loi'
+    law:'loi',
+    portal:'portail',
+    howReq:'mannier demande'
   },
   ar: {
     administration: "المؤسسة أو الهيئة المعنية",
@@ -29,6 +31,8 @@ export const LangStrings = {
     home:'الرئيسية',
     documents:'وثائق',
     searchengine:'البحث',
-    law:'القانون'
+    law:'القانون',
+    portal:'البوابة',
+    howReq:'كيفية الطلب'
   },
 }

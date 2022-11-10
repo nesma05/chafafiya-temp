@@ -27,19 +27,19 @@ export const menuList = [
     subMenu: [
       {
         text: 'ما هي بوابة الحصول على المعلومات؟',
-        link: '/',
+        link: '/portal',
       },
       {
         text: 'البحث عن المعلومات المنشورة استباقيا',
-        link: '/',
+        link: '/searchengine',
       },
       {
         text: 'البحث عن المعلومات حسب المؤسسات والهيئات',
-        link: '/',
+        link: '/searchengine',
       },
       {
         text: 'البحث عن المعلومات  بمواقع المؤسسات والهيئات',
-        link: '/',
+        link: '/searchengine',
       },
       {
         text: 'أجوبة عن الطلبات الأكثر تداولا',
@@ -57,7 +57,7 @@ export const menuList = [
     subMenu: [
       {
         text: 'كيف يمكنك تقديم طلب الحصول على المعلومات؟',
-        link: '/',
+        link: '/howReq',
       },
       {
         text: 'إيداع الطلب',

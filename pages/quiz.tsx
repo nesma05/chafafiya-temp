@@ -164,7 +164,7 @@ const Home: NextPage = () => {
                   </button>
                   {number >= 1 && (
                     <button
-                      className="mx-2 rounded-full bg-main py-1.5 px-6 font-medium text-white"
+                      className="mx-2  py-1.5 px-6 font-medium text-main underline"
                       onClick={prevAnswer}
                     >
                       السؤال السابق
