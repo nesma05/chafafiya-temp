@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { AttachmentIcon } from '../icons'
 
 function RequestTypeDetails() {
   const [showUrgent, setShowUrgent] = useState(false)
@@ -36,15 +37,18 @@ function RequestTypeDetails() {
             name="urgentMessage"
             rows={4}
           ></textarea>
-         
+
           <div>
             <label
               htmlFor="inputFileResp"
               className="flex w-fit cursor-pointer items-center gap-2"
             >
-              <span className="rounded-md bg-secondary p-2 text-sm">
-               إضافة ملف
-              </span>
+              <div className="flex gap-2 rounded-md bg-secondary p-2 text-sm">
+                <span className='text-lg'>
+                  <AttachmentIcon />{' '}
+                </span>
+                <span> إضافة ملف</span>
+              </div>
               <input
                 type="file"
                 name="urgentFile"
