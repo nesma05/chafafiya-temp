@@ -18,8 +18,7 @@ const Home: NextPage = () => {
       <BoxSection />
       <AccordionSection />
       <IconBoxSection />
-      <Footer />
-      </div> 
+    </div>
   )
 }
 

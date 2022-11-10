@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useRef, forwardRef } from 'react'
 import { SearchIcon } from '../icons'
 
-const SearchInput = ({ button }: any) => {
+const MenuSearchInput = ({ button }: any) => {
   const router = useRouter()
 
   const searchInput = useRef<HTMLInputElement>(null)
@@ -13,7 +13,7 @@ const SearchInput = ({ button }: any) => {
     const term = searchInput.current?.value
     if (!term) return
 
-    router.push(`/searchengine?term=${term}`)
+    router.push(`/`)
   }
 
   const hundleKeyPress = (e: any) => {
@@ -28,7 +28,7 @@ const SearchInput = ({ button }: any) => {
           ref={searchInput}
           type="text"
           className="w-full rounded-md border px-3 py-3 pr-12 text-sm shadow-sm focus:border-main focus:outline-main"
-          placeholder="أدخل عناصر البحث عن المعلومات التي ترغب في الحصول عليها"
+          placeholder="البحث في الموقع"
         />
 
         <span className="absolute inset-y-0 right-0 inline-flex items-center overflow-hidden  px-3  text-xl text-gray-400">
@@ -47,4 +47,4 @@ const SearchInput = ({ button }: any) => {
   )
 }
 
-export default SearchInput
+export default MenuSearchInput

@@ -36,7 +36,23 @@ function RequestTypeDetails() {
             name="urgentMessage"
             rows={4}
           ></textarea>
-          <input type="file" name="urgentFile" />
+         
+          <div>
+            <label
+              htmlFor="inputFileResp"
+              className="flex w-fit cursor-pointer items-center gap-2"
+            >
+              <span className="rounded-md bg-secondary p-2 text-sm">
+               إضافة ملف
+              </span>
+              <input
+                type="file"
+                name="urgentFile"
+                id="inputFileResp"
+                className="hidden"
+              />
+            </label>
+          </div>
         </div>
       )}
     </div>

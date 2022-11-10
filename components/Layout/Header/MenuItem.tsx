@@ -17,7 +17,7 @@ const MenuItem = ({ title, subMenu }: any) => {
   useClickOutside(menuRef, () => handleMenu(setOpen, setRotate))
 
   return (
-    <li className="relative z-30  cursor-pointer font-bold" ref={menuRef}>
+    <li className="relative z-30 cursor-pointer font-bold" ref={menuRef}>
       <span
         onClick={() => {
           setOpen(!open)
@@ -28,7 +28,7 @@ const MenuItem = ({ title, subMenu }: any) => {
         <ChevronDown rotate={rotate} />
       </span>
       <ul
-        className={`menu-shadow z-80 absolute top-12 h-fit min-w-max divide-y divide-slate-300 rounded bg-white text-sm transition-all duration-200 ease-in-out ${
+        className={`menu-shadow z-80 border border-secondary absolute top-12 h-fit min-w-max divide-y divide-slate-300 rounded bg-white text-sm transition-all duration-200 ease-in-out ${
           open
             ? 'visible -translate-y-2 opacity-100'
             : 'invisible translate-y-0 opacity-0'

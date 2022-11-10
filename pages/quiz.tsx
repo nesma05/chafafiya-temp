@@ -100,10 +100,7 @@ const Home: NextPage = () => {
 
   return (
     <div>
-      
-      <PageTitle>
-        ما مقدار معرفتك بالقانون 13-31 المتعلق بالحق في الحصول على المعلومات؟
-      </PageTitle>
+      <PageTitle>اختبر معلوماتك حول الحق في الحصول على المعلومات</PageTitle>
       <div className=" mt-[120px] mb-20 ">
         <div className="my-4 mx-auto w-[60%] text-center">
           <p className="my-10 font-medium text-gray-700">
@@ -184,7 +181,6 @@ const Home: NextPage = () => {
           </div>
         )}
       </div>
-   
     </div>
   )
 }

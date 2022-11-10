@@ -1,6 +1,6 @@
 import NextLink from 'next/link'
 import { useState } from 'react'
-import { MinusIcon, PlusIcon, SearchIcon } from '../icons'
+import { ArrowDown, MinusIcon, PlusIcon, SearchIcon } from '../icons'
 import SearchInput from '../searchFilter/SearchInput'
 
 const Accordion = ({ content }: any) => {
@@ -38,7 +38,12 @@ const Accordion = ({ content }: any) => {
           </div>
         )}
         {content.inputType === 'search' && (
-          <span className='mt-auto mb-4'><SearchInput/></span>
+          <div className='mt-auto mb-4 flex flex-col items-center'>
+            <span className='text-lg text-main'>ابحث هنا</span>
+            <span className='text-4xl text-main'><ArrowDown/> </span>
+            <span><SearchInput button="yes"/></span>
+          </div>
+          
         )}
       </div>
     </div>

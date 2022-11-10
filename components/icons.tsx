@@ -15,6 +15,20 @@ export const ChevronDown = ({ rotate }: any) => {
   )
 }
 
+export const ArrowDown = ({ rotate }: any) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      preserveAspectRatio="xMidYMid meet"
+      viewBox="0 0 20 20"
+    >
+      <path fill="currentColor" d="M10 17.5L3.5 11H7V3h6v8h3.5L10 17.5z" />
+    </svg>
+  )
+}
+
 export const SearchIcon = () => {
   return (
     <svg

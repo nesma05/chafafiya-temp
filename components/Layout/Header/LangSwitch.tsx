@@ -30,7 +30,7 @@ const handleLangSwitch = (setOpen: any, setRotate: any) => {
   setRotate(false)
 }
 
-const Languages = ['العربية', 'Français']
+const Languages = ['العربية','Amazigh', 'Français']
 
 const langSwitch = () => {
   const [open, setOpen] = useState(false)
