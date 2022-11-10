@@ -6,6 +6,7 @@ import PersonalInfoSection from '../components/request/PersonalInfoSection'
 import RequesterSection from '../components/request/RequesterSection'
 import RequestedInfoSection from '../components/request/RequestedInfoSection'
 import FormContext from '../context/formContext'
+import DomainsSection from '../components/request/DomainsSection'
 
 const Request: NextPage = () => {
   return (
@@ -14,6 +15,7 @@ const Request: NextPage = () => {
         <FormContainer title={'إيداع طلب الحصول على المعلومات'}>
           <AdministrationSection />
           <RequestTypeSection />
+          <DomainsSection/>
           <PersonalInfoSection />
           <RequesterSection />
           <RequestedInfoSection />

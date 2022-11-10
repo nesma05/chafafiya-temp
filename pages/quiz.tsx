@@ -78,7 +78,14 @@ const Home: NextPage = () => {
 
   const nextQuestion = () => {
     const nextQt = number + 1
-    setNumber(nextQt)
+    setNumber((prev) => prev + 1)
+    setQtAnswered(false)
+    setUserAnswers([])
+  }
+
+  const prevAnswer = () => {
+    const nextQt = number + 1
+    setNumber((prev) => prev - 1)
     setQtAnswered(false)
     setUserAnswers([])
   }
@@ -94,8 +101,8 @@ const Home: NextPage = () => {
   const changeStyle = (answer: any) => {
     if (qtAnswered)
       return questions[number]?.correctAnswers.includes(answer)
-        ? 'text-green-500'
-        : 'text-red-500'
+        ? 'text-green-500 font-bold'
+        : 'text-red-500 font-bold'
   }
 
   return (
@@ -112,7 +119,7 @@ const Home: NextPage = () => {
           {!startGame && (
             <button
               onClick={handleStart}
-              className="rounded-full border-2 border-slate-700 py-1.5 px-6 font-medium"
+              className="rounded-full bg-main py-1.5 px-6 font-medium text-white"
             >
               ابدأ الإختبار
             </button>
@@ -120,7 +127,7 @@ const Home: NextPage = () => {
         </div>
         {startGame && (
           <div className="mx-auto w-[40%] font-medium">
-            <div className="border-2 border-slate-700 p-3">
+            <div className="border border-slate-300 p-3 shadow-md">
               <p>السؤال {number + 1} من 3</p>
               <p>{questions[number]?.question}</p>
             </div>
@@ -138,7 +145,7 @@ const Home: NextPage = () => {
                 </div>
               ))}
               {qtAnswered && startGame && (
-                <div className="flex w-fit gap-2 bg-blue-400 p-2">
+                <div className="flex w-fit gap-2 bg-secondary/70 p-2">
                   <span className="text-2xl">
                     <NoteIcon />
                   </span>
@@ -148,16 +155,26 @@ const Home: NextPage = () => {
             </div>
             <div className="text-center">
               {!qtAnswered && startGame && (
-                <button
-                  className="rounded-full border-2 border-slate-700 py-1.5 px-6 font-medium"
-                  onClick={checkAnswer}
-                >
-                  تأكيد الجواب
-                </button>
+                <div>
+                  <button
+                    className="rounded-full bg-main py-1.5 px-6 font-medium text-white"
+                    onClick={checkAnswer}
+                  >
+                    تأكيد الجواب
+                  </button>
+                  {number >= 1 && (
+                    <button
+                      className="mx-2 rounded-full bg-main py-1.5 px-6 font-medium text-white"
+                      onClick={prevAnswer}
+                    >
+                      السؤال السابق
+                    </button>
+                  )}
+                </div>
               )}
               {qtAnswered && startGame && !(TL_QST - number === 1) && (
                 <button
-                  className="rounded-full border-2 border-slate-700 py-1.5 px-6 font-medium"
+                  className="rounded-full bg-main py-1.5 px-6 font-medium text-white"
                   onClick={nextQuestion}
                 >
                   {' '}
@@ -167,11 +184,11 @@ const Home: NextPage = () => {
               {qtAnswered && TL_QST - number === 1 && (
                 <div className="mx-auto w-full text-center">
                   <p className="font-medium">
-                    انتهى الإختبار! حصلت على {score} إجابة صحيحة من أصل {TL_QST}
+                    انتهى الإختبار! حصلت على <span className='text-green-500 font-bold'>{score}</span> إجابة صحيحة من أصل <span className='text-main font-bold'>{TL_QST}</span>
                   </p>
                   <button
                     onClick={handleStart}
-                    className="rounded-full border-2 border-slate-700 py-1.5 px-6 font-medium"
+                    className="rounded-full bg-main py-1.5 px-6 mt-2 font-medium text-white"
                   >
                     ابدأ الإختبار من جديد
                   </button>

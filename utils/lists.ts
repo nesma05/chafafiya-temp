@@ -8,14 +8,6 @@ export const menuList = [
         link: '/law',
       },
       {
-        text: 'ما هي بوابة الحصول على المعلومات؟',
-        link: '/',
-      },
-      {
-        text: 'كيف يمكنك تقديم طلب الحصول على المعلومات؟',
-        link: '/',
-      },
-      {
         text: 'قاموس/ مصطلحات',
         link: '/',
       },
@@ -24,7 +16,7 @@ export const menuList = [
         link: '/documents',
       },
       {
-        text: 'اختبار المعلومات Quiz',
+        text: 'اختبر معلوماتك حول الحق في الحصول على المعلومات',
         link: '/quiz',
       },
     ],
@@ -33,6 +25,10 @@ export const menuList = [
     title: 'قبل تقديم الطلب',
     menuHeight:'190px',
     subMenu: [
+      {
+        text: 'ما هي بوابة الحصول على المعلومات؟',
+        link: '/',
+      },
       {
         text: 'البحث عن المعلومات المنشورة استباقيا',
         link: '/',
@@ -60,6 +56,10 @@ export const menuList = [
     menuHeight:'190px',
     subMenu: [
       {
+        text: 'كيف يمكنك تقديم طلب الحصول على المعلومات؟',
+        link: '/',
+      },
+      {
         text: 'إيداع الطلب',
         link: '/request',
       },
@@ -67,6 +67,12 @@ export const menuList = [
         text: 'تتبع الطلب',
         link: '/followReq',
       },
+    ]  
+  },
+  {
+    title: 'تقديم شكاية',
+    menuHeight:'190px',
+    subMenu: [  
       {
         text: 'تقديم شكاية للمؤسسة المعنية',
         link: '/checkRequest',
