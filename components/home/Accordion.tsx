@@ -19,11 +19,11 @@ const Accordion = ({ content }: any) => {
         {open ? <span className='m-start'><MinusIcon/></span> :<span className='m-start'><PlusIcon/></span>}
       </div>
       <div
-        className={`flex flex-col overflow-hidden rounded shadow-xl bg-white p-3 text-sm transition-all duration-500 ease-in-out ${
-          open ? 'h-[300px]' : 'h-0 py-0'
+        className={`flex flex-col overflow-hidden rounded shadow-xl bg-white px-3 text-sm transition-all duration-500 ease-in-out ${
+          open ? 'h-[300px]' : 'h-0'
         }`}
       >
-        <div className="">
+        <div className="py-2">
           {content.text.map((tx: any) => (
             <p key={tx} className="mb-1">{tx}</p>
           ))}

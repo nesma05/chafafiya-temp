@@ -25,7 +25,7 @@ const MenuItem = ({ title, subMenu }: any) => {
         }}
       >
         {title}
-        <ChevronDown rotate={rotate} />
+        {subMenu && <ChevronDown rotate={rotate} />}
       </span>
       <ul
         className={`menu-shadow z-80 border border-secondary absolute top-12 h-fit min-w-max divide-y divide-slate-300 rounded bg-white text-sm transition-all duration-200 ease-in-out ${

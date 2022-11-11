@@ -2,11 +2,9 @@ import { useState } from 'react'
 import Modal from '../home/Modal'
 import IllustrationDetails from './IllustrationDetails'
 
-const PicturesSection = ({ illustrationsList,type }: any) => {
+const PicturesSection = ({ illustrationsList, type }: any) => {
   const [modal, setModal] = useState(false)
   const [tempImg, setTempImg] = useState('')
-
-  console.log({ tempImg })
 
   const handleClose = () => {
     setTempImg('')

@@ -10,7 +10,7 @@ const Modal = ({ tempSource, handleClose, modal, type }: any) => {
         <iframe
           width="560"
           height="315"
-          src={`${tempSource}?rel=0`}
+          src={tempSource}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         ></iframe>
       )}

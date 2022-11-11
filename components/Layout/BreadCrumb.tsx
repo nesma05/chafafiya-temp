@@ -5,7 +5,6 @@ import useTranslation from '../../utils/customHooks'
 
 const BreadCrumb = () => {
   const { locale, asPath } = useRouter()
-  console.log('aspath', asPath)
   const pathNames = asPath.includes('?')
     ? asPath
         .split('/')
@@ -16,7 +15,7 @@ const BreadCrumb = () => {
     : asPath.split('/').filter((el) => el)
 
   const { tr } = useTranslation()
-  console.log('pathNames', pathNames)
+
   return (
     <nav className="flex justify-center mt-3">
       <ol className="flex  text-sm">
@@ -29,7 +28,6 @@ const BreadCrumb = () => {
 
         {pathNames.map((name: any, index: any) => {
           const goTo = `/${pathNames.slice(0, index + 1).join('/')}`
-          console.log('goTo', goTo)
           const isLast = pathNames.length - 1
           return isLast === index ? (
             <span key={index}>{tr(name)}</span>

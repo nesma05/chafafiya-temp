@@ -33,7 +33,7 @@ const footer = () => {
                 {list.title}
               </h2>
               <ul className="text-xs">
-                {list.subMenu.map((subMenu: any) => (
+                {list.subMenu?.map((subMenu: any) => (
                   <li key={subMenu.text} className="mb-2">
                     <NextLink href={subMenu.link} passHref>
                       <span className="cursor-pointer hover:underline">

@@ -39,9 +39,6 @@ const Navbar = () => {
                 subMenu={menu.subMenu}
               />
             ))}
-            <NextLink href={'/'} passHref>
-              <li className="cursor-pointer font-bold">إحصائيات</li>
-            </NextLink>
           </ul>
           <div
             className="cursor-pointer space-y-2 md:hidden"
@@ -78,9 +75,6 @@ const Navbar = () => {
               subMenu={menu.subMenu}
             />
           ))}
-          <NextLink href={'/'} passHref>
-            <li className="cursor-pointer font-bold text-main">إحصائيات</li>
-          </NextLink>
         </ul>
         <div className="flex items-center gap-1">
           <div className="max-w-[200px]">

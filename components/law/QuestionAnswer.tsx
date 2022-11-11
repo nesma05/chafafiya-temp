@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { ChevronDown } from '../icons'
 
 const QuestionAnswer = ({ term, index, selected, handleToggle }: any) => {
@@ -18,18 +18,18 @@ const QuestionAnswer = ({ term, index, selected, handleToggle }: any) => {
           handleToggle(index)
         }}
       >
-        <span>{term.title}</span>
+        <span>{term.question}</span>
 
         <span className="m-start">
           <ChevronDown rotate={rotate} />
         </span>
       </div>
       <div
-        className={`overflow-hidden border-b bg-white px-4 text-sm text-gray-500 transition-all duration-200 ease-in-out ${
-          selected === index ? 'max-h-[1000px] py-6' : 'max-h-0 py-0'
+        className={`overflow-hidden border-b bg-white px-4 text-sm text-gray-500 transition-all duration-500 ease-in-out ${
+          selected === index ? 'max-h-[300px]' : 'max-h-0'
         }`}
       >
-        <p>{term.explanation}</p>
+        <p className='py-3'>{term.answer}</p>
       </div>
     </div>
   )

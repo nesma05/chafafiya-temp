@@ -17,10 +17,10 @@ const Terms = ({ letter, termsList}: any) => {
       </div>
       <div
         className={`overflow-hidden rounded bg-white px-2 text-sm transition-all duration-500 ease-in-out ${
-          open ? 'max-h-[1000px] py-2' : 'max-h-0 py-0'
+          open ? 'max-h-[1000px]' : 'max-h-0'
         }`}
       >
-        <ul>
+        <ul className='py-2'>
           {termsList.map((term: any) => (
             <li key={term.title} className='mb-2'>
               <p className="mb-1 underline font-bold">{term.title}</p>
