@@ -18,7 +18,11 @@ import TimeStamp from '../../components/responsable/TimeStamp'
 import { requester } from '../../utils/constants'
 import { requestFollow } from '../../utils/constants'
 
-const ResRequest: NextPage = ({ request }: any) => {
+import SecondaryLayout, {
+  PageWithSecondaryLayoutType,
+} from '../../components/Layout/SecondaryLayout'
+
+const ResRequest: PageWithSecondaryLayoutType = ({ request }: any) => {
   const { query } = useRouter()
   const [files, setFiles] = useState<any>([])
 
@@ -33,7 +37,7 @@ const ResRequest: NextPage = ({ request }: any) => {
   }
 
   return (
-    <div dir="rtl" className='font-arabic'>
+    <div>
       <header className="px-10 py-4">
         <div className="flex items-center justify-between">
           <NextLink href={'/'} passHref>
@@ -54,7 +58,7 @@ const ResRequest: NextPage = ({ request }: any) => {
           </div>
         </div>
       </header>
-      <div className="flex border-t-2">
+      <div className="flex border-y-2 mb-20">
         <div className="h-[700px] w-[70px] border-l-2 border-gray-300">
           <div className="pt-20">
             <ul>
@@ -138,43 +142,45 @@ const ResRequest: NextPage = ({ request }: any) => {
                   placeholder="نص الرد على الطلب"
                   rows={4}
                 ></textarea>
-                <div className="flex justify-between bg-gray-300 p-1.5">
-                  <label
-                    htmlFor="inputFileResp"
-                    className="flex w-fit cursor-pointer items-center gap-2"
-                  >
-                    <span className="text-xl">
-                      <AttachmentIcon />
-                    </span>
-                    <span>إضافة مرفقات</span>
-                    <input
-                      type="file"
-                      name=""
-                      id="inputFileResp"
-                      className="hidden"
-                      onChange={handelFileInput}
-                    />
-                  </label>
-                  <button className="border-2 border-slate-900 bg-blue-600 py-1 px-2 text-white">
-                    إرسال الإجابة
-                  </button>
-                </div>
-                <ul>
-                  {files.map((file: any) => (
-                    <li
-                      key={file.name}
-                      className="m-1 flex w-fit items-center gap-1 rounded-full bg-blue-200 py-1 px-3"
+                <div className="bg-gray-200 p-1.5">
+                  <div className='flex justify-between'>
+                    <label
+                      htmlFor="inputFileResp"
+                      className="flex w-fit cursor-pointer items-center gap-2"
                     >
-                      <span>{file.name}</span>
-                      <span
-                        className="cursor-pointer"
-                        onClick={() => handleRemoveFile(file.name)}
-                      >
-                        <CloseIcon />
+                      <span className="text-xl">
+                        <AttachmentIcon />
                       </span>
-                    </li>
-                  ))}
-                </ul>
+                      <span>إضافة مرفقات</span>
+                      <input
+                        type="file"
+                        name=""
+                        id="inputFileResp"
+                        className="hidden"
+                        onChange={handelFileInput}
+                      />
+                    </label>
+                    <button className="rounded-md bg-main py-1 px-2 text-white">
+                      إرسال الإجابة
+                    </button>
+                  </div>
+                  <ul>
+                    {files.map((file: any) => (
+                      <li
+                        key={file.name}
+                        className="m-1 flex w-fit items-center gap-1 rounded-full underline py-1 px-3"
+                      >
+                        <span>{file.name}</span>
+                        <span
+                          className="cursor-pointer"
+                          onClick={() => handleRemoveFile(file.name)}
+                        >
+                          <CloseIcon />
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
             <div className="flex-1 p-2">
@@ -195,7 +201,7 @@ const ResRequest: NextPage = ({ request }: any) => {
                   <div className="mb-4">
                     <span>مرسل إلى </span>
                     <span>أحمد الوكيلي (رئيس قسم المالية)</span>
-                    <div className="rounded-r-lg rounded-bl-lg bg-blue-500 p-3 text-sm text-white">
+                    <div className="rounded-r-lg rounded-bl-lg bg-main p-3 text-sm text-white">
                       <p>
                         السلام عليكم سيد أحمد، المرجو موافاتي بالتقرير السنوي
                         لميزانية سنة 2021
@@ -265,3 +271,5 @@ export async function getServerSideProps({ query }: any) {
     },
   }
 }
+
+ResRequest.getLayout = SecondaryLayout

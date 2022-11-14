@@ -4,6 +4,7 @@ import Footer from '../components/Layout/Footer'
 import Navbar from '../components/Layout/Header/Navbar'
 import { NoteIcon } from '../components/icons'
 import PageTitle from '../components/Layout/PageTitle'
+import { useQuiz } from '../utils/customHooks'
 
 const questionsList = [
   {
@@ -47,63 +48,75 @@ type QuastionState = {
 const TL_QST = 3
 
 const Home: NextPage = () => {
-  // const {locale,locales,asPath} = useRouter()
-  const [questions, setQuestions] = useState<QuastionState[]>([])
-  const [number, setNumber] = useState(0)
-  const [score, setScore] = useState(0)
-  const [userAnswers, setUserAnswers] = useState<string[]>([])
-  const [startGame, setStartGame] = useState(false)
-  const [qtAnswered, setQtAnswered] = useState(false)
+  const [questions] = useState<QuastionState[]>([])
+  const {
+    handleStart,
+    checkAnswer,
+    nextQuestion,
+    prevAnswer,
+    handleChange,
+    changeStyle,
+    number,
+    score,
+    startGame,
+    qtAnswered,
+  } = useQuiz()
+  // const [questions, setQuestions] = useState<QuastionState[]>([])
+  // const [number, setNumber] = useState(0)
+  // const [score, setScore] = useState(0)
+  // const [userAnswers, setUserAnswers] = useState<string[]>([])
+  // const [startGame, setStartGame] = useState(false)
+  // const [qtAnswered, setQtAnswered] = useState(false)
 
-  console.log('userAnswers', userAnswers)
-  console.log('score', score)
+  // console.log('userAnswers', userAnswers)
+  // console.log('score', score)
 
-  const handleStart = () => {
-    setQuestions(questionsList)
-    setStartGame(true)
-    setNumber(0)
-    setScore(0)
-    setQtAnswered(false)
-  }
+  // const handleStart = () => {
+  //   setQuestions(questionsList)
+  //   setStartGame(true)
+  //   setNumber(0)
+  //   setScore(0)
+  //   setQtAnswered(false)
+  // }
 
-  const checkAnswer = () => {
-    setQtAnswered(true)
-    if (
-      userAnswers.sort().join(',') ===
-      questions[number]?.correctAnswers.sort().join(',')
-    ) {
-      setScore((prev) => prev + 1)
-    }
-  }
+  // const checkAnswer = () => {
+  //   setQtAnswered(true)
+  //   if (
+  //     userAnswers.sort().join(',') ===
+  //     questions[number]?.correctAnswers.sort().join(',')
+  //   ) {
+  //     setScore((prev) => prev + 1)
+  //   }
+  // }
 
-  const nextQuestion = () => {
-    const nextQt = number + 1
-    setNumber((prev) => prev + 1)
-    setQtAnswered(false)
-    setUserAnswers([])
-  }
+  // const nextQuestion = () => {
+  //   const nextQt = number + 1
+  //   setNumber((prev) => prev + 1)
+  //   setQtAnswered(false)
+  //   setUserAnswers([])
+  // }
 
-  const prevAnswer = () => {
-    const nextQt = number + 1
-    setNumber((prev) => prev - 1)
-    setQtAnswered(false)
-    setUserAnswers([])
-  }
+  // const prevAnswer = () => {
+  //   const nextQt = number + 1
+  //   setNumber((prev) => prev - 1)
+  //   setQtAnswered(false)
+  //   setUserAnswers([])
+  // }
 
-  const handleChange = (e: any) => {
-    if (e.target.checked) {
-      setUserAnswers([...userAnswers, e.target.value])
-    } else {
-      userAnswers.filter((usrAnswer: any) => usrAnswer === e.target.value)
-    }
-  }
+  // const handleChange = (e: any) => {
+  //   if (e.target.checked) {
+  //     setUserAnswers([...userAnswers, e.target.value])
+  //   } else {
+  //     userAnswers.filter((usrAnswer: any) => usrAnswer === e.target.value)
+  //   }
+  // }
 
-  const changeStyle = (answer: any) => {
-    if (qtAnswered)
-      return questions[number]?.correctAnswers.includes(answer)
-        ? 'text-green-500 font-bold'
-        : 'text-red-500 font-bold'
-  }
+  // const changeStyle = (answer: any) => {
+  //   if (qtAnswered)
+  //     return questions[number]?.correctAnswers.includes(answer)
+  //       ? 'text-green-500 font-bold'
+  //       : 'text-red-500 font-bold'
+  // }
 
   return (
     <div>
@@ -184,11 +197,14 @@ const Home: NextPage = () => {
               {qtAnswered && TL_QST - number === 1 && (
                 <div className="mx-auto w-full text-center">
                   <p className="font-medium">
-                    انتهى الإختبار! حصلت على <span className='text-green-500 font-bold'>{score}</span> إجابة صحيحة من أصل <span className='text-main font-bold'>{TL_QST}</span>
+                    انتهى الإختبار! حصلت على{' '}
+                    <span className="font-bold text-green-500">{score}</span>{' '}
+                    إجابة صحيحة من أصل{' '}
+                    <span className="font-bold text-main">{TL_QST}</span>
                   </p>
                   <button
                     onClick={handleStart}
-                    className="rounded-full bg-main py-1.5 px-6 mt-2 font-medium text-white"
+                    className="mt-2 rounded-full bg-main py-1.5 px-6 font-medium text-white"
                   >
                     ابدأ الإختبار من جديد
                   </button>

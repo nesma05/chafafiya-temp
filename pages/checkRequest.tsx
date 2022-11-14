@@ -3,33 +3,12 @@ import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { RefreshIcon } from '../components/icons'
+import { useCaptcha } from '../utils/customHooks'
 
 const CheckRequest: NextPage = () => {
-  const [img, setImg] = useState('')
-  const [captcha, setcaptcha] = useState('')
-  const [message, setMessage] = useState('')
+  const { handleClick, handleCaptcha, setcaptcha, img, captcha, message } =
+    useCaptcha()
 
-  const handleClick = async (e: any) => {
-    e.preventDefault()
-    const { data } = await axios.post('http://localhost:5000/check', {
-      captcha,
-    })
-    if (data.message === 'not valide captcha') {
-      setcaptcha('')
-      handleCaptcha()
-    }
-    setMessage(data.message)
-  }
-
-  const handleCaptcha = async () => {
-    const { data } = await axios('http://localhost:5000/captcha')
-    console.log(data)
-    setImg(data.image)
-  }
-
-  useEffect(() => {
-    handleCaptcha()
-  }, [])
   return (
     <div className="bg-red flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">

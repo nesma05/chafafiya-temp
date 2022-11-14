@@ -7,10 +7,15 @@ import { AvatarIcon } from '../../components/icons'
 import ResSideBar from '../../components/responsable/ResSideBar'
 import ResDetails from '../../components/responsable/ResDetails'
 import PageTitle from '../../components/Layout/PageTitle'
-const Responsable: NextPage = ({ dir }: any) => {
+
+import SecondaryLayout, {
+  PageWithSecondaryLayoutType,
+} from '../../components/Layout/SecondaryLayout'
+
+const Responsable: PageWithSecondaryLayoutType = () => {
   return (
-    <div dir="rtl" className='font-arabic'>
-      <header className="relative z-50 px-10 py-4 bg-white">
+    <div>
+      <header className="relative z-50 bg-white px-10 py-4">
         <div className="flex items-center justify-between">
           <NextLink href={'/'} passHref>
             <Image
@@ -42,3 +47,5 @@ const Responsable: NextPage = ({ dir }: any) => {
   )
 }
 export default Responsable
+
+Responsable.getLayout = SecondaryLayout
