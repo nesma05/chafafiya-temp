@@ -27,45 +27,37 @@ const footer = () => {
       <div className="md:flex md:gap-8">
         <Logo />
         <div className="gap-4 md:flex">
-          {menuList.map((list: any) => (
-            <div key={list.title}>
-              <h2 className="mb-4 text-sm font-semibold uppercase">
-                {list.title}
-              </h2>
-              <ul className="text-xs">
-                {list.subMenu?.map((subMenu: any) => (
-                  <li key={subMenu.text} className="mb-2">
-                    <NextLink href={subMenu.link} passHref>
-                      <span className="cursor-pointer hover:underline">
-                        {subMenu.text}
-                      </span>
-                    </NextLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-          <div>
-            <NextLink href={'/'} passHref>
-              <h2 className="mb-4 cursor-pointer text-sm font-semibold uppercase hover:underline">
-                إحصائيات
-              </h2>
-            </NextLink>
-          </div>
+          {menuList.map((list: any, index: any, array: any) => {
+            const last = array.length - 1
+            return (
+              <div key={list.title}>
+                <h2 className={`mb-4 text-sm font-semibold ${last === index && 'cursor-pointer hover:underline'}`}>{list.title}</h2>
+                <ul className="text-xs">
+                  {list.subMenu?.map((subMenu: any, index: any, array: any) => (
+                    <li key={subMenu.text} className="mb-2">
+                      <NextLink href={subMenu.link} passHref>
+                        <span className="cursor-pointer hover:underline">
+                          {subMenu.text}
+                        </span>
+                      </NextLink>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          })}
         </div>
       </div>
       <hr className="my-6 border-gray-200 dark:border-gray-700 sm:mx-auto lg:my-8" />
       <div className="sm:flex sm:items-center sm:justify-between">
         <span className="text-xs sm:text-center">
-           جميع الحقوق محفوظة © 2022 
+          جميع الحقوق محفوظة © 2022
         </span>
         <div className="mt-4 flex gap-5 sm:mt-0 sm:justify-center">
           {socialIcons.map(({ id, icon }: any) => (
             <div key={id} className="cursor-pointer">
               <NextLink href={'/'} passHref>
-                <span className="hover:text-gray-300">
-                  {icon}
-                </span>
+                <span className="hover:text-gray-300">{icon}</span>
               </NextLink>
             </div>
           ))}
