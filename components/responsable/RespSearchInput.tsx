@@ -22,7 +22,7 @@ const RespSearchInput = ({ button }: any) => {
   }, [])
 
   return (
-    <div className="relative w-full">
+    <div className="relative max-w-md">
       <div className="relative w-full">
         <input
           onFocus={() => setOpen(true)}

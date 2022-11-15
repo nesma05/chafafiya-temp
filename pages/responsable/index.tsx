@@ -11,30 +11,12 @@ import PageTitle from '../../components/Layout/PageTitle'
 import SecondaryLayout, {
   PageWithSecondaryLayoutType,
 } from '../../components/Layout/SecondaryLayout'
+import ResponsableHeader from '../../components/responsable/ResponsableHeader'
 
 const Responsable: PageWithSecondaryLayoutType = () => {
   return (
     <div>
-      <header className="relative z-50 bg-white px-10 py-4">
-        <div className="flex items-center justify-between">
-          <NextLink href={'/'} passHref>
-            <Image
-              src={'/img/chafafiya-logo.png'}
-              width={220}
-              height={70}
-              className="cursor-pointer"
-              alt="website logo"
-            />
-          </NextLink>
-          <div className="flex items-center">
-            <span>الإدارة: </span>
-            <span>المسؤول عن المعلومات</span>
-            <span className="mx-4 rounded-full bg-cyan-500 text-4xl text-white">
-              <AvatarIcon />
-            </span>
-          </div>
-        </div>
-      </header>
+      <ResponsableHeader/>
       <PageTitle>المسؤول عن الطلبات</PageTitle>
       <NextLink href={'/responsable/table'} passHref>
         <button>table</button>

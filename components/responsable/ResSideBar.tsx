@@ -29,7 +29,6 @@ export const responsableList = [
 ]
 
 const ResSideBar = () => {
-  const [showSideBar, setShowSideBar] = useState(true)
   const [selectedItem, setSelectedItem] = useState(0)
   const handleItemClick = (index: any) => {
     setSelectedItem(index)
@@ -38,9 +37,6 @@ const ResSideBar = () => {
     <div className="h-[700px] w-[25%] overflow-y-auto border-l-2 border-gray-300 bg-white px-4">
       <div className="mt-10">
         <ul>
-          {/* <li onClick={()=>handleItemClick(10)} className={`flex items-center w-full cursor-pointer p-2 ${selectedItem === 10 ? 'bg-blue-200 font-medium':''}`}>
-                    <span className='ml-3' ><CopyIcon/></span><span>جميع الطلبات</span><span className='m-start'>255</span>
-                </li> */}
           {responsableList.map((resList: any, i: any) => (
             <li
               onClick={() => handleItemClick(i)}
