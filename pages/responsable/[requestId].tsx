@@ -21,6 +21,7 @@ import { requestFollow } from '../../utils/constants'
 import SecondaryLayout, {
   PageWithSecondaryLayoutType,
 } from '../../components/Layout/SecondaryLayout'
+import RespSearchInput from '../../components/responsable/RespSearchInput'
 
 const ResRequest: PageWithSecondaryLayoutType = ({ request }: any) => {
   const { query } = useRouter()
@@ -185,16 +186,8 @@ const ResRequest: PageWithSecondaryLayoutType = ({ request }: any) => {
             </div>
             <div className="flex-1 p-2">
               <h2 className="font-medium">طلب عناصر إضافية من الزملاء</h2>
-              <div className="relative mt-3 w-full">
-                <input
-                  type="text"
-                  className="w-full rounded-md border border-gray-300 p-3 pr-12 text-sm shadow-sm focus:outline-gray-400"
-                  placeholder=""
-                />
-
-                <button className="absolute inset-y-0 right-0 inline-flex items-center overflow-hidden bg-gray-300 px-3">
-                  <SearchIcon />
-                </button>
+              <div className="mt-3 w-full">
+                <RespSearchInput/>
               </div>
               <div>
                 <div className="mt-2 h-[calc(100vh-330px)]  overflow-y-auto px-1">

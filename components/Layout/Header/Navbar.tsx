@@ -4,9 +4,8 @@ import MenuItem from './MenuItem'
 import { menuList } from '../../../utils/lists'
 import LangSwitch from './LangSwitch'
 import MenuItemMobile from './MenuItemMobile'
-import SearchInput from '../../searchFilter/SearchInput'
 import Logo from '../Logo'
-import MenuSearchInput from '../../searchFilter/MenuSearchInput'
+import MenuSearchInput from './MenuSearchInput'
 
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false)

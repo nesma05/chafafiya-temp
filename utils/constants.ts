@@ -46,6 +46,29 @@ export const dictionaryList = [
   },
 ]
 
+export const colleagues =[
+  {
+    id:'c01',
+    name:'أحمد الوكيلي',
+    job:'رئيس القسم 1'
+  },
+  {
+    id:'c02',
+    name:'أنس الزنيتي',
+    job:'رئيس القسم 2'
+  },
+  {
+    id:'c03',
+    name:'يحيى العزيز ',
+    job:'رئيس القسم 3'
+  },
+  {
+    id:'c04',
+    name:'خالد بلقيس',
+    job:'رئيس القسم 4'
+  },
+]
+
 export const documentsList = [
   {
     thumbnail: '/img/document-1.jpg',
