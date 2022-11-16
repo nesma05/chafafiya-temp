@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Pagination from '../Pagination'
 import { responsableList } from './ResSideBar'
 
-const ResDetails = ({ rows }: any) => {
+const ResDetails = ({ rows,open }: any) => {
   const router = useRouter()
   const [currentPage, setCurrentPage] = useState(1)
   const [rowsPerPage] = useState(10)
@@ -48,7 +48,7 @@ const ResDetails = ({ rows }: any) => {
   }
 
   return (
-    <div className="w-[75%]">
+    <div className='flex-1'>
       <div className="mt-10 px-4">
         <ul className="flex w-full gap-4">
           {responsableList
@@ -56,7 +56,7 @@ const ResDetails = ({ rows }: any) => {
             .map((resList: any, i: any) => (
               <li
                 key={i}
-                className="flex items-center border-2 border-slate-700 px-2 py-1 text-sm"
+                className="flex items-center border-2 border-slate-700 px-2 py-1"
               >
                 <span>{resList.icon}</span>
                 <span
@@ -67,11 +67,11 @@ const ResDetails = ({ rows }: any) => {
         </ul>
       </div>
       <div className="mt-8 flex flex-col ">
-        <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <div className="-my-2 overflow-x-auto">
+          <div className="inline-block w-full py-2 align-middle ">
             <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-              <table className="min-w-full divide-y divide-gray-200">
-                <tbody className="divide-y divide-gray-200 bg-white">
+              <table className="w-full table-fixed divide-y divide-gray-200">
+                <tbody className="divide-y  divide-gray-200 bg-white">
                   {currentRows.map((row: any) => (
                     // <tr key={row._id}>
                     //   <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
@@ -89,13 +89,13 @@ const ResDetails = ({ rows }: any) => {
                       className="cursor-pointer font-medium"
                       onClick={() => router.push(`/responsable/${row.code}`)}
                     >
-                      <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
+                      <td className="whitespace-nowrap truncate w-[150px] px-6 py-4 font-medium text-gray-900">
                         {row.demandeur}
                       </td>
-                      <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
-                        {truncate(row.contenu_demande, 80)}
+                      <td className="whitespace-nowrap truncate px-6 py-4 text-gray-500">
+                        {row.contenu_demande}
                       </td>
-                      <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+                      <td className="whitespace-nowrap w-[220px] truncate text-left px-6 py-4 text-gray-500">
                         {row.date_demande}
                       </td>
                     </tr>

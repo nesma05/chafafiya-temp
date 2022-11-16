@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import NextLink from 'next/link'
 import ConverHistory from '../../components/responsable/ConverHistory'
-import { responsableList } from '../../components/responsable/ResSideBar'
+import ResSideBar, { responsableList } from '../../components/responsable/ResSideBar'
 import TimeStamp from '../../components/responsable/TimeStamp'
 import { requester } from '../../utils/constants'
 import { requestFollow } from '../../utils/constants'
@@ -19,7 +19,8 @@ const ResRequest: PageWithSecondaryLayoutType = ({ request }: any) => {
     <div>
       <ResponsableHeader/>
       <div className="mb-20 flex border-y-2 h-auto">
-        <div className="w-[70px] border-l-2 border-gray-300">
+        <ResSideBar/>
+        {/* <div className="w-[70px] border-l-2 border-gray-300">
           <div className="pt-20">
             <ul>
               {responsableList.map((resList: any, i: any) => (
@@ -27,14 +28,14 @@ const ResRequest: PageWithSecondaryLayoutType = ({ request }: any) => {
                   key={i}
                   className={`flex w-full cursor-pointer items-center p-2 `}
                 >
-                  <span className="mx-3  border-2 border-black p-0.5">
+                  <span className="mx-3 border-2 border-black p-0.5">
                     {resList.icon}
                   </span>
                 </li>
               ))}
             </ul>
           </div>
-        </div>
+        </div> */}
         <div className="flex-1">
           <div className="cursor-pointer p-6">
             <NextLink href={'/responsable'} passHref>

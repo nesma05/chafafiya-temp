@@ -65,11 +65,11 @@ const ContactColleagues = () => {
             </li>
           ))}
         </ul>
-        <div className='flex items-center gap-2'>
+        <div className="flex items-center gap-2">
           <label htmlFor="inputFileColl" className="w-fit cursor-pointer">
-            <span className="text-xl">
-              <AttachmentIcon />
-            </span>
+            <button className="text-2xl text-gray-500">
+              <SendIcon />
+            </button>
             <input
               type="file"
               name=""
@@ -78,16 +78,14 @@ const ContactColleagues = () => {
               onChange={handelFileInput}
             />
           </label>
-
           <textarea
             className="w-full py-2 px-4"
             placeholder="إكتب نص الرسالة هنا ..."
             rows={2}
           ></textarea>
-
-          <button className="text-2xl text-gray-500">
-            <SendIcon />
-          </button>
+          <span className="text-xl">
+            <AttachmentIcon />
+          </span>
         </div>
       </div>
     </div>

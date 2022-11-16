@@ -46,6 +46,30 @@ export const SendIcon = () => {
   )
 }
 
+export const BurgerIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      preserveAspectRatio="xMidYMid meet"
+      viewBox="0 0 48 48"
+    >
+      <g
+        fill="currentColor"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="4"
+      >
+        <path d="M7.94971 11.9497H39.9497" />
+        <path d="M7.94971 23.9497H39.9497" />
+        <path d="M7.94971 35.9497H39.9497" />
+      </g>
+    </svg>
+  )
+}
+
 export const SearchIcon = () => {
   return (
     <svg
