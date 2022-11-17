@@ -125,7 +125,7 @@ const Table = () => {
     <div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full border text-left text-sm text-gray-500">
-          <thead className="text-md bg-secondary/50 text-gray-700">
+          <thead className="text-md bg-gray-200 text-gray-700">
             <tr>
               {columns.map((column, index) => (
                 <th key={column} className="py-3 px-6">

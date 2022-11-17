@@ -13,7 +13,7 @@ const Law: NextPage = () => {
 
   return (
     <div>
-      <div className="bg-secondary/50 p-12 pb-20">
+      <div className="bg-gray-200 p-12 pb-20">
         <h1 className="text-2xl">مرحبا بك سيد أحمد الوكيلي</h1>
       </div>
       <div className='-mt-16'>
