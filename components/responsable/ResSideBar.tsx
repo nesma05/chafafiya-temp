@@ -54,7 +54,7 @@ const ResSideBar = () => {
               onClick={() => handleItemClick(i)}
               key={i}
               className={`flex w-full cursor-pointer items-center py-2 px-0.5 ${
-                selectedItem === i ? 'bg-blue-200 font-medium' : ''
+                selectedItem === i ? 'bg-secondary font-medium' : ''
               }`}
             >
               <span className="mx-3 border-2 border-black p-0.5">
