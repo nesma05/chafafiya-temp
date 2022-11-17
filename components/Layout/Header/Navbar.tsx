@@ -79,9 +79,11 @@ const Navbar = () => {
           <div className="max-w-[200px]">
             <MenuSearchInput />
           </div>
+          <NextLink href={'/login'} passHref>
           <button className="mx-3 rounded-md bg-secondary py-3 px-2 text-sm">
             تسجيل الدخول
           </button>
+          </NextLink>
         </div>
       </div>
     </>

@@ -15,7 +15,8 @@ export const LangStrings = {
     searchengine:'recherche',
     law:'loi',
     portal:'portail',
-    howReq:'mannier demande'
+    howReq:'mannier demande',
+    login:'connecter'
   },
   ar: {
     administration: "المؤسسة أو الهيئة المعنية",
@@ -33,6 +34,7 @@ export const LangStrings = {
     searchengine:'البحث',
     law:'القانون',
     portal:'البوابة',
-    howReq:'كيفية الطلب'
+    howReq:'كيفية الطلب',
+    login:'الدخول'
   },
 }
