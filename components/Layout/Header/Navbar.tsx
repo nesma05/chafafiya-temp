@@ -6,9 +6,11 @@ import LangSwitch from './LangSwitch'
 import MenuItemMobile from './MenuItemMobile'
 import Logo from '../Logo'
 import MenuSearchInput from './MenuSearchInput'
+import UserBox from './UserBox'
 
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
+  const [loginState, setLoginState] = useState(false)
 
   const menuRef = useRef<HTMLLIElement[]>([])
 
@@ -79,11 +81,14 @@ const Navbar = () => {
           <div className="max-w-[200px]">
             <MenuSearchInput />
           </div>
-          <NextLink href={'/login'} passHref>
-          <button className="mx-3 rounded-md bg-secondary py-3 px-2 text-sm">
-            تسجيل الدخول
-          </button>
-          </NextLink>
+
+          {loginState ? <UserBox/> : ( <NextLink href={'/login'} passHref>
+            <button className="mx-3 rounded-md bg-secondary py-3 px-2 text-sm">
+              تسجيل الدخول
+            </button>
+          </NextLink>)}
+         
+          <span className='cursor-pointer' onClick={()=>setLoginState(!loginState)}>Login</span>
         </div>
       </div>
     </>

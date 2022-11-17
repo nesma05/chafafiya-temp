@@ -339,6 +339,32 @@ export const informations = [
   },
 ]
 
+export const userBoxList=[{
+  id:'b01',
+  text:'إيداع طلب جديد',
+  link:'/'
+},
+{
+  id:'b02',
+  text:'تتبع الطلبات',
+  link:'/'
+},
+{
+  id:'b03',
+  text:' تتبع الشكايات الموجهة إلى المؤسسة',
+  link:'/'
+},
+{
+  id:'b04',
+  text:'تتبع الشكايات الموجهة إلى اللجنة',
+  link:'/'
+},
+{
+  id:'b05',
+  text:'تحيين معلوماتي الشخصية',
+  link:'/'
+},
+]
 export const requestFollow = [
   {
     code: 'METLE-2020-11-DEM1',

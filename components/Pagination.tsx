@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { NextIcon, PreviousIcon } from './icons'
 
 const Pagination = ({
   data,
@@ -52,9 +53,9 @@ const Pagination = ({
                   <button
                     onClick={handlePrevbtn}
                     disabled={currentPage == pageNumbers[0] ? true : false}
-                    className="ml-0 block cursor-pointer rounded-l-lg border border-gray-300 bg-white py-2 px-3 leading-tight text-gray-500 hover:bg-gray-300 hover:text-gray-700"
+                    className="ml-0 block cursor-pointer border border-gray-300 bg-white py-2.5 px-3 leading-tight text-gray-500 hover:bg-secondary/80 hover:text-gray-700"
                   >
-                    Prev
+                    <NextIcon/>
                   </button>
                 </li>
               )}
@@ -67,9 +68,9 @@ const Pagination = ({
                   return (
                     <li
                       key={number}
-                      className={`cursor-pointer border border-gray-300 bg-white py-2 px-3 leading-tight text-gray-500 hover:bg-gray-300 hover:text-gray-700  ${
+                      className={`cursor-pointer border border-gray-300 bg-white py-2 px-3 leading-tight text-gray-500 hover:bg-secondary/80 hover:text-main  ${
                         currentPage == number
-                          ? 'border border-blue-300 bg-blue-200 hover:bg-blue-100 hover:text-blue-700'
+                          ? 'border border-blue-300 bg-secondary/40 hover:bg-secondary/80 hover:text-blue-700'
                           : ''
                       }`}
                       onClick={() => paginate(number)}
@@ -90,9 +91,9 @@ const Pagination = ({
                       ? true
                       : false
                   }
-                  className="block cursor-pointer rounded-r-lg border border-gray-300 bg-white py-2 px-3 leading-tight text-gray-500 hover:bg-gray-300 hover:text-gray-700"
+                  className="block cursor-pointer border border-gray-300 bg-white py-2.5 px-3 leading-tight text-gray-500 hover:bg-secondary/80 hover:text-gray-700"
                 >
-                  Next
+                  <PreviousIcon/>
                 </button>
               </li>}
             </ul>
