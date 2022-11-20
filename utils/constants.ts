@@ -342,7 +342,7 @@ export const informations = [
 export const userBoxList=[{
   id:'b01',
   text:'إيداع طلب جديد',
-  link:'/'
+  link:'/request'
 },
 {
   id:'b02',

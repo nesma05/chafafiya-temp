@@ -1,6 +1,7 @@
 import { NextPage } from 'next'
 import NextLink from 'next/link'
 import { useState } from 'react'
+import { PlusIcon } from '../components/icons'
 import Table from '../components/userDashboard/Table'
 import TabsNames from '../components/userDashboard/TabsNames'
 
@@ -21,8 +22,8 @@ const Law: NextPage = () => {
         <div className="py-20 px-8">
           <div className="flex items-center">
             <NextLink href={'/request'} passHref>
-              <button className="mb-8 rounded-md bg-main py-1.5 px-2 text-white sm:px-3">
-                إيداع طلب جديد
+              <button className="flex items-center gap-2 mb-8 rounded-md bg-main py-1.5 px-2 text-white sm:px-3">
+               <span>إيداع طلب جديد</span> <span className="bg-white text-main rounded-full p-0.5"><PlusIcon/></span>
               </button>
             </NextLink>
           </div>
