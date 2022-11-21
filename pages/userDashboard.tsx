@@ -4,8 +4,10 @@ import { useState } from 'react'
 import { PlusIcon } from '../components/icons'
 import Table from '../components/userDashboard/Table'
 import TabsNames from '../components/userDashboard/TabsNames'
+import requestsList  from '../utils/requestsList.json'
+import complaintsList from '../utils/complaintsList.json'
 
-const Law: NextPage = () => {
+const userDashboard: NextPage = () => {
   const [toggleIndex, setToggleIndex] = useState(1)
 
   const handleToggle = (index: any) => {
@@ -19,7 +21,9 @@ const Law: NextPage = () => {
       </div>
       <div className='-mt-16'>
         <TabsNames toggleIndex={toggleIndex} handleToggle={handleToggle} />
-        <div className="py-20 px-8">
+        <div className={`py-20 px-8 ${
+          toggleIndex === 1 ? 'visible block' : 'invisible hidden'
+        }`}>
           <div className="flex items-center">
             <NextLink href={'/request'} passHref>
               <button className="flex items-center gap-2 mb-8 rounded-md bg-main py-1.5 px-2 text-white sm:px-3">
@@ -27,11 +31,23 @@ const Law: NextPage = () => {
               </button>
             </NextLink>
           </div>
-          <Table />
+          <Table rows={requestsList} />
+        </div>
+        <div className={`py-20 px-8 ${
+          toggleIndex === 2 ? 'visible block' : 'invisible hidden'
+        }`}>
+          
+          <Table rows={complaintsList} />
+        </div>
+        <div className={`py-20 px-8 ${
+          toggleIndex === 3 ? 'visible block' : 'invisible hidden'
+        }`}>
+         
+          <Table rows={complaintsList} />
         </div>
       </div>
     </div>
   )
 }
 
-export default Law
+export default userDashboard

@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import rows from '../../utils/people.json'
+//import rows from '../../utils/people.json'
 import Pagination from '../Pagination'
 import PageTitle from '../Layout/PageTitle'
 
-const Table = () => {
+const Table = ({ rows }) => {
   const columns = Object.keys(rows[0])
+  console.log('columns', columns)
   console.log('length', rows.length)
   const [query, setQuery] = useState({
     col1: '',
@@ -13,6 +14,8 @@ const Table = () => {
     col4: '',
     col5: '',
     col6: '',
+    col7: '',
+    col8: '',
   })
   console.log('values', Object.values(query))
   const [currentPage, setCurrentPage] = useState(1)
@@ -124,38 +127,49 @@ const Table = () => {
   return (
     <div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table className="w-full border text-left text-sm text-gray-500">
+        <table className="w-full border text-right text-xs text-gray-500">
           <thead className="text-md bg-gray-100 text-gray-700">
             <tr>
-              {columns.map((column, index) => (
-                <th key={column} className="py-3 px-6">
-                  <div className="mb-2">
-                    <input
-                      className="w-full border border-gray-400 p-2 text-gray-800 outline-none placeholder:text-gray-800"
-                      type="text"
-                      name={`col${index + 1}`}
-                      value={query[`col${index + 1}`]}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                  <div className="flex cursor-pointer items-center gap-2">
-                    {column}
-                  </div>
-                </th>
-              ))}
+              {columns.map((column, index, array) => {
+                const last = array.length - 1
+                return (
+                  <th key={column} className="mx-1 whitespace-nowrap py-3 px-1">
+                    <div className="mb-2 flex flex-col gap-2">
+                      {last !== index && (
+                        <>
+                          <input
+                            className="w-full border border-gray-400 p-2 text-gray-800 outline-none placeholder:text-gray-800"
+                            type="text"
+                            name={`col${index + 1}`}
+                            value={query[`col${index + 1}`]}
+                            onChange={handleInputChange}
+                          />
+
+                          <div className="w-fit">{column}</div>
+                        </>
+                      )}
+                    </div>
+                  </th>
+                )
+              })}
             </tr>
           </thead>
           <tbody>
             {dataFilter().length > 0 ? (
-              dataFilter().map((row, index) => (
-                <tr key={index} className="border-b bg-white hover:bg-gray-50 ">
-                  {columns.map((column) => (
-                    <td key={column} className="py-2 px-4">
-                      {row[column]}
-                    </td>
-                  ))}
-                </tr>
-              ))
+              dataFilter().map((row, index) => {
+                
+               return (
+                  <tr key={index} className="border-b bg-white hover:bg-gray-50">
+                    {columns.map((column,i,array) =>{
+                       const last = array.length - 1
+                      return(
+                      <td key={column} className="py-2 px-1">
+                       {last === i ? <a href='#' className='text-main underline'>{row[column]}</a>: <span>{row[column]}</span>} 
+                      </td>
+                    )} )}
+                  </tr>
+                )
+              })
             ) : (
               <tr>
                 <td>There is no data to show</td>
