@@ -26,7 +26,7 @@ const userDashboard: NextPage = () => {
         }`}>
           <div className="flex items-center">
             <NextLink href={'/request'} passHref>
-              <button className="flex items-center gap-2 mb-8 rounded-md bg-main py-1.5 px-2 text-white sm:px-3">
+              <button className="flex items-center gap-2 text-sm mb-8 rounded-md bg-main py-1.5 px-2 text-white sm:px-3">
                <span>إيداع طلب جديد</span> <span className="bg-white text-main rounded-full p-0.5"><PlusIcon/></span>
               </button>
             </NextLink>
