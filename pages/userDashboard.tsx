@@ -6,6 +6,7 @@ import Table from '../components/userDashboard/Table'
 import TabsNames from '../components/userDashboard/TabsNames'
 import requestsList  from '../utils/requestsList.json'
 import complaintsList from '../utils/complaintsList.json'
+import commityComplaints from '../utils/commityComplaints.json'
 
 const userDashboard: NextPage = () => {
   const [toggleIndex, setToggleIndex] = useState(1)
@@ -43,7 +44,7 @@ const userDashboard: NextPage = () => {
           toggleIndex === 3 ? 'visible block' : 'invisible hidden'
         }`}>
          
-          <Table rows={complaintsList} />
+          <Table rows={commityComplaints} />
         </div>
       </div>
     </div>
