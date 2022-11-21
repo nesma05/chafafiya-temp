@@ -6,16 +6,16 @@ const ConverHistory = ({ requestFollow, user }: any) => {
       (owner === 'me' && user === 'citizen') ||
       (owner !== 'me' && user === 'responsable')
     )
-      return 'rounded-r-lg rounded-bl-lg bg-gray-300'
+      return 'rounded-r-lg rounded-bl-lg bg-gray-200'
     if (
       (owner === 'me' && user === 'responsable') ||
       (owner !== 'me' && user === 'citizen')
     )
-      return 'rounded-l-lg rounded-br-lg bg-main text-white'
+      return 'rounded-l-lg rounded-br-lg bg-secondary/20'
   }
 
   return (
-    <div className="flex w-full flex-grow flex-col overflow-hidden rounded-lg bg-white">
+    <div className="flex w-full text-sm flex-grow flex-col overflow-hidden rounded-lg bg-white">
       <div
         className={`flex ${
           user === 'citizen' ? 'h-auto' : 'h-[calc(100vh-417px)]'
@@ -24,17 +24,17 @@ const ConverHistory = ({ requestFollow, user }: any) => {
         <div
           className={`${
             user === 'citizen' ? 'm-end' : 'm-start'
-          } mb-6 flex w-full max-w-xs gap-2`}
+          } mb-6 flex w-full max-w-lg gap-2`}
         >
           <div>
             <div
               className={`rounded-l-lg rounded-br-lg p-3 ${
                 user === 'citizen'
-                  ? 'bg-main p-3 text-white'
-                  : 'bg-gray-300'
+                  ? 'bg-secondary/20 p-3'
+                  : 'bg-gray-200'
               } `}
             >
-              <p className="text-sm">{requestFollow.contenu_demande}</p>
+              <p >{requestFollow.contenu_demande}</p>
             </div>
             <span className="text-xs leading-none text-gray-500">
               {requestFollow.date_demande}
@@ -49,14 +49,14 @@ const ConverHistory = ({ requestFollow, user }: any) => {
               (hist.owner !== 'me' && user !== 'citizen')
                 ? 'm-start'
                 : 'm-end'
-            } mt-2 mb-6 flex w-fit  gap-2`}
+            } mt-2 mb-6 flex max-w-lg gap-2`}
           >
             <div>
               <div
                 className={`${historyStyle(
                   hist.owner,
                   user
-                )} w-[350px] p-3 text-sm `}
+                )} max-w-lg p-3`}
               >
                 <p className="font-medium"> {hist.title} </p>
                 <p>{hist.detail}</p>

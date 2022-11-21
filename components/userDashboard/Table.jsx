@@ -127,7 +127,7 @@ const Table = ({ rows }) => {
   return (
     <div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table className="w-full border text-right text-xs text-gray-500">
+        <table className="w-full border text-xs text-gray-500">
           <thead className="text-md bg-gray-100 text-gray-700">
             <tr>
               {columns.map((column, index, array) => {
@@ -160,11 +160,11 @@ const Table = ({ rows }) => {
                 
                return (
                   <tr key={index} className="border-b bg-white hover:bg-gray-50">
-                    {columns.map((column,i,array) =>{
-                       const last = array.length - 1
+                    {columns.map((column,i,arr) =>{
+                       const lst = arr.length - 1
                       return(
-                      <td key={column} className="py-2 px-1">
-                       {last === i ? <a href='#' className='text-main underline'>{row[column]}</a>: <span>{row[column]}</span>} 
+                      <td key={column} className={`py-2 px-1 ${i > 2 && 'text-center'}`}>
+                       {lst === i ? <a href='/followReq' className='text-main underline'>{row[column]}</a>: <span>{row[column]}</span>} 
                       </td>
                     )} )}
                   </tr>
