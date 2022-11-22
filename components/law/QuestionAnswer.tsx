@@ -26,14 +26,17 @@ const QuestionAnswer = ({ term, index, selected, handleToggle }: any) => {
       </div>
       <div
         className={`overflow-hidden border-b bg-white px-4 text-sm text-gray-500 transition-all duration-500 ease-in-out ${
-          selected === index ? 'max-h-[1000px]' : 'max-h-0'
+          selected === index ? 'max-h-[2000px]' : 'max-h-0'
         }`}
       >
         <p className="py-3">{term.answer}</p>
         {term.image && (
-          <div className="h-[300px] w-[400px] overflow-hidden">
+          <div className='w-full flex justify-center'>
+             <div className="h-[300px] w-[400px] overflow-hidden">
             <img className="w-full" src={term.image} alt="" />
           </div>
+          </div>
+         
         )}
         {term.textes &&
           term.textes.map((txt: any, index: any) => (
@@ -42,7 +45,7 @@ const QuestionAnswer = ({ term, index, selected, handleToggle }: any) => {
             </p>
           ))}
         {term.video && (
-          <div>
+          <div className='w-full flex justify-center my-10'>
             <iframe
               width="560"
               height="315"
