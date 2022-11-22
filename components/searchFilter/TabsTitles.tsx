@@ -24,6 +24,17 @@ const TabsTitles = ({ toggleIndex, handleTggle, results }: any) => {
         المعلومات بمواقع المؤسسات والهيئات{' '}
         <span className='font-medium'>{results.searchInformation?.formattedTotalResults}</span>
       </p>
+      <p
+        onClick={() => handleTggle(3)}
+        className={`p-2 ${
+          toggleIndex === 3
+            ? 'border-b-2 border-blue-500 bg-white'
+            : 'rounded-t-xl bg-gray-200'
+        }  cursor-pointer`}
+      >
+       الطلبات المعالجة{' '}
+       <span className='font-medium'>12</span>
+      </p>
     </div>
   )
 }

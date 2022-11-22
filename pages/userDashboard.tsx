@@ -1,6 +1,8 @@
 import { NextPage } from 'next'
 import NextLink from 'next/link'
-import { useState } from 'react'
+import { useRouter } from 'next/router'
+
+import { useEffect, useState } from 'react'
 import { PlusIcon } from '../components/icons'
 import Table from '../components/userDashboard/Table'
 import TabsNames from '../components/userDashboard/TabsNames'
@@ -10,10 +12,16 @@ import commityComplaints from '../utils/commityComplaints.json'
 
 const userDashboard: NextPage = () => {
   const [toggleIndex, setToggleIndex] = useState(1)
+  const { locale, asPath } = useRouter()
 
   const handleToggle = (index: any) => {
     setToggleIndex(index)
   }
+
+  useEffect(()=>{
+    if(asPath.includes('administration')) return handleToggle(2)
+    if(asPath.includes('commity')) return handleToggle(3)
+  },[])
 
   return (
     <div>
@@ -32,19 +40,19 @@ const userDashboard: NextPage = () => {
               </button>
             </NextLink>
           </div>
-          <Table rows={requestsList} />
+          <Table rows={requestsList}  />
         </div>
         <div className={`py-20 px-8 ${
           toggleIndex === 2 ? 'visible block' : 'invisible hidden'
         }`}>
           
-          <Table rows={complaintsList} />
+          <Table rows={complaintsList}/>
         </div>
         <div className={`py-20 px-8 ${
           toggleIndex === 3 ? 'visible block' : 'invisible hidden'
         }`}>
          
-          <Table rows={commityComplaints} />
+          <Table rows={commityComplaints}/>
         </div>
       </div>
     </div>

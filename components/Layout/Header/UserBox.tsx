@@ -71,7 +71,7 @@ const UserBox = () => {
         {userBoxList?.map((list: any, index: any, array: any) => {
           const last = array.length - 1
           return (
-            <NextLink key={list.id} href={list.link} passHref>
+            <NextLink key={list.id} href={list.link} scroll={false}>
               <li
                 className={`relative block py-1 px-5 transition-all duration-200 hover:bg-gray-200 ${
                   index === last && 'mt-2 border-t pt-4'

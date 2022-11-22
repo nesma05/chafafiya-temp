@@ -6,7 +6,7 @@ import PageTitle from '../components/Layout/PageTitle'
 const AdminLogin: NextPage = () => {
   return (
     <div>
-      <PageTitle>تسجيل الدخول</PageTitle>
+      <PageTitle>خاص بالإدارة</PageTitle>
       <div className="flex h-[500px] items-center justify-center text-sm">
         <div className="w-[450px] rounded-lg bg-white shadow-lg">
           <div className="py-6 px-6 lg:px-8">

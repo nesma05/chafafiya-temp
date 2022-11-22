@@ -12,6 +12,7 @@ import FiltersSearchResults from '../components/searchFilter/FiltersSearchResult
 import GlSearchResultsSection from '../components/searchFilter/GlSearchResultsSection'
 
 import PageTitle from '../components/Layout/PageTitle'
+import TreatedRequests from '../components/searchFilter/TreatedRequests'
 
 const SearchEngine: NextPage = ({ results}: any) => {
   const router = useRouter()
@@ -44,6 +45,7 @@ const SearchEngine: NextPage = ({ results}: any) => {
           router={router}
           results={results}
         />
+        <TreatedRequests toggleIndex={toggleIndex} />
       </div>
     </FilterContext>
   )
