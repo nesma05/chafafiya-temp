@@ -17,11 +17,12 @@ const userDashboard: NextPage = () => {
   const handleToggle = (index: any) => {
     setToggleIndex(index)
   }
-
+  
   useEffect(()=>{
+    if(asPath.includes('requests')) return handleToggle(1)
     if(asPath.includes('administration')) return handleToggle(2)
     if(asPath.includes('commity')) return handleToggle(3)
-  },[])
+  },[asPath])
 
   return (
     <div>
