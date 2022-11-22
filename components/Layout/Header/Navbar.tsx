@@ -21,7 +21,7 @@ const Navbar = () => {
           <Logo />
 
           <div className="flex items-center">
-            <NextLink href={'/responsable'} passHref>
+            <NextLink href={'/adminLogin'} passHref>
               <button className="mx-2 rounded-md bg-main py-1.5 px-2 text-white sm:px-3">
                 خاص بالإدارة
               </button>

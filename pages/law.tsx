@@ -1,8 +1,6 @@
 import { NextPage } from 'next'
 import IllustrationsSection from '../components/law/IllustrationsSection'
 import SubTitle from '../components/home/SubTitle'
-import Footer from '../components/Layout/Footer'
-import Navbar from '../components/Layout/Header/Navbar'
 import PageTitle from '../components/Layout/PageTitle'
 import { lawList } from '../utils/constants'
 import { illustrationsList } from '../utils/constants'
