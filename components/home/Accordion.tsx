@@ -40,6 +40,7 @@ const Accordion = ({ content }: any) => {
         {content.inputType === 'search' && (
           <div className='mt-auto mb-4 flex flex-col items-center'>
             <span className='text-lg text-main'>ابحث هنا</span>
+            <p className='text-gray-500 text-xs text-center'>أدخل عناصر البحث عن المعلومات التي ترغب في الحصول عليها</p>
             <span className='text-4xl text-main'><ArrowDown/> </span>
             <span><SearchInput button="yes"/></span>
           </div>
