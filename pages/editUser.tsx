@@ -4,12 +4,6 @@ import { useState } from 'react'
 import { RefreshIcon } from '../components/icons'
 import { age, participationType } from '../utils/constants'
 const EditUser: NextPage = () => {
-  const [toggleDisable, setToggleDisable] = useState(true)
-  const handleCheck = (e:any)=>{
-    if(e.target.checked) return setToggleDisable(false)
-    return setToggleDisable(true)
-  }
-
   return (
     <div>
       <div className="bg-gray-100 p-12">
@@ -139,37 +133,11 @@ const EditUser: NextPage = () => {
               </div>
             </div>
           </div>
-          <div className="mx-auto mt-10 flex w-[50%] items-center justify-center">
-            <div className="relative h-[50px] w-[200px] overflow-hidden border-2 border-slate-700 bg-cyan-700">
-              <Image
-                src={'/img/captcha-screenshot.png'}
-                layout="fill"
-                objectFit="cover"
-                alt="chafafiya image"
-              />
-            </div>
-            <span className="cursor-pointer text-5xl">
-              <RefreshIcon />{' '}
-            </span>
-            <input
-              className="block w-1/2 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
-              type="text"
-              placeholder="ادخل الرمز في الصورة"
-            />
-          </div>
-          <div className="flex justify-center gap-2">
-            <input type="checkbox" name="" className="h-[20px] scale-[1.3]" onChange={handleCheck}/>
-            <p>
-              لقد قرأت وأوافق على{' '}
-              <span className="text-main underline">شروط الخدمة</span> و
-              <span className="text-main underline"> سياسة الخصوصية </span>
-            </p>
-          </div>
+
           <div className="mt-10 text-center">
             <button
               type="submit"
-              className={`w-[50%] rounded-lg ${toggleDisable ? 'bg-gray-400':'bg-main hover:bg-main_dark'}  px-5 py-2.5 text-center font-medium text-white  `}
-              disabled={toggleDisable}
+              className={`w-[50%] rounded-lg bg-main px-5 py-2.5 text-center font-medium text-white hover:bg-main_dark  `}
             >
               حفظ التغييرات
             </button>

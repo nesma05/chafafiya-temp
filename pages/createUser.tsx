@@ -5,10 +5,9 @@ import { RefreshIcon } from '../components/icons'
 import PageTitle from '../components/Layout/PageTitle'
 import { age, participationType } from '../utils/constants'
 const CreateUser: NextPage = () => {
-
   const [toggleDisable, setToggleDisable] = useState(true)
-  const handleCheck = (e:any)=>{
-    if(e.target.checked) return setToggleDisable(false)
+  const handleCheck = (e: any) => {
+    if (e.target.checked) return setToggleDisable(false)
     return setToggleDisable(true)
   }
 
@@ -158,7 +157,12 @@ const CreateUser: NextPage = () => {
             />
           </div>
           <div className="flex justify-center gap-2">
-            <input type="checkbox" name="" className="h-[20px] scale-[1.3]" onChange={handleCheck}/>
+            <input
+              type="checkbox"
+              name=""
+              className="h-[20px] scale-[1.3]"
+              onChange={handleCheck}
+            />
             <p>
               لقد قرأت وأوافق على{' '}
               <span className="text-main underline">شروط الخدمة</span> و
@@ -168,10 +172,12 @@ const CreateUser: NextPage = () => {
           <div className="mt-10 text-center">
             <button
               type="submit"
-              className={`w-[50%] rounded-lg ${toggleDisable ? 'bg-gray-400':'bg-main hover:bg-main_dark'}  px-5 py-2.5 text-center font-medium text-white  `}
+              className={`w-[50%] rounded-lg ${
+                toggleDisable ? 'bg-gray-400' : 'bg-main hover:bg-main_dark'
+              }  px-5 py-2.5 text-center font-medium text-white  `}
               disabled={toggleDisable}
             >
-              حفظ التغييرات
+              إنشاء حساب
             </button>
           </div>
         </form>
