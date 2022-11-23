@@ -2,8 +2,10 @@ import { NextPage } from 'next'
 import Image from 'next/image'
 import { useState } from 'react'
 import { RefreshIcon } from '../components/icons'
+import PageTitle from '../components/Layout/PageTitle'
 import { age, participationType } from '../utils/constants'
-const EditUser: NextPage = () => {
+const CreateUser: NextPage = () => {
+
   const [toggleDisable, setToggleDisable] = useState(true)
   const handleCheck = (e:any)=>{
     if(e.target.checked) return setToggleDisable(false)
@@ -12,9 +14,7 @@ const EditUser: NextPage = () => {
 
   return (
     <div>
-      <div className="bg-gray-100 p-12">
-        <h1 className="text-2xl">تحيين معلوماتي الشخصية</h1>
-      </div>
+      <PageTitle>إنشاء حساب</PageTitle>
       <div className="mx-auto my-20 w-[80%]">
         <form className="flex flex-col gap-6">
           <div className="flex gap-4">
@@ -180,4 +180,4 @@ const EditUser: NextPage = () => {
   )
 }
 
-export default EditUser
+export default CreateUser

@@ -65,7 +65,7 @@ export const menuList = [
       },
       {
         text: 'تتبع الطلب',
-        link: '/followReq',
+        link: '/checkRequest',
       },
     ]  
   },
@@ -75,7 +75,7 @@ export const menuList = [
     subMenu: [  
       {
         text: 'تقديم شكاية للمؤسسة المعنية',
-        link: '/checkRequest',
+        link: '/checkComplaint',
       },
       {
         text: 'تقديم شكاية للجنة الحق في الحصول على المعلومات',

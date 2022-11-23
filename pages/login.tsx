@@ -67,7 +67,7 @@ const Login: NextPage = () => {
               </NextLink>
               <div className=" font-medium text-gray-900">
                 ليس لديك حساب؟{' '}
-                <NextLink href={'#'} passHref>
+                <NextLink href={'/createUser'} passHref>
                   <a className="font-bold text-blue-700 hover:underline">
                     إنشاء حساب
                   </a>
