@@ -6,6 +6,7 @@ module.exports = {
     locales: ['ar','amz', 'fr'],
     // The default locale you want to be used when visiting a non-locale prefixed path e.g. `/hello`
     defaultLocale: 'ar',
+    localeDetection: false,
   },
  
   images: {

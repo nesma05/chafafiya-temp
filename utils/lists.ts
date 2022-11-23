@@ -4,7 +4,7 @@ export const menuList = [
     menuHeight:'240px',
     subMenu: [
       {
-        text: 'ما هو القانون رقم 13-31 المتعلق بالحق في الحصول على المعلومات؟',
+        text: 'ما هو القانون رقم 13-31؟',
         link: '/law',
       },
       {
@@ -16,7 +16,7 @@ export const menuList = [
         link: '/documents',
       },
       {
-        text: 'اختبر معلوماتك حول الحق في الحصول على المعلومات',
+        text: 'اختبر معلوماتك',
         link: '/quiz',
       },
     ],

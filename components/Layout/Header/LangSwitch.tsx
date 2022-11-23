@@ -40,7 +40,7 @@ const langSwitch = () => {
   const { locale, asPath } = useRouter()
 
   const initialLang =
-    locale === 'ar' ? 'العربية' : locale === 'ar' ? 'Français' : 'Amazigh'
+    locale === 'ar' ? 'العربية' : locale === 'fr' ? 'Français' : 'Amazigh'
 
   const langRef = useRef(null)
 
