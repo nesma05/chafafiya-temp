@@ -20,12 +20,12 @@ const Accordion = ({ content }: any) => {
       </div>
       <div
         className={`flex flex-col overflow-hidden rounded shadow-xl bg-white px-3 text-sm transition-all duration-500 ease-in-out ${
-          open ? 'h-[300px]' : 'h-0'
+          open ? 'h-[350px]' : 'h-0'
         }`}
       >
         <div className="py-2">
-          {content.text.map((tx: any) => (
-            <p key={tx} className="mb-1">{tx}</p>
+          {content.text.map((tx: any,index:any) => (
+            <p key={index} className="mb-1">{tx}</p>
           ))}
         </div>
         {content.inputType === 'button' && (

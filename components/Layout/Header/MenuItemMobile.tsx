@@ -23,8 +23,8 @@ const MenuItemMobile = ({ title, subMenu }: any) => {
           open ? `max-h-[1000px]` : 'max-h-0'
         }`}
       >
-        {subMenu?.map((menu: any) => (
-          <NextLink key={menu.text} href={menu.link} passHref>
+        {subMenu?.map((menu: any,index:any) => (
+          <NextLink key={index} href={menu.link} passHref>
             <li className="block py-2 px-3 transition-all duration-200 hover:bg-black/10">
               {menu.text}
             </li>
