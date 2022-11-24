@@ -1,9 +1,11 @@
 import { useRouter } from 'next/router'
-import { useRef, forwardRef } from 'react'
+import { useRef} from 'react'
 import { SearchIcon } from '../icons'
+import useTranslation from '../../utils/customHooks'
 
 const SearchInput = ({ button }: any) => {
   const router = useRouter()
+  const {tr} = useTranslation()
 
   const searchInput = useRef<HTMLInputElement>(null)
 
@@ -28,8 +30,9 @@ const SearchInput = ({ button }: any) => {
           ref={searchInput}
           type="text"
           className="w-full rounded-md border px-3 py-3 pr-12 text-sm shadow-sm focus:border-main focus:outline-main"
-          placeholder="أدخل عناصر البحث عن المعلومات التي ترغب في الحصول عليها"
+          placeholder={tr('searchInputText')}
         />
+
 
         <span className="absolute inset-y-0 right-0 inline-flex items-center overflow-hidden  px-3  text-xl text-gray-400">
           <SearchIcon />
@@ -40,7 +43,7 @@ const SearchInput = ({ button }: any) => {
           onClick={handleSearch}
           className="rounded-md bg-main px-3 text-lg text-white"
         >
-          البحث
+         {tr('searchInputButton')}
         </button>
       )}
     </div>

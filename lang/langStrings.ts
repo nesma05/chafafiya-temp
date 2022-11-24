@@ -25,6 +25,9 @@ export const LangStrings = {
     menuSearchInput: 'البحث في الموقع',
     heroBoxLink: 'اطلع على المزيد',
     heroAccorTitle: 'قم بالبحث وحدد ما إذا كنت بحاجة إلى تقديم طلب',
+    searchInputText: 'أدخل عناصر البحث عن المعلومات التي ترغب في الحصول عليها',
+    searchInputButton: 'البحث',
+    homeAccorSearchText:'ابحث هنا',
     accordionContent: [
       {
         title: 'ابحث عن المعلومة قبل تقديم الطلب',
@@ -229,6 +232,9 @@ export const LangStrings = {
     menuSearchInput: 'البحث في الموقع',
     heroBoxLink: 'اطلع على المزيد',
     heroAccorTitle: 'قم بالبحث وحدد ما إذا كنت بحاجة إلى تقديم طلب',
+    searchInputText: 'أدخل عناصر البحث عن المعلومات التي ترغب في الحصول عليها',
+    searchInputButton: 'البحث',
+    homeAccorSearchText:'ابحث هنا',
     accordionContent: [
       {
         title: 'ابحث عن المعلومة قبل تقديم الطلب',
@@ -417,6 +423,9 @@ export const LangStrings = {
     heroBoxLink: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏ ⵜⵉⵏⴰⴼ',
     heroAccorTitle:
       'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵏⵏⵖⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵏⵏⵖⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵏⵏⵖⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵏⵏⵖⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
+    searchInputText: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵏⵏⵖⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵏⵏⵖⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵏⵏⵖⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
+    searchInputButton: 'ⴼⵓⵜⵏ',
+    homeAccorSearchText:'ⴼⵓⵜⵏ ⴼⵓⵏ',
     accordionContent: [
       {
         title: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',

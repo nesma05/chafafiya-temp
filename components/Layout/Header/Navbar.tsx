@@ -13,7 +13,7 @@ const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
   const [loginState, setLoginState] = useState(false)
   const {tr} = useTranslation()
-  console.log('translation', tr('menuList'))
+
 
   const menuRef = useRef<HTMLLIElement[]>([])
 
