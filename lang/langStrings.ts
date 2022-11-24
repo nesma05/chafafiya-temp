@@ -92,95 +92,95 @@ export const LangStrings = {
     ],
     menuList: [
       {
-        title: 'portal portal portal portal portal',
+        title: 'الحق في الحصول على المعلومات',
         menuHeight: '240px',
         subMenu: [
           {
-            text: 'portal portal portal portal 13-31؟',
+            text: 'بوابة الحصول على المعلومات',
+            link: '/portal',
+          },
+          {
+            text: 'ما هو القانون رقم 13-31؟',
             link: '/law',
           },
           {
-            text: 'portal/ portal',
+            text: 'قاموس/ مصطلحات',
             link: '/',
           },
           {
-            text: 'portal',
+            text: 'مراجع',
             link: '/documents',
           },
           {
-            text: 'portal portal',
+            text: 'اختبر معلوماتك',
             link: '/quiz',
           },
         ],
       },
       {
-        title: 'portal portal portal',
+        title: 'قبل تقديم الطلب',
         menuHeight: '190px',
-        subMenu: [
+        subMenu: [    
           {
-            text: 'portal portal portal portal portal portal',
-            link: '/portal',
-          },
-          {
-            text: 'portal portal portal portal portal',
+            text: 'البحث عن المعلومات المنشورة استباقيا',
             link: '/searchengine',
           },
           {
-            text: 'portal portal portal portal portal portal',
+            text: 'البحث عن المعلومات حسب المؤسسات والهيئات',
             link: '/searchengine',
           },
           {
-            text: 'portal portal portal  portal portal portal',
+            text: 'البحث عن المعلومات  بمواقع المؤسسات والهيئات',
             link: '/searchengine',
           },
           {
-            text: 'portal portal portal portal portal',
+            text: 'أجوبة عن الطلبات الأكثر تداولا',
             link: '/',
           },
           {
-            text: 'portal portal portal portal portal portal portal',
+            text: 'بعض المواقع الحكومية التي تتوفر على المعلومات',
             link: '/',
           },
         ],
       },
       {
-        title: 'portal portal',
+        title: 'تقديم الطلب',
         menuHeight: '190px',
         subMenu: [
           {
-            text: 'portal portal portal portal portal portal portal',
+            text: 'كيف يمكنك تقديم طلب الحصول على المعلومات؟',
             link: '/howReq',
           },
           {
-            text: 'portal portal',
+            text: 'إيداع الطلب',
             link: '/request',
           },
           {
-            text: 'portal portal',
+            text: 'تتبع الطلب',
             link: '/checkRequest',
           },
         ],
       },
       {
-        title: 'portal portal',
+        title: 'تقديم شكاية',
         menuHeight: '190px',
         subMenu: [
           {
-            text: 'portal portal portal portal',
+            text: 'تقديم شكاية للمؤسسة المعنية',
             link: '/checkComplaint',
           },
           {
-            text: 'portal portal portal portal portal portal portal portal',
+            text: 'تقديم شكاية للجنة الحق في الحصول على المعلومات',
             link: '/',
           },
           {
-            text: 'portal portal portal portal portal',
+            text: 'الطعن لدى المحكمة الإدارية المختصة',
             link: '/',
           },
         ],
       },
       {
-        title: 'portal',
+        title: 'إحصائيات',
       },
     ],
     boxContent: [
@@ -303,6 +303,10 @@ export const LangStrings = {
         menuHeight: '240px',
         subMenu: [
           {
+            text: 'بوابة الحصول على المعلومات',
+            link: '/portal',
+          },
+          {
             text: 'ما هو القانون رقم 13-31؟',
             link: '/law',
           },
@@ -323,11 +327,7 @@ export const LangStrings = {
       {
         title: 'قبل تقديم الطلب',
         menuHeight: '190px',
-        subMenu: [
-          {
-            text: 'ما هي بوابة الحصول على المعلومات؟',
-            link: '/portal',
-          },
+        subMenu: [    
           {
             text: 'البحث عن المعلومات المنشورة استباقيا',
             link: '/searchengine',
@@ -495,6 +495,10 @@ export const LangStrings = {
         menuHeight: '240px',
         subMenu: [
           {
+            text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
+            link: '/portal',
+          },
+          {
             text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏⵜ ⵉⵏⴰⴼⵓⵜⵉⵏ',
             link: '/law',
           },
@@ -516,10 +520,6 @@ export const LangStrings = {
         title: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
         menuHeight: '190px',
         subMenu: [
-          {
-            text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
-            link: '/portal',
-          },
           {
             text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
             link: '/searchengine',
