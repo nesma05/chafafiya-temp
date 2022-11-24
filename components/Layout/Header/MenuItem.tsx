@@ -1,6 +1,6 @@
 import NextLink from 'next/link'
 import { useRef, useState } from 'react'
-import { ChevronDown } from '../../icons'
+import { ChevronDown, NoteIcon } from '../../icons'
 import { useClickOutside } from '../../../utils/customHooks'
 
 
@@ -36,8 +36,8 @@ const MenuItem = ({ title, subMenu }: any) => {
       >
         {subMenu?.map((menu: any,index:any) => (
           <NextLink key={index} href={menu.link} passHref>
-            <li className="relative block py-2 px-3 font-medium transition-all duration-200 hover:bg-black/10">
-              {menu.text}
+            <li className="relative flex gap-2 py-2 px-3 font-medium transition-all duration-200 hover:bg-black/10">
+             {menu.icon && <span className='text-xl'><NoteIcon/></span>} {menu.text}
             </li>
           </NextLink>
         ))}

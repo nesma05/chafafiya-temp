@@ -2,25 +2,21 @@ import NextLink from 'next/link'
 import type { NextPage } from 'next'
 import rows from '../../utils/people.json'
 import { requestFollow } from '../../utils/constants'
-import ResSideBar from '../../components/responsable/ResSideBar'
-import ResDetails from '../../components/responsable/ResDetails'
 
 import SecondaryLayout, {
   PageWithSecondaryLayoutType,
 } from '../../components/Layout/SecondaryLayout'
 import ResponsableHeader from '../../components/responsable/ResponsableHeader'
+import ReqSideBar from '../../components/responsable/ReqSideBar'
+import RespReqDetails from '../../components/responsable/RespReqDetails'
 
 const Responsable: PageWithSecondaryLayoutType = () => {
-  
   return (
-    <div className='text-sm'>
-      <ResponsableHeader/>
-      <NextLink href={'/responsable/table'} passHref>
-        <button>table</button>
-      </NextLink>
-      <div className="mt-10 w-full flex justify-start border-t-2 border-gray-300">
-        <ResSideBar  />
-        <ResDetails rows={requestFollow}  />
+    <div className="text-sm">
+      <ResponsableHeader responsable={'المسؤول عن المعلومات'} />
+      <div className="mt-10 flex w-full justify-start border-t-2 border-gray-300">
+        <ReqSideBar />
+        <RespReqDetails rows={requestFollow} />
       </div>
     </div>
   )

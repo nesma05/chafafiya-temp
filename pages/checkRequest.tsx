@@ -60,14 +60,13 @@ const CheckRequest: NextPage = () => {
           <div>
             <p>{message}</p>
             <NextLink href={'/followReq'} passHref>
-            <button
-              onClick={handleClick}
-              className="text-md flex w-full justify-center rounded-md bg-sky-600 py-2 px-4 font-medium text-white transition-colors duration-300 ease-in-out hover:bg-sky-700"
-            >
-              تأكيد
-            </button>
+              <button
+                onClick={handleClick}
+                className="text-md flex w-full justify-center rounded-md bg-sky-600 py-2 px-4 font-medium text-white transition-colors duration-300 ease-in-out hover:bg-sky-700"
+              >
+                تأكيد
+              </button>
             </NextLink>
-           
           </div>
         </form>
       </div>

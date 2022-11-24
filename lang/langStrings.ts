@@ -98,10 +98,12 @@ export const LangStrings = {
           {
             text: 'بوابة الحصول على المعلومات',
             link: '/portal',
+            icon:'yes'
           },
           {
             text: 'ما هو القانون رقم 13-31؟',
             link: '/law',
+            icon:'yes'
           },
           {
             text: 'قاموس/ مصطلحات',
@@ -150,6 +152,7 @@ export const LangStrings = {
           {
             text: 'كيف يمكنك تقديم طلب الحصول على المعلومات؟',
             link: '/howReq',
+            icon:'yes'
           },
           {
             text: 'إيداع الطلب',
@@ -305,10 +308,12 @@ export const LangStrings = {
           {
             text: 'بوابة الحصول على المعلومات',
             link: '/portal',
+            icon:'yes'
           },
           {
             text: 'ما هو القانون رقم 13-31؟',
             link: '/law',
+            icon:'yes'
           },
           {
             text: 'قاموس/ مصطلحات',
@@ -357,6 +362,7 @@ export const LangStrings = {
           {
             text: 'كيف يمكنك تقديم طلب الحصول على المعلومات؟',
             link: '/howReq',
+            icon:'yes'
           },
           {
             text: 'إيداع الطلب',
@@ -497,10 +503,12 @@ export const LangStrings = {
           {
             text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
             link: '/portal',
+            icon:'yes'
           },
           {
             text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏⵜ ⵉⵏⴰⴼⵓⵜⵉⵏ',
             link: '/law',
+            icon:'yes'
           },
           {
             text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ/ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
@@ -549,6 +557,7 @@ export const LangStrings = {
           {
             text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
             link: '/howReq',
+            icon:'yes'
           },
           {
             text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',

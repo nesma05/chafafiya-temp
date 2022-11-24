@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Pagination from '../Pagination'
-import { responsableList } from './ResSideBar'
+import { responsableComplList } from './ComplSideBar'
 
-const ResDetails = ({ rows,open }: any) => {
+const ResDetails = ({ rows, open }: any) => {
   const router = useRouter()
   const [currentPage, setCurrentPage] = useState(1)
   const [rowsPerPage] = useState(10)
@@ -16,8 +16,8 @@ const ResDetails = ({ rows,open }: any) => {
   const indexOfLastRows = currentPage * rowsPerPage
   const indexOfFirstRows = indexOfLastRows - rowsPerPage
   const currentRows = rows.slice(indexOfFirstRows, indexOfLastRows)
-  console.log('indexOfFirstRows',indexOfFirstRows)
-  console.log('indexOfLastRows',indexOfLastRows)
+  console.log('indexOfFirstRows', indexOfFirstRows)
+  console.log('indexOfLastRows', indexOfLastRows)
 
   // const handleNextbtn = () => {
   //   setCurrentPage(currentPage + 1)
@@ -48,10 +48,10 @@ const ResDetails = ({ rows,open }: any) => {
   }
 
   return (
-    <div className='flex-1'>
+    <div className="flex-1">
       <div className="mt-10 px-4">
         <ul className="flex w-full gap-4">
-          {responsableList
+          {responsableComplList
             .filter((respList: any, i: any) => i !== 0)
             .map((resList: any, i: any) => (
               <li
@@ -87,15 +87,15 @@ const ResDetails = ({ rows,open }: any) => {
                     <tr
                       key={row.code}
                       className="cursor-pointer font-medium"
-                      onClick={() => router.push(`/responsable/${row.code}`)}
+                      onClick={() => router.push(`/complResponsable/${row.code}`)}
                     >
-                      <td className="whitespace-nowrap truncate w-[150px] px-6 py-4 font-medium text-gray-900">
+                      <td className="w-[150px] truncate whitespace-nowrap px-6 py-4 font-medium text-gray-900">
                         {row.demandeur}
                       </td>
-                      <td className="whitespace-nowrap truncate px-6 py-4 text-gray-500">
+                      <td className="truncate whitespace-nowrap px-6 py-4 text-gray-500">
                         {row.contenu_demande}
                       </td>
-                      <td className="whitespace-nowrap w-[220px] truncate text-left px-6 py-4 text-gray-500">
+                      <td className="w-[220px] truncate whitespace-nowrap px-6 py-4 text-left text-gray-500">
                         {row.date_demande}
                       </td>
                     </tr>

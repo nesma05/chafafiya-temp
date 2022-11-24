@@ -45,17 +45,20 @@ export function useCaptcha() {
   const [img, setImg] = useState('')
   const [captcha, setcaptcha] = useState('')
   const [message, setMessage] = useState('')
+  const router = useRouter()
 
   const handleClick = async (e) => {
     e.preventDefault()
-    const { data } = await axios.post('http://localhost:5000/check', {
-      captcha,
-    })
-    if (data.message === 'not valide captcha') {
-      setcaptcha('')
-      handleCaptcha()
-    }
-    setMessage(data.message)
+    // const { data } = await axios.post('http://localhost:5000/check', {
+    //   captcha,
+    // })
+    // if (data.message === 'not valide captcha') {
+    //   setcaptcha('')
+    //   handleCaptcha()
+    // }
+    // setMessage(data.message)
+
+    router.push('/followReq')
   }
 
   const handleCaptcha = async () => {

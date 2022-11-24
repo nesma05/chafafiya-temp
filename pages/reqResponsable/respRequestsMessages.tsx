@@ -1,19 +1,12 @@
 import NextLink from 'next/link'
 import type { NextPage } from 'next'
 import rows from '../../utils/people.json'
-import { requestFollow } from '../../utils/constants'
-import ResSideBar from '../../components/responsable/ResSideBar'
-import ResDetails from '../../components/responsable/ResDetails'
 
 import SecondaryLayout, {
   PageWithSecondaryLayoutType,
 } from '../../components/Layout/SecondaryLayout'
 import ResponsableHeader from '../../components/responsable/ResponsableHeader'
-import {
-  AttachmentIcon,
-  CloseIcon,
-  CopyIcon,
-} from '../../components/icons'
+import { AttachmentIcon, CloseIcon, CopyIcon } from '../../components/icons'
 import { useState } from 'react'
 
 const respRequestsMessages: PageWithSecondaryLayoutType = () => {
@@ -30,8 +23,8 @@ const respRequestsMessages: PageWithSecondaryLayoutType = () => {
   }
   return (
     <div className="text-sm">
-      <ResponsableHeader />
-      <div className="flex border-t-2 border-b-2 mb-10 h-[calc(100vh-100px)]">
+      <ResponsableHeader responsable={'المساهم'} />
+      <div className="mb-10 flex h-[calc(100vh-100px)] border-t-2 border-b-2">
         <div className="px-2 pt-8">
           <div className="flex items-center gap-3 bg-secondary/20 py-2 px-0.5">
             <CopyIcon />
@@ -40,70 +33,70 @@ const respRequestsMessages: PageWithSecondaryLayoutType = () => {
             </p>
           </div>
         </div>
-        <div className=" flex flex-1 border-r-2">
-          <div className=' overflow-y-scroll'>
+        <div className="flex flex-1 border-r-2">
+          <div className="w-1/3 overflow-y-scroll">
             <div className="border-b-2 px-2 pt-4 pb-8">
               <p className="text-lg font-bold">
                 طلبات مسؤول المعلومات :<span className="font-bold"> 10</span>
               </p>
             </div>
             <div>
-              <div className="w-[250px] border-b-2 px-2 pb-2">
+              <div className="border-b-2 px-2 pb-2">
                 <div className="flex justify-between py-4">
                   <h4 className="font-bold">المهدي هرموش</h4>
                   <span className="text-gray-500">1 شتنبر</span>
                 </div>
-                <p className="font-bold">
+                <p className="p-2 font-bold">
                   اسم الشخص المكلف بتلقي طلبات الحصول غلى المعلومات بمديرية
                   الملاحة التجارية ةالنقل و اللوجستيك
                 </p>
               </div>
-              <div className="w-[250px] border-b-2 pb-2">
+              <div className="border-b-2 pb-2">
                 <div className="flex justify-between px-2 py-4">
                   <h4 className="font-bold">المهدي هرموش</h4>
                   <span className="text-gray-500">1 شتنبر</span>
                 </div>
-                <p className="font-bold">
+                <p className="p-2 font-bold">
                   اسم الشخص المكلف بتلقي طلبات الحصول غلى المعلومات بمديرية
                   الملاحة التجارية ةالنقل و اللوجستيك
                 </p>
               </div>
-              <div className="w-[250px] border-b-2 pb-2">
+              <div className="border-b-2 pb-2">
                 <div className="flex justify-between px-2 py-4">
                   <h4 className="font-bold">المهدي هرموش</h4>
                   <span className="text-gray-500">1 شتنبر</span>
                 </div>
-                <p>
+                <p className="p-2">
                   اسم الشخص المكلف بتلقي طلبات الحصول غلى المعلومات بمديرية
                   الملاحة التجارية ةالنقل و اللوجستيك
                 </p>
               </div>
-              <div className="w-[250px] border-b-2 pb-2">
+              <div className="border-b-2 pb-2">
                 <div className="flex justify-between px-2 py-4">
                   <h4 className="font-bold">المهدي هرموش</h4>
                   <span className="text-gray-500">1 شتنبر</span>
                 </div>
-                <p>
+                <p className="p-2">
                   اسم الشخص المكلف بتلقي طلبات الحصول غلى المعلومات بمديرية
                   الملاحة التجارية ةالنقل و اللوجستيك
                 </p>
               </div>
-              <div className="w-[250px] border-b-2 pb-2">
+              <div className="border-b-2 pb-2">
                 <div className="flex justify-between px-2 py-4">
                   <h4 className="font-bold">المهدي هرموش</h4>
                   <span className="text-gray-500">1 شتنبر</span>
                 </div>
-                <p>
+                <p className="p-2">
                   اسم الشخص المكلف بتلقي طلبات الحصول غلى المعلومات بمديرية
                   الملاحة التجارية ةالنقل و اللوجستيك
                 </p>
               </div>
-              <div className="w-[250px] border-b-2 pb-2">
+              <div className="border-b-2 pb-2">
                 <div className="flex justify-between px-2 py-4">
                   <h4 className="font-bold">المهدي هرموش</h4>
                   <span className="text-gray-500">1 شتنبر</span>
                 </div>
-                <p>
+                <p className="p-2">
                   اسم الشخص المكلف بتلقي طلبات الحصول غلى المعلومات بمديرية
                   الملاحة التجارية ةالنقل و اللوجستيك
                 </p>
@@ -111,10 +104,10 @@ const respRequestsMessages: PageWithSecondaryLayoutType = () => {
             </div>
           </div>
           <div className="flex-1 border-r-2">
-            <div className="h-full relative">
+            <div className="relative h-full">
               <div className="overflow-y-auto p-2">
-                <div className="mb-4 w-fit">
-                  <div className="max-w-md rounded-r-lg rounded-bl-lg bg-secondary/20 p-3">
+                <div className="m-start mb-4 w-fit">
+                  <div className="max-w-md rounded-r-lg rounded-bl-lg bg-gray-200 p-3">
                     <p>
                       السلام عليكم سيد أحمد، المرجو موافاتي بالتقرير السنوي
                       لميزانية سنة 2021
@@ -124,8 +117,8 @@ const respRequestsMessages: PageWithSecondaryLayoutType = () => {
                     13 شتنبر 2022 الساعة 12:42
                   </span>
                 </div>
-                <div className="m-start w-fit">
-                  <div className="max-w-md rounded-l-lg rounded-br-lg bg-gray-200 p-3">
+                <div className="mb-4 w-fit">
+                  <div className="max-w-md rounded-l-lg rounded-br-lg bg-secondary/20 p-3">
                     <p>
                       وعليكم السلام سيد أنس، يمكنك الإطلاع على التقرير السنوي
                       لميزانية سنة 2021 لجماعة آيت داوود في الوثيقة أدناه تحياتي
@@ -135,7 +128,6 @@ const respRequestsMessages: PageWithSecondaryLayoutType = () => {
                     14 شتنبر 2022 الساعة 12:42
                   </span>
                 </div>
-                
               </div>
               <div className="absolute bottom-0 w-full border-t-2">
                 <textarea

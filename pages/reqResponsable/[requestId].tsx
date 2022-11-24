@@ -1,8 +1,7 @@
 import { NextPage } from 'next'
 import NextLink from 'next/link'
 import ConverHistory from '../../components/responsable/ConverHistory'
-import ResSideBar, { responsableList } from '../../components/responsable/ResSideBar'
-import TimeStamp from '../../components/responsable/TimeStamp'
+import ReqTimeStamp from '../../components/responsable/ReqTimeStamp'
 import { requester } from '../../utils/constants'
 import { requestFollow } from '../../utils/constants'
 
@@ -13,13 +12,14 @@ import RequesterInfo from '../../components/responsable/RequesterInfo'
 import ResponseSection from '../../components/responsable/ResponseSection'
 import ContactColleagues from '../../components/responsable/ContactColleagues'
 import ResponsableHeader from '../../components/responsable/ResponsableHeader'
+import ReqSideBar from '../../components/responsable/ReqSideBar'
 
 const ResRequest: PageWithSecondaryLayoutType = ({ request }: any) => {
   return (
     <div>
-      <ResponsableHeader/>
-      <div className="mb-20 flex border-y-2 h-auto">
-        <ResSideBar/>
+      <ResponsableHeader responsable={'المسؤول عن المعلومات'} />
+      <div className="mb-20 flex h-auto border-y-2">
+        <ReqSideBar />
         {/* <div className="w-[70px] border-l-2 border-gray-300">
           <div className="pt-20">
             <ul>
@@ -38,7 +38,7 @@ const ResRequest: PageWithSecondaryLayoutType = ({ request }: any) => {
         </div> */}
         <div className="flex-1">
           <div className="cursor-pointer p-6">
-            <NextLink href={'/responsable'} passHref>
+            <NextLink href={'/reqResponsable'} passHref>
               <p>الرجوع إلى لائحة الطلبات</p>
             </NextLink>
           </div>
@@ -46,7 +46,7 @@ const ResRequest: PageWithSecondaryLayoutType = ({ request }: any) => {
             <div className="w-[300px] border-l-2">
               <RequesterInfo requester={requester} />
               <div className="p-3">
-                <TimeStamp />
+                <ReqTimeStamp />
               </div>
             </div>
             <div className="relative w-[47%] border-l-2 pt-6">
@@ -54,7 +54,7 @@ const ResRequest: PageWithSecondaryLayoutType = ({ request }: any) => {
               <ResponseSection />
             </div>
             <div className="relative flex-1 pt-2">
-                <ContactColleagues/>
+              <ContactColleagues />
             </div>
           </div>
         </div>

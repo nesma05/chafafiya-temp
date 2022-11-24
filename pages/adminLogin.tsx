@@ -40,7 +40,7 @@ const AdminLogin: NextPage = () => {
                   </a>
                 </NextLink>
               </div>
-              <NextLink href={'/responsable'} passHref>
+              <NextLink href={'/reqResponsable'} passHref>
                 <button
                   type="submit"
                   className="w-full rounded-lg bg-main px-5 py-2.5 text-center font-medium text-white hover:bg-main_dark"

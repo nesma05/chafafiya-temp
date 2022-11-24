@@ -1,29 +1,29 @@
 import { useState } from 'react'
 import { BurgerIcon, CopyIcon, DotIcon, ExclamationIcon } from '../icons'
 
-export const responsableList = [
+export const responsableComplList = [
   {
-    title: 'جميع الطلبات',
+    title: 'جميع الشكايات',
     icon: <CopyIcon />,
   },
   {
-    title: 'طلبات تنتهي قبل <strong>3 </strong>أيام',
+    title: 'شكايات تنتهي قبل <strong>3 </strong>أيام',
     icon: <ExclamationIcon />,
   },
   {
-    title: 'طلبات تنتهي قبل <strong>7 </strong>أيام',
+    title: 'شكايات تنتهي قبل <strong>7 </strong>أيام',
     icon: <DotIcon color="brown" />,
   },
   {
-    title: 'طلبات تنتهي قبل <strong>14 </strong>يوم',
+    title: 'شكايات تنتهي قبل <strong>14 </strong>يوم',
     icon: <DotIcon color="orange" />,
   },
   {
-    title: 'طلبات تنتهي بعد <strong>14 </strong>يوم',
+    title: 'شكايات تنتهي بعد <strong>14 </strong>يوم',
     icon: <DotIcon color="green" />,
   },
   {
-    title: 'طلبات منتهية',
+    title: 'شكايات منتهية',
     icon: <DotIcon color="gray" />,
   },
 ]
@@ -49,7 +49,7 @@ const ResSideBar = () => {
       </div>
       <div className="mt-4">
         <ul>
-          {responsableList.map((resList: any, i: any) => (
+          {responsableComplList.map((resList: any, i: any) => (
             <li
               onClick={() => handleItemClick(i)}
               key={i}
