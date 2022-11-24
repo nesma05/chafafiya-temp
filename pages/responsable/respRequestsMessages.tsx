@@ -13,12 +13,10 @@ import {
   AttachmentIcon,
   CloseIcon,
   CopyIcon,
-  SendIcon,
 } from '../../components/icons'
 import { useState } from 'react'
-import RespSearchInput from '../../components/responsable/RespSearchInput'
 
-const RespMessages: PageWithSecondaryLayoutType = () => {
+const respRequestsMessages: PageWithSecondaryLayoutType = () => {
   const [files, setFiles] = useState<any>([])
 
   const handelFileInput = (e: any) => {
@@ -192,6 +190,6 @@ const RespMessages: PageWithSecondaryLayoutType = () => {
     </div>
   )
 }
-export default RespMessages
+export default respRequestsMessages
 
-RespMessages.getLayout = SecondaryLayout
+respRequestsMessages.getLayout = SecondaryLayout
