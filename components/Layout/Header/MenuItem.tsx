@@ -34,8 +34,8 @@ const MenuItem = ({ title, subMenu }: any) => {
             : 'invisible translate-y-0 opacity-0'
         }`}
       >
-        {subMenu?.map((menu: any) => (
-          <NextLink key={menu.text} href={menu.link} passHref>
+        {subMenu?.map((menu: any,index:any) => (
+          <NextLink key={index} href={menu.link} passHref>
             <li className="relative block py-2 px-3 font-medium transition-all duration-200 hover:bg-black/10">
               {menu.text}
             </li>

@@ -7,10 +7,13 @@ import MenuItemMobile from './MenuItemMobile'
 import Logo from '../Logo'
 import MenuSearchInput from './MenuSearchInput'
 import UserBox from './UserBox'
+import useTranslation from '../../../utils/customHooks'
 
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
   const [loginState, setLoginState] = useState(false)
+  const {tr} = useTranslation()
+  console.log('translation', tr('menuList'))
 
   const menuRef = useRef<HTMLLIElement[]>([])
 
@@ -19,11 +22,10 @@ const Navbar = () => {
       <header className="relative z-50 border border-b-gray-100 bg-white px-1 font-arabic_menu text-sm sm:px-10">
         <div className="flex items-center justify-between">
           <Logo />
-
           <div className="flex items-center">
             <NextLink href={'/adminLogin'} passHref>
               <button className="mx-2 rounded-md bg-main py-1.5 px-2 text-white sm:px-3">
-                خاص بالإدارة
+                {tr('adminLoginButton')}
               </button>
             </NextLink>
             <LangSwitch />
@@ -33,9 +35,9 @@ const Navbar = () => {
       <div className="sticky top-0 z-10 flex flex-wrap items-center justify-between gap-2 bg-white py-3 px-2 font-arabic_menu shadow-md md:px-12">
         <nav className="order-last flex items-center md:order-none">
           <ul className="relative hidden gap-6 font-light text-main md:flex">
-            {menuList.map((menu: any) => (
+            {tr('menuList').map((menu: any,index:any) => (
               <MenuItem
-                key={menu.title}
+                key={index}
                 title={menu.title}
                 subMenu={menu.subMenu}
               />
@@ -79,12 +81,12 @@ const Navbar = () => {
         </ul>
         <div className="flex items-center gap-1">
           <div className="max-w-[200px]">
-            <MenuSearchInput />
+            <MenuSearchInput placeHolder={tr('menuSearchInput')} />
           </div>
 
           {loginState ? <UserBox/> : ( <NextLink href={'/login'} passHref>
             <button className="mx-3 rounded-md bg-secondary py-3 px-2 text-sm">
-              تسجيل الدخول
+            {tr('userLoginButton')}
             </button>
           </NextLink>)}
          

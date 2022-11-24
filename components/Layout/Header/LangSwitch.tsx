@@ -30,6 +30,12 @@ const handleLangSwitch = (setOpen: any, setRotate: any) => {
   setRotate(false)
 }
 
+const toggleLanguages = (Language:any)=>{
+  if (Language === 'العربية') return 'ar'
+  if (Language === 'Français') return 'fr'
+  if (Language === 'Amazigh') return 'amz'
+}
+
 const Languages = ['العربية', 'Amazigh', 'Français']
 
 const langSwitch = () => {
@@ -81,7 +87,7 @@ const langSwitch = () => {
             key={lang}
             href={asPath}
             passHref
-            locale={lang === 'Français' ? 'fr' : lang === 'العربية' ? 'ar' : 'amz'}
+            locale={toggleLanguages(lang)}
           >
             <li
               className="relative block py-1 px-5 transition-all duration-200 hover:bg-gray-200"

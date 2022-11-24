@@ -25,7 +25,7 @@ const MyApp = ({ Component, pageProps }: AppLayoutProps) => {
   const Layout = Component.getLayout || MainLayout
   return (
     <Layout dir={getDirection(locale)}>
-      <Component {...pageProps} dir={getDirection(locale)} />
+      <Component {...pageProps} />
     </Layout>
   )
 }
