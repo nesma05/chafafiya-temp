@@ -12,16 +12,17 @@ import commityComplaints from '../utils/commityComplaints.json'
 
 const userDashboard: NextPage = () => {
   const [toggleIndex, setToggleIndex] = useState(1)
-  const { locale, asPath } = useRouter()
+  const { locale, asPath, push } = useRouter()
 
-  const handleToggle = (index: any) => {
+  const handleToggle = (index: any,tab:string) => {
     setToggleIndex(index)
+    if(!asPath.includes(tab)) push(`/userDashboard#${tab}`)
   }
   
   useEffect(()=>{
-    if(asPath.includes('requests')) return handleToggle(1)
-    if(asPath.includes('administration')) return handleToggle(2)
-    if(asPath.includes('commity')) return handleToggle(3)
+    if(asPath.includes('requests')) return handleToggle(1,'requests')
+    if(asPath.includes('administration')) return handleToggle(2,'administration')
+    if(asPath.includes('commity')) return handleToggle(3,'commity')
   },[asPath])
 
   return (

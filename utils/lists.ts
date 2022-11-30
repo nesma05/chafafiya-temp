@@ -31,15 +31,15 @@ export const menuList = [
       },
       {
         text: 'البحث عن المعلومات المنشورة استباقيا',
-        link: '/searchengine',
+        link: '/searchengine?ProactivelyPublished ',
       },
       {
         text: 'البحث عن المعلومات حسب المؤسسات والهيئات',
-        link: '/searchengine',
+        link: '/searchengine?institAgencies',
       },
       {
         text: 'البحث عن المعلومات  بمواقع المؤسسات والهيئات',
-        link: '/searchengine',
+        link: '/searchengine?institWebsites',
       },
       {
         text: 'أجوبة عن الطلبات الأكثر تداولا',

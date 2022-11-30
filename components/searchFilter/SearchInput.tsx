@@ -1,11 +1,15 @@
 import { useRouter } from 'next/router'
-import { useRef} from 'react'
+import { useRef } from 'react'
 import { SearchIcon } from '../icons'
 import useTranslation from '../../utils/customHooks'
+import { searchState } from '../../context/searchContext'
+import { InfoState } from '../../context/filterContext'
 
 const SearchInput = ({ button }: any) => {
   const router = useRouter()
-  const {tr} = useTranslation()
+  const { tr } = useTranslation()
+
+  const { dispatch } = InfoState()
 
   const searchInput = useRef<HTMLInputElement>(null)
 
@@ -13,9 +17,10 @@ const SearchInput = ({ button }: any) => {
     console.log('works')
     e.preventDefault()
     const term = searchInput.current?.value
+    dispatch({ type: 'SET_SEARCH_TERM', payload: term })
     if (!term) return
 
-    router.push(`/searchengine?term=${term}`)
+    router.push(`/searchengine?institWebsites=${term}`)
   }
 
   const hundleKeyPress = (e: any) => {
@@ -33,7 +38,6 @@ const SearchInput = ({ button }: any) => {
           placeholder={tr('searchInputText')}
         />
 
-
         <span className="absolute inset-y-0 right-0 inline-flex items-center overflow-hidden  px-3  text-xl text-gray-400">
           <SearchIcon />
         </span>
@@ -43,7 +47,7 @@ const SearchInput = ({ button }: any) => {
           onClick={handleSearch}
           className="rounded-md bg-main px-3 text-lg text-white"
         >
-         {tr('searchInputButton')}
+          {tr('searchInputButton')}
         </button>
       )}
     </div>

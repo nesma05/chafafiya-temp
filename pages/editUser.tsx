@@ -1,7 +1,5 @@
 import { NextPage } from 'next'
-import Image from 'next/image'
-import { useState } from 'react'
-import { RefreshIcon } from '../components/icons'
+
 import { age, participationType } from '../utils/constants'
 const EditUser: NextPage = () => {
   return (

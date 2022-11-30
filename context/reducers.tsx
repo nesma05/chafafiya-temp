@@ -27,8 +27,18 @@ const infoReducer = (state: any, action: any) => {
     case 'INFORMATION_LENGTH':
       return {
         ...state,
-        infoLength: action.payload
-      }    
+        infoLength: action.payload,
+      }
+    case 'SET_SEARCH_TERM':
+      return {
+        ...state,
+        term: action.payload,
+      }
+    case 'SET_GOOGLE_RESULTS':
+      return {
+        ...state,
+        googleResults: action.payload,
+      }
     default:
       return state
   }

@@ -36,7 +36,6 @@ function AdministrationDetails() {
   const [lists, setLists] = useState(ListsInitialsState)
 
   const { chosenState: { chosenOrgs }, chosenDispatch } = requestState()
-  console.log({chosenOrgsDetails:chosenOrgs})
 
   const handleAdminChange = (e: any) => {
     setFormInputs({

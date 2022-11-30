@@ -375,17 +375,17 @@ export const userBoxList = [
   {
     id: 'b02',
     text: 'تتبع الطلبات',
-    link: '/userDashboard?requests',
+    link: '/userDashboard#requests',
   },
   {
     id: 'b03',
     text: ' تتبع الشكايات الموجهة إلى المؤسسة',
-    link: '/userDashboard?administration',
+    link: '/userDashboard#administration',
   },
   {
     id: 'b04',
     text: 'تتبع الشكايات الموجهة إلى اللجنة',
-    link: '/userDashboard/?commity',
+    link: '/userDashboard/#commity',
   },
   {
     id: 'b05',

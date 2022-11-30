@@ -125,19 +125,19 @@ export const LangStrings = {
         subMenu: [    
           {
             text: 'البحث عن المعلومات المنشورة استباقيا',
-            link: '/searchengine',
+            link: '/searchengine?proactivPublish',
           },
           {
             text: 'البحث عن المعلومات حسب المؤسسات والهيئات',
-            link: '/searchengine',
+            link: '/institAgencies',
           },
           {
             text: 'البحث عن المعلومات  بمواقع المؤسسات والهيئات',
-            link: '/searchengine',
+            link: '/searchengine?institWebsites',
           },
           {
             text: 'أجوبة عن الطلبات الأكثر تداولا',
-            link: '/',
+            link: '/searchengine?mostFaReq',
           },
           {
             text: 'بعض المواقع الحكومية التي تتوفر على المعلومات',
@@ -335,19 +335,19 @@ export const LangStrings = {
         subMenu: [    
           {
             text: 'البحث عن المعلومات المنشورة استباقيا',
-            link: '/searchengine',
+            link: '/searchengine?proactivPublish',
           },
           {
             text: 'البحث عن المعلومات حسب المؤسسات والهيئات',
-            link: '/searchengine',
+            link: '/institAgencies',
           },
           {
             text: 'البحث عن المعلومات  بمواقع المؤسسات والهيئات',
-            link: '/searchengine',
+            link: '/searchengine?institWebsites',
           },
           {
             text: 'أجوبة عن الطلبات الأكثر تداولا',
-            link: '/',
+            link: '/searchengine?mostFaReq',
           },
           {
             text: 'بعض المواقع الحكومية التي تتوفر على المعلومات',
@@ -530,19 +530,19 @@ export const LangStrings = {
         subMenu: [
           {
             text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
-            link: '/searchengine',
+            link: '/searchengine?proactivPublish',
           },
           {
             text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
-            link: '/searchengine',
+            link: '/institAgencies',
           },
           {
             text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
-            link: '/searchengine',
+             link: '/searchengine?institWebsites',
           },
           {
             text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
-            link: '/',
+            link: '/searchengine?mostFaReq',
           },
           {
             text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',

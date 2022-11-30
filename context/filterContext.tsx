@@ -14,13 +14,17 @@ type InitialStateType = {
   ministries: string[]
   anexes: string[]
   infoLength:number
+  googleResults:any
+  term:string
 }
 
 const initialState = {
   informations,
   ministries: [],
   anexes: [],
-  infoLength: informations.length
+  infoLength: informations.length,
+  googleResults:{},
+  term:''
 }
 
 const InfoContext = createContext<{

@@ -1,13 +1,17 @@
-import Pagination from "./GlPagination"
+import { useEffect } from 'react'
+import { InfoState } from '../../context/filterContext'
+import Pagination from './GlPagination'
 
 const GlSearchResults = ({ results }: any) => {
+ 
+ 
   return (
     <div>
       <p>
-        Envirent {results.searchInformation?.formattedTotalResults} results (
-        {results.searchInformation?.formattedSearchTime} seconds)
+        Envirent {results?.searchInformation?.formattedTotalResults}{' '}
+        results ({results?.searchInformation?.formattedSearchTime} seconds)
       </p>
-      {results.items?.map((result: any) => (
+      {results?.items?.map((result: any) => (
         <div key={result.link}>
           <div className="group mt-4">
             <a

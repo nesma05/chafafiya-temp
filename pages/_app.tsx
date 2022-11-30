@@ -1,11 +1,11 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import type { NextPage } from 'next'
-import {PageWithSecondaryLayoutType} from '../components/Layout/SecondaryLayout'
+import { PageWithSecondaryLayoutType } from '../components/Layout/SecondaryLayout'
 import { useRouter } from 'next/router'
 import MainLayout from '../components/Layout/MainLayout'
-
-
+import SearchContext from '../context/searchContext'
+import FilterContext from '../context/filterContext'
 
 type AppLayoutProps = {
   Component: PageWithSecondaryLayoutType
@@ -25,7 +25,9 @@ const MyApp = ({ Component, pageProps }: AppLayoutProps) => {
   const Layout = Component.getLayout || MainLayout
   return (
     <Layout dir={getDirection(locale)}>
-      <Component {...pageProps} />
+      <FilterContext>
+        <Component {...pageProps} />
+      </FilterContext>
     </Layout>
   )
 }
