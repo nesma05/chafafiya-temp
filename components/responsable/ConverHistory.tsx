@@ -15,11 +15,11 @@ const ConverHistory = ({ requestFollow, user }: any) => {
   }
 
   return (
-    <div className="flex w-full text-sm flex-grow flex-col overflow-hidden rounded-lg bg-white">
+    <div className="flex w-full text-sm flex-grow flex-col overflow-hidden rounded-lg">
       <div
         className={`flex ${
           user === 'citizen' ? 'h-auto' : 'h-[calc(100vh-417px)]'
-        } flex-grow flex-col overflow-auto px-4`}
+        } flex-grow flex-col overflow-auto px-20`}
       >
         <div
           className={`${
@@ -60,8 +60,8 @@ const ConverHistory = ({ requestFollow, user }: any) => {
               >
                 <p className="font-medium"> {hist.title} </p>
                 <p>{hist.detail}</p>
-                {hist.annexes?.map((anex: any) => (
-                  <p key={anex.title}>{anex.titre}</p>
+                {hist.annexes?.map((anex: any,index:any) => (
+                  <p key={index}>{anex.titre}</p>
                 ))}
               </div>
               <span className="text-xs leading-none text-gray-500">
