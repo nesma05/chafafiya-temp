@@ -107,7 +107,7 @@ export const LangStrings = {
           },
           {
             text: 'قاموس/ مصطلحات',
-            link: '/',
+            link: '/termsDictionary',
           },
           {
             text: 'مراجع',
@@ -317,7 +317,7 @@ export const LangStrings = {
           },
           {
             text: 'قاموس/ مصطلحات',
-            link: '/',
+            link: '/termsDictionary',
           },
           {
             text: 'مراجع',
@@ -512,7 +512,7 @@ export const LangStrings = {
           },
           {
             text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ/ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
-            link: '/',
+            link: '/termsDictionary',
           },
           {
             text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',

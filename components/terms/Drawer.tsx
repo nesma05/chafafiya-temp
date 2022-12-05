@@ -65,17 +65,18 @@ const Drawer = () => {
             <div className="mt-4">
               {listTerms
                 .filter((t: any) => t.title.includes(searchText))
-                .map((term: any) => (
-                  <Terms key={term.title} term={term} color={'white'} />
+                .map((term: any,index:any) => (
+                  <Terms key={index} term={term} color={'white'} />
                 ))}
             </div>
           ) : (
-            <div className="mt-4">
+            <div className="my-4">
               {dictionaryList.map((dict: any) => (
                 <DictionnaryTerms
                   key={dict.letter}
                   letter={dict.letter}
                   termsList={dict.termsList}
+                  color={'white'}
                 />
               ))}
             </div>
