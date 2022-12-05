@@ -73,7 +73,7 @@ export function useCaptcha() {
   return { handleClick, handleCaptcha, setcaptcha, img, captcha, message }
 }
 
-export function useQuiz() {
+export function useQuiz(questionsList) {
   const [questions, setQuestions] = useState([])
   const [number, setNumber] = useState(0)
   const [score, setScore] = useState(0)
