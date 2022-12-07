@@ -6,7 +6,7 @@ const GouvernmentSites: NextPage = () => {
         <PageTitle>بعض المواقع الحكومية التي تتوفر على المعلومات</PageTitle>
         <div className="relative my-28 w-[70%] mx-auto overflow-x-auto">
               <table className="w-full text-right text-sm text-gray-500">
-                <thead className=" bg-main uppercase text-white">
+                <thead className=" bg-gray-100 uppercase">
                   <tr>
                     <th scope="col" className="py-3 px-6">
                       الموقع الإلكتروني

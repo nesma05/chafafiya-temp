@@ -185,7 +185,7 @@ const InstitAgencies: NextPage = () => {
 
             <div className="relative my-8 overflow-x-auto">
               <table className="w-full text-right text-sm text-gray-500 dark:text-gray-400">
-                <thead className=" bg-gray-50 uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+                <thead className=" bg-gray-100 uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
                     <th scope="col" className="py-3 px-6">
                       الموقع الإلكتروني
