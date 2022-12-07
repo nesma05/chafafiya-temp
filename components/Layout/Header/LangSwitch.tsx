@@ -33,10 +33,10 @@ const handleLangSwitch = (setOpen: any, setRotate: any) => {
 const toggleLanguages = (Language:any)=>{
   if (Language === 'العربية') return 'ar'
   if (Language === 'Français') return 'fr'
-  if (Language === 'Amazigh') return 'amz'
+  if (Language === 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ') return 'amz'
 }
 
-const Languages = ['العربية', 'Amazigh', 'Français']
+const Languages = ['العربية', 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ', 'Français']
 
 const langSwitch = () => {
   const [open, setOpen] = useState(false)
@@ -46,7 +46,7 @@ const langSwitch = () => {
   const { locale, asPath } = useRouter()
 
   const initialLang =
-    locale === 'ar' ? 'العربية' : locale === 'fr' ? 'Français' : 'Amazigh'
+    locale === 'ar' ? 'العربية' : locale === 'fr' ? 'Français' : 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ'
 
   const langRef = useRef(null)
 

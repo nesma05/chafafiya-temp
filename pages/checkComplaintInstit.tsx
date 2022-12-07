@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { RefreshIcon } from '../components/icons'
 import { useCaptcha } from '../utils/customHooks'
 
-const CheckComplaint: NextPage = () => {
+const CheckComplaintInstit: NextPage = () => {
   const { handleClick, handleCaptcha, setcaptcha, img, captcha, message } =
     useCaptcha()
 
@@ -14,7 +14,7 @@ const CheckComplaint: NextPage = () => {
       <div className="w-full max-w-md space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            تتبع الشكاية
+          تقديم شكاية للمؤسسة المعنية
           </h2>
         </div>
         <form className="mt-8 space-y-6">
@@ -71,4 +71,4 @@ const CheckComplaint: NextPage = () => {
   )
 }
 
-export default CheckComplaint
+export default CheckComplaintInstit

@@ -60,7 +60,7 @@ const Home: NextPage = () => {
     score,
     startGame,
     qtAnswered,
-    questions
+    questions,
   } = useQuiz(questionsList)
   // const [questions, setQuestions] = useState<QuastionState[]>([])
   // const [number, setNumber] = useState(0)
@@ -143,10 +143,10 @@ const Home: NextPage = () => {
           <div className="mx-auto w-[40%] font-medium">
             <div className="border border-slate-300 p-3 shadow-md">
               <p>السؤال {number + 1} من 3</p>
-              <p>{(questions[number]as any)?.question}</p>
+              <p>{(questions[number] as any)?.question}</p>
             </div>
             <div className="p-3">
-              {(questions[number]as any)?.answers.map((qtAnswer: any) => (
+              {(questions[number] as any)?.answers.map((qtAnswer: any) => (
                 <div key={qtAnswer.ansrId} className="mb-2">
                   <input
                     type="checkbox"
@@ -163,7 +163,7 @@ const Home: NextPage = () => {
                   <span className="text-2xl">
                     <NoteIcon />
                   </span>
-                  <p>{(questions[number]as any)?.note}</p>
+                  <p>{(questions[number] as any)?.note}</p>
                 </div>
               )}
             </div>

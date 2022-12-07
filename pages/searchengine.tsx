@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import config from '../utils/config'
 import Response from '../utils/response'
-
+import { useQuery} from '@tanstack/react-query'
 import SearchResultsHeader from '../components/searchFilter/SearchResultsHeader'
 import SearchInput from '../components/searchFilter/SearchInput'
 import FilterContext, { InfoState } from '../context/filterContext'
@@ -13,10 +13,10 @@ import GlSearchResultsSection from '../components/searchFilter/GlSearchResultsSe
 
 import PageTitle from '../components/Layout/PageTitle'
 import TreatedRequests from '../components/searchFilter/TreatedRequests'
+import axios from 'axios'
 
-const SearchEngine: NextPage = ({ results }: any) => {
+const SearchEngine: NextPage = ({results}:any) => {
   const router = useRouter()
-
   const [toggleIndex, setToggleIndex] = useState(1)
 
   const {
@@ -29,9 +29,9 @@ const SearchEngine: NextPage = ({ results }: any) => {
       router.push(`/searchengine?${tab}=${term}`)
       return
     }
-    if (!router.asPath.includes(tab)) router.push(`/searchengine#${tab}`)
+    if (!router.asPath.includes(tab)) router.push(`/searchengine?${tab}`)
   }
-
+  
   useEffect(() => {
     if (router.asPath.includes('proactivPublish'))
       return handleToggle(1, 'proactivPublish')
@@ -84,4 +84,4 @@ export async function getServerSideProps({ query }: any) {
       results,
     },
   }
-}
+ }

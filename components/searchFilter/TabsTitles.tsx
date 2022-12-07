@@ -26,7 +26,7 @@ const TabsTitles = ({ toggleIndex, handleTggle, results }: any) => {
       >
         المعلومات بمواقع المؤسسات والهيئات{' '}
         <span className="font-medium">
-          {results.searchInformation?.formattedTotalResults}
+          {results?.searchInformation?.formattedTotalResults}
         </span>
       </p>
       <p

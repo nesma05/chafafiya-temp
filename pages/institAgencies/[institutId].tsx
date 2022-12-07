@@ -183,15 +183,15 @@ const InstitAgencies: NextPage = () => {
               قائمة بالمواقع الإلكترونية الخاصة بالمؤسسة أو الهيئة المعنية
             </h5>
 
-            <div className="relative overflow-x-auto my-8">
+            <div className="relative my-8 overflow-x-auto">
               <table className="w-full text-right text-sm text-gray-500 dark:text-gray-400">
                 <thead className=" bg-gray-50 uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
                     <th scope="col" className="py-3 px-6">
-                      Site web
+                      الموقع الإلكتروني
                     </th>
                     <th scope="col" className="py-3 px-6">
-                      Description
+                      الوصف
                     </th>
                   </tr>
                 </thead>
@@ -201,12 +201,13 @@ const InstitAgencies: NextPage = () => {
                       scope="row"
                       className="whitespace-nowrap py-4 px-6 font-medium text-gray-900 dark:text-white"
                     >
-                      https://www.habous.gov.ma/
+                      <a href="https://www.habous.gov.ma" target={'_blank'} className="underline text-main">https://www.habous.gov.ma</a> 
                     </td>
                     <td className="py-4 px-6">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Eius tempora temporibus error est repudiandae maxime
-                      accusantium, nemo optio fugiat harum!
+                      العمل على تشجيع وقف اfموال على جهات البر وتوسيع نطاق
+                      اfوقاف الخيرية. إقامة اCساجد والترخيص بها حسب احتياجات
+                      اCناطق اCختلفة، والعمل على صيانتها وتأثيثها، واCحافظة
+                      عليها،
                     </td>
                   </tr>
                   <tr className="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
@@ -214,12 +215,13 @@ const InstitAgencies: NextPage = () => {
                       scope="row"
                       className="whitespace-nowrap py-4 px-6 font-medium text-gray-900 dark:text-white"
                     >
-                      https://www.habous.gov.ma/
+                      <a href="https://www.habous.gov.ma" target={'_blank'} className="underline text-main">https://www.habous.gov.ma</a> 
                     </td>
                     <td className="py-4 px-6">
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                      Libero quas assumenda animi doloribus obcaecati optio ex
-                      quia, dolores tenetur quaerat.
+                      العمل على تشجيع وقف اfموال على جهات البر وتوسيع نطاق
+                      اfوقاف الخيرية. إقامة اCساجد والترخيص بها حسب احتياجات
+                      اCناطق اCختلفة، والعمل على صيانتها وتأثيثها، واCحافظة
+                      عليها،
                     </td>
                   </tr>
                 </tbody>
@@ -236,10 +238,11 @@ const InstitAgencies: NextPage = () => {
           </div>
         </div>
       </div>
-      <h2 className='w-[80%] pr-2 text-lg font-bold text-main mx-auto'>
-      الطلبات المقدمة إلى وزارة الأوقاف والشؤون الإسلامية (مديرية التعليم العتيق و محو الأمية بالمساجد)
+      <h2 className="mx-auto w-[80%] pr-2 text-lg font-bold text-main">
+        الطلبات المقدمة إلى وزارة الأوقاف والشؤون الإسلامية (مديرية التعليم
+        العتيق و محو الأمية بالمساجد)
       </h2>
-      <div className="w-[80%] mx-auto mb-20 flex text-sm">
+      <div className="mx-auto mb-20 flex w-[80%] text-sm">
         <div className="basis-1/4 p-2">
           <div>
             <h3 className="bg-gray-200 p-2">وضعية الطلب</h3>

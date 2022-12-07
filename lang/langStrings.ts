@@ -141,7 +141,7 @@ export const LangStrings = {
           },
           {
             text: 'بعض المواقع الحكومية التي تتوفر على المعلومات',
-            link: '/',
+            link: '/gouvernSites',
           },
         ],
       },
@@ -170,15 +170,15 @@ export const LangStrings = {
         subMenu: [
           {
             text: 'تقديم شكاية للمؤسسة المعنية',
-            link: '/checkComplaint',
+            link: '/checkComplaintInstit',
           },
           {
             text: 'تقديم شكاية للجنة الحق في الحصول على المعلومات',
-            link: '/',
+            link: '/checkComplaintComity',
           },
           {
             text: 'الطعن لدى المحكمة الإدارية المختصة',
-            link: '/',
+            link: '/checkComplaintCort',
           },
         ],
       },
@@ -351,7 +351,7 @@ export const LangStrings = {
           },
           {
             text: 'بعض المواقع الحكومية التي تتوفر على المعلومات',
-            link: '/',
+            link: '/gouvernSites',
           },
         ],
       },
@@ -380,15 +380,15 @@ export const LangStrings = {
         subMenu: [
           {
             text: 'تقديم شكاية للمؤسسة المعنية',
-            link: '/checkComplaint',
+            link: '/checkComplaintInstit',
           },
           {
             text: 'تقديم شكاية للجنة الحق في الحصول على المعلومات',
-            link: '/',
+            link: '/checkComplaintComity',
           },
           {
             text: 'الطعن لدى المحكمة الإدارية المختصة',
-            link: '/',
+            link: '/checkComplaintCort',
           },
         ],
       },
@@ -546,7 +546,7 @@ export const LangStrings = {
           },
           {
             text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
-            link: '/',
+            link: '/gouvernSites',
           },
         ],
       },
@@ -575,15 +575,15 @@ export const LangStrings = {
         subMenu: [
           {
             text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
-            link: '/checkComplaint',
+            link: '/checkComplaintInstit',
           },
           {
             text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
-            link: '/',
+            link: '/checkComplaintComity',
           },
           {
             text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
-            link: '/',
+            link: '/checkComplaintCort',
           },
         ],
       },

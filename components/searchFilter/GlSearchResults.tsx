@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { InfoState } from '../../context/filterContext'
-import Pagination from './GlPagination'
+import GlPagination from './GlPagination'
 
 const GlSearchResults = ({ results }: any) => {
  
@@ -34,7 +34,7 @@ const GlSearchResults = ({ results }: any) => {
           </div>
         </div>
       ))}
-      <Pagination />
+      <GlPagination />
     </div>
   )
 }
