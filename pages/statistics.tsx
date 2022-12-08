@@ -26,12 +26,6 @@ const statistics: NextPage = () => {
 
   const options = {
     responsive: true,
-    tooltipTemplate: '<%= value %>',
-    tooltipFillColor: 'rgba(0,0,0,0)',
-    tooltipFontColor: '#444',
-    tooltipEvents: [],
-    tooltipCaretSize: 0,
-
     scales: {
       x: {
         ticks: {
@@ -44,7 +38,7 @@ const statistics: NextPage = () => {
         title: {
           display: true,
           text: 'عدد الطلبات',
-          color: 'blue',
+          color: 'rgb(11, 83, 162)',
           font: {
             weight: 'bold',
             size: 16,
@@ -57,15 +51,7 @@ const statistics: NextPage = () => {
         },
       },
     },
-    plugins: {
-      datalabels: {
-        anchor: 'end',
-        align: 'top',
-        formatter: Math.round,
-        font: {
-          weight: 'bold',
-        },
-      },
+    plugins: {   
       legend: {
         position: 'bottom' as const,
         labels: {
@@ -138,8 +124,8 @@ const statistics: NextPage = () => {
           '2118',
           '1784',
         ],
-        borderColor: 'rgb(53, 162, 235)',
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        borderColor: 'rgb(11, 83, 162)',
+        backgroundColor: 'rgba(11, 83, 162, 0.5)',
       },
     ],
   }
@@ -154,7 +140,7 @@ const statistics: NextPage = () => {
       ctx.fillRect(0, 0, chart.width, chart.height)
       ctx.restore()
     },
-    beforeDatasetsDraw: function (chart: any) {
+    afterDatasetsDraw: function (chart: any) {
       // To only draw at the end of animation, check for easing === 1
       const { ctx } = chart
 
