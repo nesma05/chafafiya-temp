@@ -24,9 +24,14 @@ const statistics: NextPage = () => {
     Legend
   )
 
- const options = {
+  const options = {
     responsive: true,
     tooltipTemplate: '<%= value %>',
+    tooltipFillColor: 'rgba(0,0,0,0)',
+    tooltipFontColor: '#444',
+    tooltipEvents: [],
+    tooltipCaretSize: 0,
+
     scales: {
       x: {
         ticks: {
@@ -149,6 +154,37 @@ const statistics: NextPage = () => {
       ctx.fillRect(0, 0, chart.width, chart.height)
       ctx.restore()
     },
+    beforeDatasetsDraw: function (chart: any) {
+      // To only draw at the end of animation, check for easing === 1
+      const { ctx } = chart
+
+      chart.data.datasets.forEach(function (dataset: any, i: any) {
+        var meta = chart.getDatasetMeta(i)
+        if (!meta.hidden) {
+          meta.data.forEach(function (element: any, index: any) {
+            // Draw the text in black, with the specified font
+            ctx.fillStyle = dataset.borderColor
+
+            var fontSize = 16
+
+            // Just naively convert to string for now
+            var dataString = dataset.data[index].toString()
+
+            // Make sure alignment settings are correct
+            ctx.textAlign = 'center'
+            ctx.textBaseline = 'middle'
+
+            var padding = 5
+            var position = element.tooltipPosition()
+            ctx.fillText(
+              dataString,
+              position.x,
+              position.y - fontSize / 2 - padding
+            )
+          })
+        }
+      })
+    },
   }
 
   const chartRef = useRef<any>(null)
@@ -212,7 +248,7 @@ const statistics: NextPage = () => {
         </div>
         <div className="my-5 h-1 w-full rounded bg-main"></div>
         <div>
-        <Line
+          <Line
             ref={chartRef}
             options={options}
             data={data}
