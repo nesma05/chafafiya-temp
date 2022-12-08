@@ -11,11 +11,9 @@ import {
   Legend,
 } from 'chart.js'
 import { Line } from 'react-chartjs-2'
-import { faker } from '@faker-js/faker';
-import { useEffect } from 'react';
+import { useRef } from 'react'
 
 const statistics: NextPage = () => {
-
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -26,15 +24,58 @@ const statistics: NextPage = () => {
     Legend
   )
 
-  const options = {
+ const options = {
     responsive: true,
+    tooltipTemplate: '<%= value %>',
+    scales: {
+      x: {
+        ticks: {
+          font: {
+            weight: 'bold',
+          },
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: 'عدد الطلبات',
+          color: 'blue',
+          font: {
+            weight: 'bold',
+            size: 16,
+          },
+        },
+        ticks: {
+          font: {
+            weight: 'bold',
+          },
+        },
+      },
+    },
     plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'top',
+        formatter: Math.round,
+        font: {
+          weight: 'bold',
+        },
+      },
       legend: {
         position: 'bottom' as const,
+        labels: {
+          font: {
+            weight: 'bold',
+          },
+        },
       },
+
       title: {
         display: true,
         text: 'تطور عدد الطلبات المعالجة',
+        font: {
+          size: 24,
+        },
       },
     },
   }
@@ -54,24 +95,71 @@ const statistics: NextPage = () => {
     '2022 دجنبر',
   ]
 
-   const data = {
+  const data = {
     labels,
     datasets: [
       {
         label: 'عدد الطلبات في طور المعالجة',
-        data: ['424','1130','1698','2254','2781','3384','4018','4617','5264','6049','7147','8411',],
+        data: [
+          '424',
+          '1130',
+          '1698',
+          '2254',
+          '2781',
+          '3384',
+          '4018',
+          '4617',
+          '5264',
+          '6049',
+          '7147',
+          '8411',
+        ],
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
       {
         label: 'عدد الطلبات المعالجة',
-        data: ['2561','2994','2639','2517','2313','2782','3107','2519','2390','2010','2118','1784',],
+        data: [
+          '2561',
+          '2994',
+          '2639',
+          '2517',
+          '2313',
+          '2782',
+          '3107',
+          '2519',
+          '2390',
+          '2010',
+          '2118',
+          '1784',
+        ],
         borderColor: 'rgb(53, 162, 235)',
         backgroundColor: 'rgba(53, 162, 235, 0.5)',
       },
     ],
   }
- 
+
+  const plugin: any = {
+    id: 'chartBgColor',
+    beforeDraw: (chart: any) => {
+      const { ctx } = chart
+      ctx.save()
+      ctx.globalCompositeOperation = 'destination-over'
+      ctx.fillStyle = 'white'
+      ctx.fillRect(0, 0, chart.width, chart.height)
+      ctx.restore()
+    },
+  }
+
+  const chartRef = useRef<any>(null)
+
+  const handleClick = () => {
+    const link = document.createElement('a')
+    link.download = 'تطور عدد الطلبات المعالجة'
+    link.href = chartRef.current?.toBase64Image()
+    link.click()
+  }
+
   return (
     <>
       <PageTitle>إحصائيات</PageTitle>
@@ -124,8 +212,19 @@ const statistics: NextPage = () => {
         </div>
         <div className="my-5 h-1 w-full rounded bg-main"></div>
         <div>
-        <Line options={options} data={data} />;
+        <Line
+            ref={chartRef}
+            options={options}
+            data={data}
+            plugins={[plugin]}
+          />
         </div>
+        <button
+          onClick={handleClick}
+          className="rounded bg-main py-1 px-2.5 text-white"
+        >
+          تحميل
+        </button>
       </div>
     </>
   )
