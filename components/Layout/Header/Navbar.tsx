@@ -38,9 +38,7 @@ const Navbar = () => {
             {tr('menuList').map((menu: any,index:any) => (
               <MenuItem
                 key={index}
-                title={menu.title}
-                subMenu={menu.subMenu}
-              />
+                menu={menu}              />
             ))}
           </ul>
           <div
@@ -71,11 +69,10 @@ const Navbar = () => {
               : 'translate-y-1 opacity-0'
           }`}
         >
-          {menuList.map((menu: any) => (
+          {tr('menuList').map((menu: any) => (
             <MenuItemMobile
               key={menu.title}
-              title={menu.title}
-              subMenu={menu.subMenu}
+              menu={menu}
             />
           ))}
         </ul>

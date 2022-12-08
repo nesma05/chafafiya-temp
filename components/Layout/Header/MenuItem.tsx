@@ -9,7 +9,7 @@ const handleMenu = (setOpen: any, setRotate: any) => {
   setRotate(false)
 }
 
-const MenuItem = ({ title, subMenu }: any) => {
+const MenuItem = ({ menu }: any) => {
   const [open, setOpen] = useState(false)
   const [rotate, setRotate] = useState(false)
 
@@ -24,8 +24,8 @@ const MenuItem = ({ title, subMenu }: any) => {
           setRotate(!rotate)
         }}
       >
-        {title}
-        {subMenu && <ChevronDown rotate={rotate} />}
+        {menu.link ? <NextLink href={menu.link} passHref>{menu.title}</NextLink>: menu.title}
+        {menu.subMenu && <ChevronDown rotate={rotate} />}
       </span>
       <ul
         className={`menu-shadow z-80 border border-secondary absolute top-12 h-fit min-w-max divide-y divide-slate-300 rounded bg-white text-sm transition-all duration-200 ease-in-out ${
@@ -34,10 +34,10 @@ const MenuItem = ({ title, subMenu }: any) => {
             : 'invisible translate-y-0 opacity-0'
         }`}
       >
-        {subMenu?.map((menu: any,index:any) => (
-          <NextLink key={index} href={menu.link} passHref>
+        {menu.subMenu?.map((sub: any,index:any) => (
+          <NextLink key={index} href={sub.link} passHref>
             <li className="relative flex gap-2 py-2 px-3 font-medium transition-all duration-200 hover:bg-black/10">
-             {menu.icon && <span className='text-xl'><NoteIcon/></span>} {menu.text}
+             {sub.icon && <span className='text-xl'><NoteIcon/></span>} {sub.text}
             </li>
           </NextLink>
         ))}

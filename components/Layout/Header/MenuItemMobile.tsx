@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { ChevronDown } from '../../icons'
+import { ChevronDown, NoteIcon } from '../../icons'
 import NextLink from 'next/link'
 
-const MenuItemMobile = ({ title, subMenu }: any) => {
+const MenuItemMobile = ({ menu }: any) => {
   const [open, setOpen] = useState(false)
   const [rotate, setRotate] = useState(false)
 
@@ -15,18 +15,18 @@ const MenuItemMobile = ({ title, subMenu }: any) => {
           setRotate(!rotate)
         }}
       >
-        {title}
-        {subMenu && <ChevronDown rotate={rotate} />}
+         {menu.link ? <NextLink href={menu.link} passHref>{menu.title}</NextLink>: menu.title}
+        {menu.subMenu && <ChevronDown rotate={rotate} />}
       </span>
       <ul
         className={`menu-shadow divide-y divide-slate-300 overflow-hidden rounded bg-white text-sm font-medium text-main transition-all duration-300 ease-in-out ${
           open ? `max-h-[1000px]` : 'max-h-0'
         }`}
       >
-        {subMenu?.map((menu: any,index:any) => (
-          <NextLink key={index} href={menu.link} passHref>
-            <li className="block py-2 px-3 transition-all duration-200 hover:bg-black/10">
-              {menu.text}
+        {menu.subMenu?.map((sub: any, index: any) => (
+          <NextLink key={index} href={sub.link} passHref>
+            <li className="relative flex gap-2 py-2 px-3 font-medium transition-all duration-200 hover:bg-black/10">
+             {sub.icon && <span className='text-xl'><NoteIcon/></span>} {sub.text}
             </li>
           </NextLink>
         ))}

@@ -184,6 +184,7 @@ export const LangStrings = {
       },
       {
         title: 'إحصائيات',
+        link:'/statistics'
       },
     ],
     boxContent: [
@@ -394,6 +395,7 @@ export const LangStrings = {
       },
       {
         title: 'إحصائيات',
+        link:'/statistics'
       },
     ],
     boxContent: [
@@ -589,6 +591,7 @@ export const LangStrings = {
       },
       {
         title: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
+        link:'/statistics'
       },
     ],
     boxContent: [
