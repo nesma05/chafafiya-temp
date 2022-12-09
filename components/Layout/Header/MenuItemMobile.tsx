@@ -15,7 +15,13 @@ const MenuItemMobile = ({ menu }: any) => {
           setRotate(!rotate)
         }}
       >
-         {menu.link ? <NextLink href={menu.link} passHref>{menu.title}</NextLink>: menu.title}
+        {menu.link ? (
+          <NextLink href={menu.link} passHref>
+            <a>{menu.title}</a>
+          </NextLink>
+        ) : (
+          menu.title
+        )}
         {menu.subMenu && <ChevronDown rotate={rotate} />}
       </span>
       <ul
@@ -25,9 +31,16 @@ const MenuItemMobile = ({ menu }: any) => {
       >
         {menu.subMenu?.map((sub: any, index: any) => (
           <NextLink key={index} href={sub.link} passHref>
-            <li className="relative flex gap-2 py-2 px-3 font-medium transition-all duration-200 hover:bg-black/10">
-             {sub.icon && <span className='text-xl'><NoteIcon/></span>} {sub.text}
-            </li>
+            <a>
+              <li className="relative flex gap-2 py-2 px-3 font-medium transition-all duration-200 hover:bg-black/10">
+                {sub.icon && (
+                  <span className="text-xl">
+                    <NoteIcon />
+                  </span>
+                )}{' '}
+                {sub.text}
+              </li>
+            </a>
           </NextLink>
         ))}
       </ul>

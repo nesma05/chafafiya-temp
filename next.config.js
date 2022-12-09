@@ -10,6 +10,6 @@ module.exports = {
   },
  
   images: {
-    domains: ['www.cdai.ma','images.unsplash.com'],
+    domains: ['www.cdai.ma','images.unsplash.com','dgct.govright.tech'],
   },
 }
