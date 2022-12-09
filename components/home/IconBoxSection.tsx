@@ -7,7 +7,7 @@ import {
 } from '../icons'
 import IconBox from './IconBox'
 import useTranslation from '../../utils/customHooks'
-import { boxContent } from '../../utils/constants'
+import NextLink from 'next/link'
 
 const extraIconBoxContent = [
   {
@@ -34,21 +34,34 @@ const extraIconBoxContent = [
 
 const IconBoxSection = () => {
   const { tr } = useTranslation()
- const iconBoxContent = tr('iconBoxContent').map((content:any,index:any)=>{
-  return {...content, color:extraIconBoxContent[index].color,icon:extraIconBoxContent[index].icon}
- })
+  const iconBoxContent = tr('iconBoxContent').map(
+    (content: any, index: any) => {
+      return {
+        ...content,
+        color: extraIconBoxContent[index].color,
+        icon: extraIconBoxContent[index].icon,
+      }
+    }
+  )
 
   return (
-    <div className="my-[150px] mx-auto flex w-[80%] flex-wrap justify-center gap-2">
-      {iconBoxContent.map((content: any,index:any) => (
-        <IconBox
-          key={index}
-          text={content.text}
-          count={content.count}
-          color={content.color}
-          icon={content.icon}
-        />
-      ))}
+    <div className="my-[150px] mx-auto w-[80%]">
+      <div className="flex flex-wrap justify-center gap-2">
+        {iconBoxContent.map((content: any, index: any) => (
+          <IconBox
+            key={index}
+            text={content.text}
+            count={content.count}
+            color={content.color}
+            icon={content.icon}
+          />
+        ))}
+      </div>
+      <div className="mt-8 text-left text-sm text-main underline">
+        <NextLink href={'/statistics'} passHref>
+          <a>جميع الإحصائيات</a>
+        </NextLink>
+      </div>
     </div>
   )
 }

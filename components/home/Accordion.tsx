@@ -11,7 +11,7 @@ const Accordion = ({ content }: any) => {
   return (
     <div className="w-full lg:w-[30%] divide-y-2">
       <div
-        className="h-[90px] w-full p-5 bg-secondary/30 hover:bg-secondary/50 font-bold flex items-center cursor-pointer gap-2 shadow-xl"
+        className="h-[90px] w-full p-5 bg-secondary/30 hover:bg-secondary/50 font-bold flex items-center cursor-pointer gap-2 shadow-sm"
         onClick={() => {
           setOpen(!open)
         }}

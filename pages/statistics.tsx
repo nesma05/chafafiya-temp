@@ -51,7 +51,7 @@ const statistics: NextPage = () => {
         },
       },
     },
-    plugins: {   
+    plugins: {
       legend: {
         position: 'bottom' as const,
         labels: {
@@ -141,27 +141,25 @@ const statistics: NextPage = () => {
       ctx.restore()
     },
     afterDatasetsDraw: function (chart: any) {
-      // To only draw at the end of animation, check for easing === 1
       const { ctx } = chart
 
       chart.data.datasets.forEach(function (dataset: any, i: any) {
         var meta = chart.getDatasetMeta(i)
         if (!meta.hidden) {
           meta.data.forEach(function (element: any, index: any) {
-            // Draw the text in black, with the specified font
             ctx.fillStyle = dataset.borderColor
 
-            var fontSize = 16
+            const fontSize = 16
 
             // Just naively convert to string for now
-            var dataString = dataset.data[index].toString()
+            const dataString = dataset.data[index].toString()
 
             // Make sure alignment settings are correct
             ctx.textAlign = 'center'
             ctx.textBaseline = 'middle'
 
-            var padding = 5
-            var position = element.tooltipPosition()
+            const padding = 5
+            const position = element.tooltipPosition()
             ctx.fillText(
               dataString,
               position.x,
