@@ -142,27 +142,27 @@ function AdministrationDetails() {
   }
 
   const getOrg = async (selected: string) => {
-    const response = await axios(`https://chafafiya-api-json-server.herokuapp.com/${selected}`)
+    const response = await axios(`https://chafafiya-app-json-server-production.up.railway.app/${selected}`)
     setLists({ ...lists, organitations: response?.data })
   }
 
   const getSubAdm = async (selected: string) => {
     const response = await axios(
-      `https://chafafiya-api-json-server.herokuapp.com/subAdministrations?idOrg=${formInputs.idOrg}&niveau=${selected}`
+      `https://chafafiya-app-json-server-production.up.railway.app/subAdministrations?idOrg=${formInputs.idOrg}&niveau=${selected}`
     )
     setLists({ ...lists, subAdministrations: response?.data })
   }
 
   const getProv = async (selected: string) => {
     const response = await axios(
-      `https://chafafiya-api-json-server.herokuapp.com/subRegions?region=${selected}`
+      `https://chafafiya-app-json-server-production.up.railway.app/subRegions?region=${selected}`
     )
     setLists({ ...lists, provinces: response?.data })
   }
 
   const getColl = async (selected: string) => {
     const response = await axios(
-      `https://chafafiya-api-json-server.herokuapp.com/provinces?subRegion=${selected}`
+      `https://chafafiya-app-json-server-production.up.railway.app/provinces?subRegion=${selected}`
     )
     setLists({ ...lists, collectives: response?.data })
   }
@@ -189,7 +189,7 @@ function AdministrationDetails() {
     <div className="basis-2/3">
       <div className="mb-2">
         {chosenOrgs.length > 0 ? (
-          <div>
+          <div className='flex flex-wrap'>
             {chosenOrgs.map((chOrg: any) => (
               <div
                 className="ml-2 mb-2 flex w-fit cursor-pointer rounded-md bg-cyan-600 px-2 py-0.5 text-white"
