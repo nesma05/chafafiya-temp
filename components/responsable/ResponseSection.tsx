@@ -14,7 +14,7 @@ const ResponseSection = () => {
     setFiles(filteredFiles)
   }
   return (
-    <div className="absolute bottom-0 w-full border-t-2">
+    <div className="w-full border-t-2">
       <div className="flex gap-2 bg-[#eff6fc]">
         <select className="my-2 block bg-white bg-transparent p-2 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500">
           <option> -- اختيار -- </option>

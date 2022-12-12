@@ -18,7 +18,7 @@ const ResRequest: PageWithSecondaryLayoutType = ({ request }: any) => {
   return (
     <div>
       <ResponsableHeader responsable={'المسؤول عن المعلومات'} />
-      <div className="mb-20 flex h-auto border-y-2">
+      <div className="flex h-auto border-y-2">
         <ReqSideBar />
         {/* <div className="w-[70px] border-l-2 border-gray-300">
           <div className="pt-20">
@@ -53,7 +53,7 @@ const ResRequest: PageWithSecondaryLayoutType = ({ request }: any) => {
               <ConverHistory requestFollow={request} user="responsable" />
               <ResponseSection />
             </div>
-            <div className="relative flex-1 pt-2">
+            <div className="relative flex-1  pt-2">
               <ContactColleagues />
             </div>
           </div>

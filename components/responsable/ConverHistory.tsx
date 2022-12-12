@@ -18,13 +18,13 @@ const ConverHistory = ({ requestFollow, user }: any) => {
     <div className="flex w-full text-sm flex-grow flex-col overflow-hidden rounded-lg">
       <div
         className={`flex ${
-          user === 'citizen' ? 'h-auto' : 'h-[calc(100vh-417px)]'
-        } flex-grow flex-col overflow-auto px-20`}
+          user === 'citizen' ? 'h-auto px-20' : 'h-[calc(100vh-417px)] px-10'
+        } flex-grow flex-col overflow-auto`}
       >
         <div
           className={`${
-            user === 'citizen' ? 'm-end' : 'm-start'
-          } mb-6 flex w-full max-w-lg gap-2`}
+            user === 'citizen' ? 'm-end max-w-lg' : 'm-start max-w-sm'
+          } mb-6 flex w-full  gap-2`}
         >
           <div>
             <div
