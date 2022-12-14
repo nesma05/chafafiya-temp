@@ -1,48 +1,70 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { requestState } from '../../context/formContext'
 
 const DomainsDetails = () => {
   const [selectedDomain, setSelectedDomain] = useState('')
-  const [domains, setDomains] = useState([])
+  const [domains, setDomains] = useState<any>([])
   const [SubDomains, setSubDomains] = useState([])
+  console.log('domains', domains)
 
-  const getDomains = async () => {
-    const response = await axios(`https://chafafiya-api-json-server.herokuapp.com/domains`
+  const {
+    chosenState: { chosenOrgs },
+  } = requestState()
+  console.log('chosenOrgs2', chosenOrgs)
+
+  const getDomains = async (instId: any) => {
+    const response = await axios(
+      `https://chafafiya-app-json-server-production.up.railway.app/domains?institution=${instId}`
     )
-    setDomains(response?.data)
+    setDomains([...domains, ...response?.data])
   }
 
-  const getSubDomains = async (selected:any) => {
-    const response = await axios(`https://chafafiya-api-json-server.herokuapp.com/subDomains?domain=${selected}`
+  const getSubDomains = async (selected: any) => {
+    const response = await axios(
+      `https://chafafiya-app-json-server-production.up.railway.app/subDomains?domain=${selected}`
     )
     setSubDomains(response?.data)
+
   }
 
-  useEffect(()=>{
-    getDomains()
-  },[])
+  useEffect(() => {
+    if (chosenOrgs.length > 0) {
+      chosenOrgs.forEach((org: any) => {
+        getDomains(org.id)
+      })
+    }
+  }, [chosenOrgs])
 
-  useEffect(()=>{
+  useEffect(() => {
     getSubDomains(selectedDomain)
-  },[selectedDomain])
+  }, [selectedDomain])
 
   return (
-    <div className='basis-2/3'>
+    <div className="basis-2/3">
       <select
         name="domain"
         className="mt-2 rounded-md border border-gray-300 bg-white py-2 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
-        onChange={(e:any)=> setSelectedDomain(e.target.value)}
+        onChange={(e: any) => setSelectedDomain(e.target.value)}
       >
         <option> -- إختر المجال -- </option>
-        {domains?.map((dom: any, index: any) => (
-          <option key={index} value={dom.id}>
-            {dom.title}
-          </option>
-        ))}
+        {domains
+          ?.filter((dm: any) =>
+            chosenOrgs.some((chOrg: any) => chOrg.id === dm.institution)
+          ).filter((val:any, index:any, arr:any) =>
+          index === arr.findIndex((v:any) => (
+            v.title === val.title
+          ))
+        )
+          .map((dom: any, index: any) => (
+            <option key={index} value={dom.id}>
+              {dom.title}
+            </option>
+          ))}
       </select>
       <select
         name="subDomain"
-        className="mt-2 sm:mx-2 rounded-md border border-gray-300 bg-white py-2 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
+        className="mt-2 rounded-md border border-gray-300 bg-white py-2 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500 sm:mx-2"
       >
         <option> -- إختر المجال الفرعي -- </option>
         {SubDomains?.map((dom: any, index: any) => (

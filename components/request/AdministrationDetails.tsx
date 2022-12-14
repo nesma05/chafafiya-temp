@@ -34,8 +34,11 @@ function AdministrationDetails() {
   const [showElement, setShowElement] = useState(showInitialState)
   const [formInputs, setFormInputs] = useState(inputsInitialState)
   const [lists, setLists] = useState(ListsInitialsState)
+  const [institOrProv,setInstitOrProv] =useState<any>([])
+  console.log('institOrProv',institOrProv)
 
   const { chosenState: { chosenOrgs }, chosenDispatch } = requestState()
+  console.log('chosenOrgs',chosenOrgs)
 
   const handleAdminChange = (e: any) => {
     setFormInputs({
@@ -66,6 +69,8 @@ function AdministrationDetails() {
     setShowElement({ ...showElement, showSubOrg: false })
 
     setFormInputs({ ...formInputs, selecSubAdm: '', idOrg: e.target.value })
+    
+    setInstitOrProv([...institOrProv,e.target.options[e.target.selectedIndex].dataset.institution])
 
     setLists({ ...lists, subAdministrations: [] })
     setTimeout(() => {
@@ -80,6 +85,7 @@ function AdministrationDetails() {
 
   const handleSubRegChange = (e: any) => {
     setFormInputs({ ...formInputs, selectedSubReg: e.target.value })
+    setInstitOrProv([...institOrProv,e.target.options[e.target.selectedIndex].dataset.province])
     setShowElement({ ...showElement, showCollec: true })
   }
 
@@ -113,6 +119,7 @@ function AdministrationDetails() {
           id: formInputs.subAdmID,
           name: formInputs.subAdmVal,
           niveau: formInputs.selecSubAdm,
+          institOrProv:institOrProv
         },
       })
       setFormInputs({ ...formInputs, subAdmVal: '' })
@@ -125,6 +132,7 @@ function AdministrationDetails() {
           id: formInputs.collecID,
           name: formInputs.collecVal,
           niveau: formInputs.selecSubAdm,
+          institOrProv:institOrProv
         },
       })
       setFormInputs({ ...formInputs, collecVal: '' })
@@ -135,6 +143,10 @@ function AdministrationDetails() {
 
   const handleRemoveChosenOrg = (orgID: string) => {
     chosenDispatch({ type: 'REMOVE_CHOSEN_ORGS', payload: orgID })
+    const newInstitOrProv = institOrProv.filter((el:any) => {
+      return chosenOrgs.some((ch:any)=> ch.institOrProv.indexOf(el) === -1);
+   });
+   setInstitOrProv(newInstitOrProv)
   }
 
   const handleCancel = () => {
@@ -190,12 +202,14 @@ function AdministrationDetails() {
       <div className="mb-2">
         {chosenOrgs.length > 0 ? (
           <div className='flex flex-wrap'>
-            {chosenOrgs.map((chOrg: any) => (
+            {chosenOrgs.map((chOrg: any,index:any) => (
               <div
-                className="ml-2 mb-2 flex w-fit cursor-pointer rounded-md bg-cyan-600 px-2 py-0.5 text-white"
+                className="ml-2 mb-2 flex gap-2 w-fit cursor-pointer rounded-md bg-cyan-600 px-2 py-0.5 text-white"
                 key={chOrg.id}
                 onClick={() => handleRemoveChosenOrg(chOrg.id)}
               >
+                <span>{institOrProv[index]}</span>
+                <span className='font-bold'>/</span>
                 <span>{chOrg.name}</span>
                 <span><CloseIcon/></span>
               </div>
@@ -264,7 +278,7 @@ function AdministrationDetails() {
                   >
                     <option> -- إختر المؤسسة أو الهيئة المعنية -- </option>
                     {lists.organitations?.map((org: any, index: any) => (
-                      <option key={index} value={org.id}>
+                      <option key={index} value={org.id} data-institution={org.denomination}>
                         {org.denomination}
                       </option>
                     ))}
@@ -342,7 +356,7 @@ function AdministrationDetails() {
               >
                 <option> -- إختر المجلس الجهوي أو العمالة / الإقليم -- </option>
                 {lists.provinces?.map((prov: any) => (
-                  <option key={prov.id} value={prov.id}>
+                  <option key={prov.id} value={prov.id} data-province={prov.denomination}>
                     {prov.denomination}
                   </option>
                 ))}
@@ -379,7 +393,8 @@ function AdministrationDetails() {
           </div>
         </div>
       ) : (
-        <button
+       
+        chosenOrgs.length >= 3 ? <p className='font-bold underline'>الحد الأقصى للإختيارات هو 3</p> : <button
           className="flex gap-1 items-center text-blue-900"
           onClick={() => setShowElement({ ...showElement, showOrgSec: true })}
         >
