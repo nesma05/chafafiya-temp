@@ -8,6 +8,7 @@ import SearchContext from '../context/searchContext'
 import FilterContext from '../context/filterContext'
 import { useState } from 'react'
 
+
 type AppLayoutProps = {
   Component: PageWithSecondaryLayoutType
   pageProps: any

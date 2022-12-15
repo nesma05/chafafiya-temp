@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Modal from '../home/Modal'
 import IllustrationDetails from './IllustrationDetails'
 
-const PicturesSection = ({ illustrationsList, type }: any) => {
+const IllustrationSection = ({ illustrationsList, type, withModal=true }: any) => {
   const [modal, setModal] = useState(false)
   const [tempImg, setTempImg] = useState('')
 
@@ -12,6 +12,7 @@ const PicturesSection = ({ illustrationsList, type }: any) => {
   }
 
   const getDocument = (img: any) => {
+    if (!withModal) return
     setTempImg(img)
     setModal(true)
   }
@@ -36,4 +37,4 @@ const PicturesSection = ({ illustrationsList, type }: any) => {
   )
 }
 
-export default PicturesSection
+export default IllustrationSection

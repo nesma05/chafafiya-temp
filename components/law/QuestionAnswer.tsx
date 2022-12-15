@@ -1,28 +1,47 @@
 import { useState } from 'react'
-import { ChevronDown } from '../icons'
+import Modal from '../home/Modal'
+import { ChevronDown, DotsIcon } from '../icons'
 
-const QuestionAnswer = ({ term, index, selected, handleToggle }: any) => {
+const QuestionAnswer = ({
+  term,
+  index,
+  selected,
+  handleToggle,
+  responsable = false,
+}: any) => {
   const [rotate, setRotate] = useState(false)
+  const [modal, setModal] = useState(false)
+  const handleClose = () => {
+    setModal(false)
+  }
 
   return (
     <div className=" w-[100%] ">
-      <div
-        className={`flex cursor-pointer items-center p-5 font-medium hover:bg-secondary/40 
+      <Modal handleClose={handleClose} modal={modal} type={'respQuesAns'} />
+      <div className="flex">
+        {responsable && (
+          <span className="cursor-pointer self-center text-xl" onClick={()=>setModal(true)}>
+            <DotsIcon />
+          </span>
+        )}
+        <div
+          className={`flex flex-1 cursor-pointer items-center p-5 font-medium hover:bg-secondary/40 
         ${
           selected === index
             ? 'bg-secondary/40 text-main'
             : 'bg-white text-gray-900'
         }`}
-        onClick={() => {
-          setRotate(!rotate)
-          handleToggle(index)
-        }}
-      >
-        <span>{term.question}</span>
+          onClick={() => {
+            setRotate(!rotate)
+            handleToggle(index)
+          }}
+        >
+          <span>{term.question}</span>
 
-        <span className="m-start">
-          <ChevronDown rotate={rotate} />
-        </span>
+          <span className="m-start">
+            <ChevronDown rotate={rotate} />
+          </span>
+        </div>
       </div>
       <div
         className={`overflow-hidden border-b bg-white px-4 text-sm text-gray-500 transition-all duration-500 ease-in-out ${
@@ -31,12 +50,11 @@ const QuestionAnswer = ({ term, index, selected, handleToggle }: any) => {
       >
         <p className="py-3">{term.answer}</p>
         {term.image && (
-          <div className='w-full flex justify-center'>
-             <div className="h-[300px] w-[400px] overflow-hidden">
-            <img className="w-full" src={term.image} alt="" />
+          <div className="flex w-full justify-center">
+            <div className="h-[300px] w-[400px] overflow-hidden">
+              <img className="w-full" src={term.image} alt="" />
+            </div>
           </div>
-          </div>
-         
         )}
         {term.textes &&
           term.textes.map((txt: any, index: any) => (
@@ -45,7 +63,7 @@ const QuestionAnswer = ({ term, index, selected, handleToggle }: any) => {
             </p>
           ))}
         {term.video && (
-          <div className='w-full flex justify-center my-10'>
+          <div className="my-10 flex w-full justify-center">
             <iframe
               width="560"
               height="315"

@@ -77,3 +77,7 @@
   width: 50%;
   background-color: #8BC9FF;
 }
+
+.ql-editor {
+  height: 200px !important;
+}
