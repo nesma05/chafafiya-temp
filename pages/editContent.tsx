@@ -81,7 +81,7 @@ const EditContent: PageWithSecondaryLayoutType = () => {
             </li>
             {sideBarList.map((ls: any) => (
               <li key={ls.id} className="cursor-pointer p-2">
-                {ls.txt}
+                {ls.text}
               </li>
             ))}
           </ul>
@@ -107,6 +107,7 @@ const EditContent: PageWithSecondaryLayoutType = () => {
                   </div>
                 </div>
                 <input
+                  dir={toggleIndex > 1 ? 'ltr' : 'rtl'}
                   className="text-md mt-1.5 w-full rounded-md border border-gray-300 p-3 text-sm text-gray-800 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
                   placeholder="عنوان الصفحة"
                   name="firstname"
