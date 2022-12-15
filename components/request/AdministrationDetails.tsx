@@ -30,11 +30,16 @@ const ListsInitialsState = {
   collectives: [],
 }
 
+const instiOrProvInitialState = {
+  institution:'',
+  province:''
+}
+
 function AdministrationDetails() {
   const [showElement, setShowElement] = useState(showInitialState)
   const [formInputs, setFormInputs] = useState(inputsInitialState)
   const [lists, setLists] = useState(ListsInitialsState)
-  const [institOrProv,setInstitOrProv] =useState<any>([])
+  const [institOrProv,setInstitOrProv] =useState(instiOrProvInitialState)
   console.log('institOrProv',institOrProv)
 
   const { chosenState: { chosenOrgs }, chosenDispatch } = requestState()
@@ -70,7 +75,7 @@ function AdministrationDetails() {
 
     setFormInputs({ ...formInputs, selecSubAdm: '', idOrg: e.target.value })
     
-    setInstitOrProv([...institOrProv,e.target.options[e.target.selectedIndex].dataset.institution])
+    setInstitOrProv({...institOrProv,institution:e.target.options[e.target.selectedIndex].dataset.institution})
 
     setLists({ ...lists, subAdministrations: [] })
     setTimeout(() => {
@@ -85,7 +90,7 @@ function AdministrationDetails() {
 
   const handleSubRegChange = (e: any) => {
     setFormInputs({ ...formInputs, selectedSubReg: e.target.value })
-    setInstitOrProv([...institOrProv,e.target.options[e.target.selectedIndex].dataset.province])
+    setInstitOrProv({...institOrProv,province:e.target.options[e.target.selectedIndex].dataset.province})
     setShowElement({ ...showElement, showCollec: true })
   }
 
@@ -119,7 +124,7 @@ function AdministrationDetails() {
           id: formInputs.subAdmID,
           name: formInputs.subAdmVal,
           niveau: formInputs.selecSubAdm,
-          institOrProv:institOrProv
+          institOrProv:institOrProv.institution
         },
       })
       setFormInputs({ ...formInputs, subAdmVal: '' })
@@ -132,7 +137,7 @@ function AdministrationDetails() {
           id: formInputs.collecID,
           name: formInputs.collecVal,
           niveau: formInputs.selecSubAdm,
-          institOrProv:institOrProv
+          institOrProv:institOrProv.province
         },
       })
       setFormInputs({ ...formInputs, collecVal: '' })
@@ -143,10 +148,10 @@ function AdministrationDetails() {
 
   const handleRemoveChosenOrg = (orgID: string) => {
     chosenDispatch({ type: 'REMOVE_CHOSEN_ORGS', payload: orgID })
-    const newInstitOrProv = institOrProv.filter((el:any) => {
-      return chosenOrgs.some((ch:any)=> ch.institOrProv.indexOf(el) === -1);
-   });
-   setInstitOrProv(newInstitOrProv)
+  //   const newInstitOrProv = institOrProv.filter((el:any) => {
+  //     return chosenOrgs.some((ch:any)=> ch.institOrProv.indexOf(el) === -1);
+  //  });
+  //  setInstitOrProv(newInstitOrProv)
   }
 
   const handleCancel = () => {
@@ -208,7 +213,7 @@ function AdministrationDetails() {
                 key={chOrg.id}
                 onClick={() => handleRemoveChosenOrg(chOrg.id)}
               >
-                <span>{institOrProv[index]}</span>
+                <span>{chOrg.institOrProv}</span>
                 <span className='font-bold'>/</span>
                 <span>{chOrg.name}</span>
                 <span><CloseIcon/></span>

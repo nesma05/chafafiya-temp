@@ -6,7 +6,7 @@ type InitialStateType = {
     id: string
     name: string
     niveau: string
-    institOrProv:string[]
+    institOrProv:string
   }[]
 }
 const initialState = {
