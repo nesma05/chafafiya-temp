@@ -24,14 +24,14 @@ const EditContent: PageWithSecondaryLayoutType = () => {
     <div className="text-sm">
       <ResponsableHeader responsable={'المسؤول عن المعلومات'} />
       <div className="mt-10 flex w-full justify-start border-t-2 border-gray-300">
-        <div className="h-[700px] w-[250px] bg-gray-600 text-white">
+        <div className="w-[250px] bg-gray-600 text-white">
           <ul className="p-2">
             <li className="mb-1 border-b border-black p-1 font-bold">
               الصفحات
             </li>
-            <li className="cursor-pointer p-1">بوابة الحصول على المعلومات</li>
-            <li className="cursor-pointer p-1">ما هو القانون رقم 13-31</li>
-            <li className="cursor-pointer p-1">كيف يمكنك تقديم طلب</li>
+            <li className="cursor-pointer p-2">بوابة الحصول على المعلومات</li>
+            <li className="cursor-pointer p-2">ما هو القانون رقم 13-31</li>
+            <li className="cursor-pointer p-2">كيف يمكنك تقديم طلب</li>
           </ul>
         </div>
         <div className="flex-1">

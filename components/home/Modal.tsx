@@ -41,8 +41,8 @@ const Modal = ({ tempSource, handleClose, modal, type }: any) => {
         ></iframe>
       )}
       {type === 'respQuesAns' && (
-        <div className="sm:w-6/6 flex h-[500px] w-5/6 items-center bg-white">
-          <div className="mx-auto w-[80%]">
+        <div className="sm:w-6/6 flex h-[90%] w-5/6 items-start py-4 bg-white rounded-lg">
+          <div className="mx-auto w-[95%]">
             <div>
               <label>نص السؤال:</label>
               <input

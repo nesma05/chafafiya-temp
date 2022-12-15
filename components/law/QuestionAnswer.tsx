@@ -11,6 +11,7 @@ const QuestionAnswer = ({
 }: any) => {
   const [rotate, setRotate] = useState(false)
   const [modal, setModal] = useState(false)
+  const [open, setOpen] = useState(false)
   const handleClose = () => {
     setModal(false)
   }
@@ -20,9 +21,26 @@ const QuestionAnswer = ({
       <Modal handleClose={handleClose} modal={modal} type={'respQuesAns'} />
       <div className="flex">
         {responsable && (
-          <span className="cursor-pointer self-center text-xl" onClick={()=>setModal(true)}>
+          <div
+            className="relative cursor-pointer self-center text-xl"
+            onClick={() => setOpen(!open)}
+          >
             <DotsIcon />
-          </span>
+            <ul
+              className={`absolute top-8 z-50 divide-y border-2 bg-white transition duration-200 ease-in-out ${
+                open
+                  ? 'visible -translate-y-2 opacity-100'
+                  : 'invisible translate-y-0 opacity-0'
+              }`}
+            >
+              <li onClick={()=> setModal(true)} className="text-sm py-1 px-5 transition-all duration-200 hover:bg-gray-200">
+                تحيين
+              </li>
+              <li className="text-sm py-1 px-5 transition-all duration-200 hover:bg-gray-200">
+                حذف
+              </li>
+            </ul>
+          </div>
         )}
         <div
           className={`flex flex-1 cursor-pointer items-center p-5 font-medium hover:bg-secondary/40 
