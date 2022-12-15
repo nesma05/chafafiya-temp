@@ -12,7 +12,6 @@ import { illustrationsList, lawList, videosList } from '../utils/constants'
 const EditContent: PageWithSecondaryLayoutType = () => {
   const [selected, setSelected] = useState(null)
 
-
   const handleToggle = (i: any) => {
     if (selected === i) {
       return setSelected(null)
@@ -38,26 +37,30 @@ const EditContent: PageWithSecondaryLayoutType = () => {
           <div className="flex h-[200px] items-center">
             <div className="mx-auto flex w-[70%] items-center gap-3">
               <div className="flex-1">
+                <div className="flex gap-8">
+                  <label className="mb-1.5 inline-block"> عنوان الصفحة:</label>
+                  <div>
+                    <span className="cursor-pointer border-r-2 border-main px-2 font-bold text-main">
+                      AR
+                    </span>
+                    <span className="cursor-pointer border-r-2 border-main px-2">
+                      AMZ
+                    </span>
+                    <span className="cursor-pointer border-r-2 border-main px-2">
+                      FR
+                    </span>
+                    <span className="cursor-pointer border-r-2 border-main px-2">
+                      EN
+                    </span>
+                  </div>
+                </div>
                 <input
-                  className="text-md w-full rounded-md border border-gray-300 p-3 text-sm text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
+                  className="text-md mt-1.5 w-full rounded-md border border-gray-300 p-3 text-sm text-gray-800 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
                   placeholder="عنوان الصفحة"
                   name="firstname"
                   type="text"
+                  value={'ما هي بوابة الحصول على المعلومات؟'}
                 />
-              </div>
-              <div>
-                <span className="cursor-pointer border-r-2 border-main px-2 font-bold text-main">
-                  AR
-                </span>
-                <span className="cursor-pointer border-r-2 border-main px-2">
-                  AMZ
-                </span>
-                <span className="cursor-pointer border-r-2 border-main px-2">
-                  FR
-                </span>
-                <span className="cursor-pointer border-r-2 border-main px-2">
-                  EN
-                </span>
               </div>
             </div>
           </div>
@@ -92,6 +95,15 @@ const EditContent: PageWithSecondaryLayoutType = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        <p>
+          وفقا fحكام الدستور، لا سيما المادة 27 منه، يحدد القانون 13.31 المتعلق
+          بالحق في الوصول إلى المعلومات نطاق الحق في الوصول إلى المعلومات التي
+          تحتفظ بها ا,دارات العامة والمؤسسات والهيئات المنتخبة التي تقدم الخدمة
+          العامة، وكذلك شروط وإجراءات التي تقدم
+        </p>
+        <img src="/img/faqtmage.png" alt="" />
       </div>
     </div>
   )
