@@ -17,7 +17,7 @@ import ReqSideBar from '../../components/responsable/ReqSideBar'
 const ResRequest: PageWithSecondaryLayoutType = ({ request }: any) => {
   return (
     <div>
-      <ResponsableHeader responsable={'المسؤول عن المعلومات'} />
+      <ResponsableHeader responsable={'الإدارة: المسؤول عن الطلبات'} />
       <div className="flex h-auto border-y-2">
         <ReqSideBar />
         {/* <div className="w-[70px] border-l-2 border-gray-300">

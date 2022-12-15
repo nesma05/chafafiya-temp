@@ -67,7 +67,7 @@ const SearchEngine: NextPage = ({results}:any) => {
 export default SearchEngine
 
 export async function getServerSideProps({ query }: any) {
-  const dumyData = true
+  const dumyData = false
 
   const { glApi, glContextKey } = config
   const startIndex = query.start || 0

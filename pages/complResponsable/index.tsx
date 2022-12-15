@@ -13,7 +13,7 @@ import RespComplDetails from '../../components/responsable/RespComplDetails'
 const ComplaintsResponsable: PageWithSecondaryLayoutType = () => {
   return (
     <div className="text-sm">
-      <ResponsableHeader responsable={'المسؤول عن الشكايات'} />
+      <ResponsableHeader responsable={'الإدارة: المسؤول عن الشكايات'} />
       <div className="mt-10 flex w-full justify-start border-t-2 border-gray-300">
         <ComplSideBar />
         <RespComplDetails rows={requestFollow} />

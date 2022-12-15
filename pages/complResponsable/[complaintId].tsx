@@ -17,7 +17,7 @@ import ComplSideBar from '../../components/responsable/ComplSideBar'
 const RespComplaint: PageWithSecondaryLayoutType = ({ request }: any) => {
   return (
     <div>
-      <ResponsableHeader responsable={'المسؤول عن الشكايات'} />
+      <ResponsableHeader responsable={'الإدارة: المسؤول عن الشكايات'} />
       <div className="flex h-auto border-y-2">
         <ComplSideBar />
         {/* <div className="w-[70px] border-l-2 border-gray-300">

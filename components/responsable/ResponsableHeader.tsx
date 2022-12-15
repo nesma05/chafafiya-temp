@@ -16,7 +16,6 @@ const ResponsableHeader = ({responsable}:any) => {
         />
       </NextLink>
       <div className="flex items-center">
-        <span>الإدارة: </span>
         <span>{responsable}</span>
         <span className="mx-4 rounded-full bg-cyan-500 text-4xl text-white">
           <AvatarIcon />

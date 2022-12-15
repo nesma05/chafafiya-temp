@@ -13,7 +13,7 @@ import RespReqDetails from '../../components/responsable/RespReqDetails'
 const Responsable: PageWithSecondaryLayoutType = () => {
   return (
     <div className="text-sm">
-      <ResponsableHeader responsable={'المسؤول عن المعلومات'} />
+      <ResponsableHeader responsable={'الإدارة: المسؤول عن الطلبات'} />
       <div className="mt-10 flex w-full justify-start border-t-2 border-gray-300">
         <ReqSideBar />
         <RespReqDetails rows={requestFollow} />
