@@ -7,6 +7,8 @@ const showInitialState = {
   showOrgSec: false,
   showOrg: false,
   showSubOrg: false,
+  showSecteurs: false,
+  showSubSecteurs: false,
   showProv: false,
   showCollec: false,
 }
@@ -17,6 +19,9 @@ const inputsInitialState = {
   selecSubAdm: '',
   subAdmID: '',
   subAdmVal: '',
+  secteurVal: '',
+  secteurID: '',
+  category: '',
   collecID: '',
   collecVal: '',
   selectedReg: '',
@@ -26,24 +31,33 @@ const inputsInitialState = {
 const ListsInitialsState = {
   organitations: [],
   subAdministrations: [],
+  secteurs: {},
+  secteursDetails: [],
+  subSecteurs: [],
   provinces: [],
   collectives: [],
 }
 
 const instiOrProvInitialState = {
-  institution:'',
-  province:''
+  institution1: '',
+  institution2:'',
+  institution3: '',
+  region:'',
+  province: '',
 }
 
 function AdministrationDetails() {
   const [showElement, setShowElement] = useState(showInitialState)
   const [formInputs, setFormInputs] = useState(inputsInitialState)
-  const [lists, setLists] = useState(ListsInitialsState)
-  const [institOrProv,setInstitOrProv] =useState(instiOrProvInitialState)
-  console.log('institOrProv',institOrProv)
+  const [lists, setLists] = useState<any>(ListsInitialsState)
+  const [institOrProv, setInstitOrProv] = useState(instiOrProvInitialState)
+  console.log('secteurs', lists.secteurs)
 
-  const { chosenState: { chosenOrgs }, chosenDispatch } = requestState()
-  console.log('chosenOrgs',chosenOrgs)
+  const {
+    chosenState: { chosenOrgs },
+    chosenDispatch,
+  } = requestState()
+  console.log('category', formInputs.category)
 
   const handleAdminChange = (e: any) => {
     setFormInputs({
@@ -57,6 +71,8 @@ function AdministrationDetails() {
       ...showElement,
       showProv: false,
       showCollec: false,
+      showSecteurs: false,
+      showSubSecteurs: false,
       showOrg: false,
     })
     setTimeout(() => {
@@ -65,6 +81,8 @@ function AdministrationDetails() {
         showProv: false,
         showCollec: false,
         showSubOrg: false,
+        showSecteurs: false,
+        showSubSecteurs: false,
         showOrg: true,
       })
     }, 200)
@@ -74,8 +92,11 @@ function AdministrationDetails() {
     setShowElement({ ...showElement, showSubOrg: false })
 
     setFormInputs({ ...formInputs, selecSubAdm: '', idOrg: e.target.value })
-    
-    setInstitOrProv({...institOrProv,institution:e.target.options[e.target.selectedIndex].dataset.institution})
+
+    setInstitOrProv({
+      ...institOrProv,
+      institution1: e.target.options[e.target.selectedIndex].dataset.institution,
+    })
 
     setLists({ ...lists, subAdministrations: [] })
     setTimeout(() => {
@@ -85,17 +106,33 @@ function AdministrationDetails() {
 
   const handleRegChange = (e: any) => {
     setFormInputs({ ...formInputs, selectedReg: e.target.value })
+    setInstitOrProv({
+      ...institOrProv,
+      region: e.target.options[e.target.selectedIndex].dataset.region,
+    })
     setShowElement({ ...showElement, showProv: true, showCollec: false })
   }
 
   const handleSubRegChange = (e: any) => {
     setFormInputs({ ...formInputs, selectedSubReg: e.target.value })
-    setInstitOrProv({...institOrProv,province:e.target.options[e.target.selectedIndex].dataset.province})
+    setInstitOrProv({
+      ...institOrProv,
+      province: e.target.options[e.target.selectedIndex].dataset.province,
+    })
     setShowElement({ ...showElement, showCollec: true })
   }
 
   const handleNvChange = (e: any) => {
     setFormInputs({ ...formInputs, selecSubAdm: e.target.value })
+  }
+
+  const handleCatChange = (e: any) => {
+    setFormInputs({ ...formInputs, category: e.target.value })
+    const filterd = lists.secteurs?.secteurDetails.filter(
+      (sec: any) => sec.category === e.target.value
+    )
+
+    setLists({ ...lists, secteurDetails: filterd })
   }
 
   const handleSubAdminChange = (e: any) => {
@@ -105,6 +142,25 @@ function AdministrationDetails() {
       subAdmVal: e.target.value,
       subAdmID: selectedID,
     })
+    setTimeout(() => {
+      setShowElement({ ...showElement, showSecteurs: true })
+    }, 500)
+  }
+
+  const handleSecteurChange = (e: any) => {
+    const selecredSectId = e.target.options[e.target.selectedIndex].dataset.id
+    setFormInputs({
+      ...formInputs,
+      secteurVal: e.target.value,
+      secteurID: selecredSectId,
+    })
+    setInstitOrProv({
+      ...institOrProv,
+      institution2: e.target.value,
+    })
+    setTimeout(() => {
+      setShowElement({ ...showElement, showSubSecteurs: true })
+    }, 500)
   }
 
   const handleCollecChange = (e: any) => {
@@ -116,15 +172,24 @@ function AdministrationDetails() {
     })
   }
 
+  const handleSubSecteurs2 = (e:any)=>{
+    setInstitOrProv({
+      ...institOrProv,
+      institution3: e.target.value,
+    })
+  }
+
   const handleAddChosenOrg = () => {
     if (formInputs.subAdmVal) {
       chosenDispatch({
         type: 'ADD_CHOSEN_ORGS',
         payload: {
           id: formInputs.subAdmID,
-          name: formInputs.subAdmVal,
+          name: institOrProv.institution3,
           niveau: formInputs.selecSubAdm,
-          institOrProv:institOrProv.institution
+          institOrProv1: institOrProv.institution1,
+          institOrProv2: formInputs.subAdmVal,
+          institOrProv3: institOrProv.institution2,
         },
       })
       setFormInputs({ ...formInputs, subAdmVal: '' })
@@ -137,7 +202,8 @@ function AdministrationDetails() {
           id: formInputs.collecID,
           name: formInputs.collecVal,
           niveau: formInputs.selecSubAdm,
-          institOrProv:institOrProv.province
+          institOrProv1: institOrProv.region,
+          institOrProv2: institOrProv.province,
         },
       })
       setFormInputs({ ...formInputs, collecVal: '' })
@@ -148,10 +214,10 @@ function AdministrationDetails() {
 
   const handleRemoveChosenOrg = (orgID: string) => {
     chosenDispatch({ type: 'REMOVE_CHOSEN_ORGS', payload: orgID })
-  //   const newInstitOrProv = institOrProv.filter((el:any) => {
-  //     return chosenOrgs.some((ch:any)=> ch.institOrProv.indexOf(el) === -1);
-  //  });
-  //  setInstitOrProv(newInstitOrProv)
+    //   const newInstitOrProv = institOrProv.filter((el:any) => {
+    //     return chosenOrgs.some((ch:any)=> ch.institOrProv.indexOf(el) === -1);
+    //  });
+    //  setInstitOrProv(newInstitOrProv)
   }
 
   const handleCancel = () => {
@@ -159,15 +225,38 @@ function AdministrationDetails() {
   }
 
   const getOrg = async (selected: string) => {
-    const response = await axios(`https://chafafiya-app-json-server-production.up.railway.app/${selected}`)
+    const response = await axios(
+      `https://chafafiya-app-json-server-production.up.railway.app/${selected}`
+    )
     setLists({ ...lists, organitations: response?.data })
   }
 
-  const getSubAdm = async (selected: string) => {
+  const getSubAdm = async () => {
     const response = await axios(
-      `https://chafafiya-app-json-server-production.up.railway.app/subAdministrations?idOrg=${formInputs.idOrg}&niveau=${selected}`
+      `https://chafafiya-app-json-server-production.up.railway.app/subAdministrations?idOrg=${formInputs.idOrg}`
     )
     setLists({ ...lists, subAdministrations: response?.data })
+  }
+
+  const getSecteurs = async (selected: any) => {
+    const response = await axios(
+      `https://chafafiya-app-json-server-production.up.railway.app/secteurs?subAdminId=${selected}`
+    )
+    setLists({
+      ...lists,
+      secteurs: response?.data[0],
+      secteurDetails: response?.data[0]?.secteurDetails,
+    })
+  }
+
+  const getSubSecteurs = async (selected: any) => {
+    const response = await axios(
+      `https://chafafiya-app-json-server-production.up.railway.app/subSecteur?secId=${selected}`
+    )
+    setLists({
+      ...lists,
+      subSecteurs: response?.data,
+    })
   }
 
   const getProv = async (selected: string) => {
@@ -191,8 +280,16 @@ function AdministrationDetails() {
   }, [formInputs.selectedOrg])
 
   useEffect(() => {
-    getSubAdm(formInputs.selecSubAdm)
-  }, [formInputs.selecSubAdm])
+    getSubAdm()
+  }, [formInputs.idOrg])
+
+  useEffect(() => {
+    getSecteurs(formInputs.subAdmID)
+  }, [formInputs.subAdmID])
+
+  useEffect(() => {
+    getSubSecteurs(formInputs.secteurID)
+  }, [formInputs.secteurID])
 
   useEffect(() => {
     getProv(formInputs.selectedReg)
@@ -206,17 +303,23 @@ function AdministrationDetails() {
     <div className="basis-2/3">
       <div className="mb-2">
         {chosenOrgs.length > 0 ? (
-          <div className='flex flex-wrap'>
-            {chosenOrgs.map((chOrg: any,index:any) => (
+          <div className="flex flex-wrap">
+            {chosenOrgs.map((chOrg: any) => (
               <div
-                className="ml-2 mb-2 flex gap-2 w-fit cursor-pointer rounded-md bg-cyan-600 px-2 py-0.5 text-white"
+                className="ml-2 mb-2 flex w-fit cursor-pointer gap-2 rounded-md bg-cyan-600 px-2 py-0.5 text-white"
                 key={chOrg.id}
                 onClick={() => handleRemoveChosenOrg(chOrg.id)}
               >
-                <span>{chOrg.institOrProv}</span>
-                <span className='font-bold'>/</span>
+                <span>{chOrg.institOrProv1}</span>
+                <span className="font-bold">/</span>
+                <span>{chOrg.institOrProv2}</span>
+                <span className="font-bold">/</span>
+                <span>{chOrg.institOrProv3}</span>
+                <span className="font-bold">/</span>
                 <span>{chOrg.name}</span>
-                <span><CloseIcon/></span>
+                <span>
+                  <CloseIcon />
+                </span>
               </div>
             ))}
           </div>
@@ -264,13 +367,13 @@ function AdministrationDetails() {
               <div className="mb-4">
                 {formInputs.selectedOrg === 'regions' ? (
                   <select
-                    name="organization"
+                    name="region"
                     className="mt-2 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
                     onChange={handleRegChange}
                   >
                     <option> -- إختر الجهة المعنية -- </option>
                     {lists.organitations?.map((org: any, index: any) => (
-                      <option key={index} value={org.identifiant}>
+                      <option key={index} data-region={org.nom} value={org.identifiant}>
                         {org.nom}
                       </option>
                     ))}
@@ -283,7 +386,11 @@ function AdministrationDetails() {
                   >
                     <option> -- إختر المؤسسة أو الهيئة المعنية -- </option>
                     {lists.organitations?.map((org: any, index: any) => (
-                      <option key={index} value={org.id} data-institution={org.denomination}>
+                      <option
+                        key={index}
+                        value={org.id}
+                        data-institution={org.denomination}
+                      >
                         {org.denomination}
                       </option>
                     ))}
@@ -295,7 +402,7 @@ function AdministrationDetails() {
           )}
           {showElement.showSubOrg && (
             <div className="mt-4">
-              <div className="ml-8 inline-block">
+              {/* <div className="ml-8 inline-block">
                 <input
                   type="radio"
                   name="niveau"
@@ -314,8 +421,8 @@ function AdministrationDetails() {
                   onChange={handleNvChange}
                 />
                 <label>جهوية</label>
-              </div>
-              <div className="ml-8 inline-block">
+              </div> */}
+              {/* <div className="ml-8 inline-block">
                 <input
                   type="radio"
                   name="niveau"
@@ -334,7 +441,7 @@ function AdministrationDetails() {
                   onChange={handleNvChange}
                 />
                 <label>محلية</label>
-              </div>
+              </div> */}
               <div>
                 <select
                   name="activity"
@@ -352,6 +459,70 @@ function AdministrationDetails() {
               </div>
             </div>
           )}
+          {showElement.showSecteurs && (
+            <div>
+              {lists.secteurs?.categories.length > 1 && (
+                <div className="mt-6 flex gap-4">
+                  {lists.secteurs?.categories.map((cat: any) => (
+                    <div key={cat} className="">
+                      <input
+                        type="radio"
+                        name="niveau"
+                        className="ml-2"
+                        value={cat}
+                        onChange={handleCatChange}
+                      />
+                      <label>{cat === 'central' ? 'مركزية' : 'جهوية'}</label>
+                    </div>
+                  ))}
+                </div>
+              )}
+              <select
+                name="secteur"
+                value={formInputs.secteurVal}
+                className="mt-2 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
+                onChange={handleSecteurChange}
+              >
+                <option> -- إختر القطاع الثانوي -- </option>
+                {formInputs.category
+                  ? lists.secteurDetails.map((sectDet: any) => (
+                      <option key={sectDet.id} data-id={sectDet.id} value={sectDet.denomination}>
+                        {sectDet.denomination}
+                      </option>
+                    ))
+                  : lists.secteurs?.categories.map((cat: any) => (
+                      <optgroup
+                        key={cat}
+                        label={cat === 'central' ? 'مركزية' : 'جهوية'}
+                      >
+                        {lists.secteurDetails.map(
+                          (sectDet: any) =>
+                            sectDet.category === cat && (
+                              <option key={sectDet.id} data-id={sectDet.id}>
+                                {sectDet.denomination}
+                              </option>
+                            )
+                        )}
+                      </optgroup>
+                    ))}
+              </select>
+            </div>
+          )}
+          {showElement.showSubSecteurs && (
+            <div className="mt-6">
+              <select
+                name="activity"
+                className="mt-2 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
+                onChange={handleSubSecteurs2}
+              >
+                <option> -- إختر القطاع الثانوي/2 -- </option>
+                {lists.subSecteurs?.map((subSect: any) => (
+                  <option key={subSect.id} value={subSect.denomination}>{subSect.denomination}</option>
+                ))}
+              </select>
+            </div>
+          )}
+
           {showElement.showProv && (
             <div>
               <select
@@ -361,7 +532,11 @@ function AdministrationDetails() {
               >
                 <option> -- إختر المجلس الجهوي أو العمالة / الإقليم -- </option>
                 {lists.provinces?.map((prov: any) => (
-                  <option key={prov.id} value={prov.id} data-province={prov.denomination}>
+                  <option
+                    key={prov.id}
+                    value={prov.id}
+                    data-province={prov.denomination}
+                  >
                     {prov.denomination}
                   </option>
                 ))}
@@ -397,14 +572,17 @@ function AdministrationDetails() {
             </button>
           </div>
         </div>
+      ) : chosenOrgs.length >= 3 ? (
+        <p className="font-bold underline">الحد الأقصى للإختيارات هو 3</p>
       ) : (
-       
-        chosenOrgs.length >= 3 ? <p className='font-bold underline'>الحد الأقصى للإختيارات هو 3</p> : <button
-          className="flex gap-1 items-center text-blue-900"
+        <button
+          className="flex items-center gap-1 text-blue-900"
           onClick={() => setShowElement({ ...showElement, showOrgSec: true })}
         >
           <span className="text-md underline"> إضافة مؤسسة أو هيئة معنية </span>{' '}
-          <span className="font-bold"><PlusIcon/></span>
+          <span className="font-bold">
+            <PlusIcon />
+          </span>
         </button>
       )}
     </div>
