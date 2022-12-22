@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { MinusIcon, NextIcon, PreviousIcon } from '../icons'
 import Modal from './Modal'
@@ -56,6 +56,16 @@ const Carroussel = () => {
     const newIndex = isLastSlide ? 0 : currentIndex + 1
     setCurrentIndex(newIndex)
   }
+
+  useEffect(() => {
+    setTimeout(
+      () =>
+      nextSlide(),
+      5000
+    );
+
+    return () => {};
+  }, [currentIndex]);
 
   return (
     <>
