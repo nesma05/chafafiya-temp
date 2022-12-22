@@ -5,6 +5,7 @@ import IconBoxSection from '../components/home/IconBoxSection'
 import AccordionSection from '../components/home/AccordionSection'
 import PresentationSection from '../components/home/PresentaionSection'
 import Drawer from '../components/terms/Drawer'
+import CarrousselSection from '../components/home/CarrousselSection'
 
 
 const Home: NextPage = () => {
@@ -12,7 +13,8 @@ const Home: NextPage = () => {
     <div>
       <Hero />
       <Drawer />
-      <PresentationSection />
+      {/* <PresentationSection /> */}
+      <CarrousselSection/>
       <BoxSection />
       <AccordionSection />
       <IconBoxSection />
