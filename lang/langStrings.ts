@@ -101,7 +101,7 @@ export const LangStrings = {
             icon:'yes'
           },
           {
-            text: 'ما هو القانون رقم 13-31؟',
+            text: 'تعرف  على القانون 31.13',
             link: '/law',
             icon:'yes'
           },
@@ -124,23 +124,23 @@ export const LangStrings = {
         menuHeight: '190px',
         subMenu: [    
           {
-            text: 'البحث عن المعلومات المنشورة استباقيا',
+            text: 'المعلومات المنشورة حسب المجالات',
             link: '/searchengine?proactivPublish',
           },
           {
-            text: 'البحث عن المعلومات حسب المؤسسات والهيئات',
-            link: '/institAgencies',
-          },
-          {
-            text: 'البحث عن المعلومات  بمواقع المؤسسات والهيئات',
+            text: 'المعلومات  بمواقع المؤسسات والهيئات',
             link: '/searchengine?institWebsites',
           },
           {
-            text: 'أجوبة عن الطلبات الأكثر تداولا',
+            text: 'المعلومات الاكثر طلبا',
             link: '/searchengine?mostFaReq',
           },
           {
-            text: 'بعض المواقع الحكومية التي تتوفر على المعلومات',
+            text: 'المعلومات حول المؤسسات والهيئات',
+            link: '/institAgencies',
+          },                
+          {
+            text: 'مواقع حكومية اخرى',
             link: '/gouvernSites',
           },
         ],
@@ -150,7 +150,7 @@ export const LangStrings = {
         menuHeight: '190px',
         subMenu: [
           {
-            text: 'كيف يمكنك تقديم طلب الحصول على المعلومات؟',
+            text: 'كيف يمكنك تقديم الطلب؟',
             link: '/howReq',
             icon:'yes'
           },
@@ -312,7 +312,7 @@ export const LangStrings = {
             icon:'yes'
           },
           {
-            text: 'ما هو القانون رقم 13-31؟',
+            text: 'تعرف  على القانون 31.13',
             link: '/law',
             icon:'yes'
           },
@@ -335,23 +335,23 @@ export const LangStrings = {
         menuHeight: '190px',
         subMenu: [    
           {
-            text: 'البحث عن المعلومات المنشورة استباقيا',
+            text: 'المعلومات المنشورة حسب المجالات',
             link: '/searchengine?proactivPublish',
           },
           {
-            text: 'البحث عن المعلومات حسب المؤسسات والهيئات',
-            link: '/institAgencies',
-          },
-          {
-            text: 'البحث عن المعلومات  بمواقع المؤسسات والهيئات',
+            text: 'المعلومات  بمواقع المؤسسات والهيئات',
             link: '/searchengine?institWebsites',
           },
           {
-            text: 'أجوبة عن الطلبات الأكثر تداولا',
+            text: 'المعلومات الاكثر طلبا',
             link: '/searchengine?mostFaReq',
           },
           {
-            text: 'بعض المواقع الحكومية التي تتوفر على المعلومات',
+            text: 'المعلومات حول المؤسسات والهيئات',
+            link: '/institAgencies',
+          },                
+          {
+            text: 'مواقع حكومية اخرى',
             link: '/gouvernSites',
           },
         ],
@@ -361,7 +361,7 @@ export const LangStrings = {
         menuHeight: '190px',
         subMenu: [
           {
-            text: 'كيف يمكنك تقديم طلب الحصول على المعلومات؟',
+            text: 'كيف يمكنك تقديم الطلب؟',
             link: '/howReq',
             icon:'yes'
           },
@@ -529,25 +529,25 @@ export const LangStrings = {
       {
         title: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
         menuHeight: '190px',
-        subMenu: [
+        subMenu: [    
           {
-            text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
+            text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
             link: '/searchengine?proactivPublish',
           },
           {
             text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
-            link: '/institAgencies',
+            link: '/searchengine?institWebsites',
           },
           {
-            text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
-             link: '/searchengine?institWebsites',
-          },
-          {
-            text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
+            text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓ',
             link: '/searchengine?mostFaReq',
           },
           {
-            text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
+            text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼ',
+            link: '/institAgencies',
+          },                
+          {
+            text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉ',
             link: '/gouvernSites',
           },
         ],

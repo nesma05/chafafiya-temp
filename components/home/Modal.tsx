@@ -1,7 +1,10 @@
 import { CloseIcon } from '../icons'
 import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false })
 import 'react-quill/dist/quill.snow.css'
+import { useState } from 'react'
+import axios from 'axios'
 
 const modules = {
   toolbar: [
@@ -34,7 +37,45 @@ const editorContent = `<div style='text-align:right'>
         <img src="/img/faqtmage.png" alt="" />
 </div>`
 
-const Modal = ({ tempSource, handleClose, modal, type }: any) => {
+const Modal = ({
+  tempSource,
+  handleClose,
+  modal,
+  type,
+  categories,
+  niveau,
+  parentId,
+}: any) => {
+  const [category, setCategory] = useState('')
+  const [categoryID, setCategoryID] = useState('')
+  const [administration, setAdministration] = useState('')
+
+  const Router = useRouter()
+
+  const sentData = {
+    parentId: parentId ? parentId : null,
+    entCategoryId: categoryID,
+    denomination_ar: administration,
+    niveau: niveau,
+  }
+
+  const handleCatChange = (e: any) => {
+    setCategory(e.target.value)
+    setCategoryID(e.target.options[e.target.selectedIndex].dataset.id)
+  }
+
+  const handleSave = () => {
+    axios
+      .post('http://194.60.201.174:444/api/entite', sentData)
+      .then((res: any) => {
+        if (res) {
+          Router.push(`${Router.asPath}`)
+          handleClose()
+        }
+      })
+    setCategory('')
+    setCategoryID('')
+  }
   return (
     <div className={modal ? 'modal open' : 'modal'}>
       {type === 'image' && (
@@ -103,6 +144,50 @@ const Modal = ({ tempSource, handleClose, modal, type }: any) => {
               />
             </div>
             <button className="mt-2 rounded-md bg-main py-2 px-5 text-white">
+              حفظ
+            </button>
+          </div>
+        </div>
+      )}
+      {type === 'addAdminLevel1' && (
+        <div className="h-[400px] w-[500px] overflow-hidden rounded bg-white">
+          <h2 className="bg-gray-300 py-2 px-6 font-bold">إضافة إدارة جديدة</h2>
+          <div className="flex flex-col gap-10 p-10">
+            <div>
+              <label className="">اختيار الصنف:</label>
+              <select
+                name="category"
+                className="mt-1 w-full rounded-md border border-gray-300 bg-white py-1 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
+                value={category}
+                onChange={handleCatChange}
+              >
+                <option>-- إختيار الصنف --</option>
+                {categories?.map((cat: any) => (
+                  <option key={cat.id} data-id={cat.id}>
+                    {cat.title_ar}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="">إسم الإدارة:</label>
+              <input
+                type="text"
+                name="administration"
+                value={administration}
+                className="mt-1 w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
+                onChange={(e) => setAdministration(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="flex justify-end gap-4 px-10">
+            <button onClick={handleClose} className="text-main underline">
+              إلغاء
+            </button>
+            <button
+              onClick={handleSave}
+              className="mx-2 rounded-md bg-main py-1.5 px-2 text-white sm:px-3"
+            >
               حفظ
             </button>
           </div>

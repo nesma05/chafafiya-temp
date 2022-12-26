@@ -233,29 +233,31 @@ function AdministrationDetails() {
 
   const getSubAdm = async () => {
     const response = await axios(
-      `https://chafafiya-app-json-server-production.up.railway.app/subAdministrations?idOrg=${formInputs.idOrg}`
+      `http://194.60.201.174:444/api/entite/children/${formInputs.idOrg}`
     )
-    setLists({ ...lists, subAdministrations: response?.data })
+    setLists({ ...lists, subAdministrations: response?.data?.secteurDetails })
   }
-
+  // console.log('subadmin', lists.subAdministrations)
+  // console.log('formInputs.idOrg',formInputs.idOrg)
   const getSecteurs = async (selected: any) => {
     const response = await axios(
-      `https://chafafiya-app-json-server-production.up.railway.app/secteurs?subAdminId=${selected}`
+      `http://194.60.201.174:444/api/entite/children/${selected}`
     )
     setLists({
       ...lists,
-      secteurs: response?.data[0],
-      secteurDetails: response?.data[0]?.secteurDetails,
+      secteurs: response?.data,
+      secteurDetails: response?.data?.secteurDetails,
     })
   }
-
+  console.log('subadmin', lists.secteurs)
+  console.log('formInputs.subAdmID',formInputs.subAdmID)
   const getSubSecteurs = async (selected: any) => {
     const response = await axios(
-      `https://chafafiya-app-json-server-production.up.railway.app/subSecteur?secId=${selected}`
+      `http://194.60.201.174:444/api/entite/children/${selected}`
     )
     setLists({
       ...lists,
-      subSecteurs: response?.data,
+      subSecteurs: response?.data?.secteurDetails,
     })
   }
 
@@ -272,6 +274,26 @@ function AdministrationDetails() {
     )
     setLists({ ...lists, collectives: response?.data })
   }
+
+  //test api url
+  const testApi = async (selected: string) => {
+    const testResponse1 = await axios(
+      `http://194.60.201.174:444/api/entite/children/${selected}`
+    )
+    console.log('testReponse1',testResponse1?.data)
+    const testResponse2 = await axios(
+      `http://194.60.201.174:444/api/entite-category`
+    )
+    console.log('testReponse2',testResponse2?.data)
+    const testResponse3 = await axios(
+      `http://194.60.201.174:444/api/entite`
+    )
+    console.log('testReponse3',testResponse3?.data)
+  }
+  useEffect(() => {
+    testApi('39')
+  },[] )
+
 
   useEffect(() => {
     setShowElement({ ...showElement, showSubOrg: false })
@@ -451,8 +473,8 @@ function AdministrationDetails() {
                 >
                   <option> -- إختر القطاع المعني -- </option>
                   {lists.subAdministrations?.map((subAdm: any) => (
-                    <option key={subAdm.id} data-id={subAdm.id}>
-                      {subAdm.denomination}
+                    <option key={subAdm.entite_id} data-id={subAdm.entite_id}>
+                      {subAdm.denomination_ar}
                     </option>
                   ))}
                 </select>
@@ -464,15 +486,15 @@ function AdministrationDetails() {
               {lists.secteurs?.categories.length > 1 && (
                 <div className="mt-6 flex gap-4">
                   {lists.secteurs?.categories.map((cat: any) => (
-                    <div key={cat} className="">
+                    <div key={cat.type} className="">
                       <input
                         type="radio"
                         name="niveau"
                         className="ml-2"
-                        value={cat}
+                        value={cat.type}
                         onChange={handleCatChange}
                       />
-                      <label>{cat === 'central' ? 'مركزية' : 'جهوية'}</label>
+                      <label>{cat.type === 'CENTRAL' ? 'مركزية' : 'جهوية'}</label>
                     </div>
                   ))}
                 </div>
@@ -486,20 +508,20 @@ function AdministrationDetails() {
                 <option> -- إختر القطاع الثانوي -- </option>
                 {formInputs.category
                   ? lists.secteurDetails.map((sectDet: any) => (
-                      <option key={sectDet.id} data-id={sectDet.id} value={sectDet.denomination}>
-                        {sectDet.denomination}
+                      <option key={sectDet.entite_id} data-id={sectDet.entite_id} value={sectDet.denomination_ar}>
+                        {sectDet.denomination_ar}
                       </option>
                     ))
                   : lists.secteurs?.categories.map((cat: any) => (
                       <optgroup
-                        key={cat}
-                        label={cat === 'central' ? 'مركزية' : 'جهوية'}
+                        key={cat.type}
+                        label={cat.type === 'CENTRAL' ? 'مركزية' : 'جهوية'}
                       >
                         {lists.secteurDetails.map(
                           (sectDet: any) =>
-                            sectDet.category === cat && (
-                              <option key={sectDet.id} data-id={sectDet.id}>
-                                {sectDet.denomination}
+                            sectDet.category === cat.type && (
+                              <option key={sectDet.entite_id} data-id={sectDet.entite_id}>
+                                {sectDet.denomination_ar}
                               </option>
                             )
                         )}
@@ -517,7 +539,7 @@ function AdministrationDetails() {
               >
                 <option> -- إختر القطاع الثانوي/2 -- </option>
                 {lists.subSecteurs?.map((subSect: any) => (
-                  <option key={subSect.id} value={subSect.denomination}>{subSect.denomination}</option>
+                  <option key={subSect.entite_id} value={subSect.denomination_ar}>{subSect.denomination_ar}</option>
                 ))}
               </select>
             </div>
