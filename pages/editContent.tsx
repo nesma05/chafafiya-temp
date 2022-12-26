@@ -282,7 +282,7 @@ const EditContent: PageWithSecondaryLayoutType = ({
                               </td>
                               <td className="px-6 py-2 text-main underline">
                                 <NextLink
-                                  href={`editContent?parentId=${row.entite_id}`}
+                                  href={`/editContent?parentId=${row.entite_id}`}
                                   passHref
                                 >
                                   <a>الإدارة الفرعية</a>
