@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false })
 import 'react-quill/dist/quill.snow.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 
 const modules = {
@@ -43,13 +43,19 @@ const Modal = ({
   modal,
   type,
   categories,
+  entites,
+  entiteID,
   niveau,
   parentId,
 }: any) => {
+  console.log('Entite',entiteID)
   const [category, setCategory] = useState('')
   const [categoryID, setCategoryID] = useState('')
+  console.log('category',category)
+  const [adminInitial, setAdminInitial] = useState('')
   const [administration, setAdministration] = useState('')
-
+  const [selected, setSelected] = useState(false)
+  
   const Router = useRouter()
 
   const sentData = {
@@ -76,6 +82,23 @@ const Modal = ({
     setCategory('')
     setCategoryID('')
   }
+
+  const getEntite = async (id:any) => {
+    if(id) {
+      const response = await axios(
+        `http://194.60.201.174:444/api/entite/${id}`
+      )
+      setAdministration(response?.data?.denomination_ar)
+      setCategory(response?.data?.entCategory?.title_ar)
+    }
+   
+  }
+
+   useEffect(()=>{
+    getEntite(entiteID)
+   },[entiteID])
+
+ 
   return (
     <div className={modal ? 'modal open' : 'modal'}>
       {type === 'image' && (
@@ -158,7 +181,7 @@ const Modal = ({
               <select
                 name="category"
                 className="mt-1 w-full rounded-md border border-gray-300 bg-white py-1 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
-                value={category}
+                value={category}              
                 onChange={handleCatChange}
               >
                 <option>-- إختيار الصنف --</option>
@@ -178,6 +201,66 @@ const Modal = ({
                 className="mt-1 w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
                 onChange={(e) => setAdministration(e.target.value)}
               />
+            </div>
+          </div>
+          <div className="flex justify-end gap-4 px-10">
+            <button onClick={handleClose} className="text-main underline">
+              إلغاء
+            </button>
+            <button
+              onClick={handleSave}
+              className="mx-2 rounded-md bg-main py-1.5 px-2 text-white sm:px-3"
+            >
+              حفظ
+            </button>
+          </div>
+        </div>
+      )}
+       {type === 'editAdmin' && (
+        <div className="h-[500px] w-[500px] overflow-hidden rounded bg-white">
+          <h2 className="bg-gray-300 py-2 px-6 font-bold">تحيين الإدارة</h2>
+          <div className="flex flex-col gap-10 p-10">
+            <div>
+              <label className="">اختر الصنف:</label>
+              <select
+                name="category"
+                className="mt-1 w-full rounded-md border border-gray-300 bg-white py-1 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
+                value={category}
+                onChange={handleCatChange}
+              >
+                <option>-- إختيار الصنف --</option>
+                {categories?.map((cat: any) => (
+                  <option key={cat.id} data-id={cat.id} value={cat.title_ar}>
+                    {cat.title_ar}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="">إسم الإدارة:</label>
+              <input
+                type="text"
+                name="administration"
+                value={administration}
+                className="mt-1 w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
+                onChange={(e) => setAdministration(e.target.value)}
+              />
+            </div>
+            <div>
+              <label className="">إختر الإنتماء: </label>
+              <select
+                name="category"
+                className="mt-1 w-full rounded-md border border-gray-300 bg-white py-1 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
+                value={category}
+                onChange={handleCatChange}
+              >
+                <option>-- إختيار الإنتماء --</option>
+                {entites?.map((ent: any) => (
+                  <option key={ent.id} data-id={ent.id}>
+                    {ent.denomination_ar}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
           <div className="flex justify-end gap-4 px-10">

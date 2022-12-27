@@ -3,7 +3,7 @@ import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import Modal from '../components/home/Modal'
 
-import { EditIcon } from '../components/icons'
+import { EditIcon, UpIcon } from '../components/icons'
 
 import SecondaryLayout, {
   PageWithSecondaryLayoutType,
@@ -84,21 +84,24 @@ const EditContent: PageWithSecondaryLayoutType = ({
   entite,
   singleEntite,
   adminNiveau,
-  parentId
+  parentId,
 }: any) => {
   const [selected, setSelected] = useState(null)
   const [selectedItem, setSelectedItem] = useState(0)
   const [toggleIndex, setToggleIndex] = useState(1)
   const [categories, setCategories] = useState([])
- 
+  const [entites, setEntites] = useState([])
+  const [entiteID, setEntiteID] = useState('')
+  console.log('entiteID', entiteID)
+
   const [modal, setModal] = useState(false)
-  
+  const [editModal, setEditModal] = useState(false)
 
   const Router = useRouter()
-  console.log('router',Router.asPath)
 
   const handleClose = () => {
     setModal(false)
+    setEditModal(false)
   }
 
   const handleToggle = (i: any) => {
@@ -114,9 +117,14 @@ const EditContent: PageWithSecondaryLayoutType = ({
     setToggleIndex(index + 1)
   }
 
-  const getResponse = ()=> {
-    if(Array.isArray(entite)) return entite
+  const getResponse = () => {
+    if (Array.isArray(entite)) return entite
     else return entite.secteurDetails
+  }
+
+  const handleReturn = ()=>{
+    if(singleEntite.parentId) return Router.push(`/editContent?parentId=${singleEntite.parentId}`)
+    else return Router.push(`/editContent?adminNiveau=1`)
   }
 
   const inputContent = () => {
@@ -134,12 +142,22 @@ const EditContent: PageWithSecondaryLayoutType = ({
     setCategories(response?.data)
   }
 
+  const getEntites = async () => {
+    const response = await axios(`http://194.60.201.174:444/api/entite`)
+    setEntites(response?.data)
+  }
+
   const handleAddAdmin = () => {
     getCategories()
     setModal(true)
   }
 
-  
+  const handleEditAdmin = (id: any) => {
+    getCategories()
+    getEntites()
+    setEntiteID(id)
+    setEditModal(true)
+  }
 
   return (
     <div className="text-sm">
@@ -158,7 +176,9 @@ const EditContent: PageWithSecondaryLayoutType = ({
                 }`}
               >
                 {ls.link ? (
-                  <NextLink href={ls.link} passHref><a>{ls.text}</a></NextLink>
+                  <NextLink href={ls.link} passHref>
+                    <a>{ls.text}</a>
+                  </NextLink>
                 ) : (
                   ls.text
                 )}
@@ -166,74 +186,76 @@ const EditContent: PageWithSecondaryLayoutType = ({
             ))}
           </ul>
         </div>
-        {(!Router.asPath.includes('adminNiveau=') && !Router.asPath.includes('parentId=')) && (
-          <div className="flex-1">
-            <div className="flex h-[200px] items-center">
-              <div className="mx-auto flex w-[70%] items-center gap-3">
-                <div className="flex-1">
-                  <div className="flex gap-8">
-                    <label className="mb-1.5 inline-block">
-                      {' '}
-                      عنوان الصفحة:
-                    </label>
-                    <div>
-                      {langLists.map((lang: any, index: any) => (
-                        <span
-                          key={lang.id}
-                          className={`cursor-pointer border-r-2 border-main px-2 font-bold ${
-                            selectedItem === index ? 'text-main' : ''
-                          }`}
-                          onClick={() => handleItemClick(index)}
-                        >
-                          {lang.text}
-                        </span>
-                      ))}
+        {!Router.asPath.includes('adminNiveau=') &&
+          !Router.asPath.includes('parentId=') && (
+            <div className="flex-1">
+              <div className="flex h-[200px] items-center">
+                <div className="mx-auto flex w-[70%] items-center gap-3">
+                  <div className="flex-1">
+                    <div className="flex gap-8">
+                      <label className="mb-1.5 inline-block">
+                        {' '}
+                        عنوان الصفحة:
+                      </label>
+                      <div>
+                        {langLists.map((lang: any, index: any) => (
+                          <span
+                            key={lang.id}
+                            className={`cursor-pointer border-r-2 border-main px-2 font-bold ${
+                              selectedItem === index ? 'text-main' : ''
+                            }`}
+                            onClick={() => handleItemClick(index)}
+                          >
+                            {lang.text}
+                          </span>
+                        ))}
+                      </div>
                     </div>
+                    <input
+                      dir={toggleIndex > 1 ? 'ltr' : 'rtl'}
+                      className="text-md mt-1.5 w-full rounded-md border border-gray-300 p-3 text-sm text-gray-800 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
+                      placeholder="عنوان الصفحة"
+                      name="firstname"
+                      type="text"
+                      value={inputContent()}
+                    />
                   </div>
-                  <input
-                    dir={toggleIndex > 1 ? 'ltr' : 'rtl'}
-                    className="text-md mt-1.5 w-full rounded-md border border-gray-300 p-3 text-sm text-gray-800 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
-                    placeholder="عنوان الصفحة"
-                    name="firstname"
-                    type="text"
-                    value={inputContent()}
+                </div>
+              </div>
+              <div className="mx-auto mb-20 w-[80%]">
+                <div className="overflow-hidden rounded-t-xl border">
+                  {lawList.map((list: any, index: any) => (
+                    <QuestionAnswer
+                      key={list.id}
+                      term={list}
+                      handleToggle={handleToggle}
+                      index={index}
+                      selected={selected}
+                      responsable={true}
+                    />
+                  ))}
+                </div>
+                <div className="mt-14 px-1">
+                  <SubTitle>رسوم بيانية</SubTitle>
+                  <IllustrationsSection
+                    illustrationsList={illustrationsList}
+                    type="image"
+                    withModal={false}
+                  />
+                </div>
+                <div className="mt-14 px-1">
+                  <SubTitle>مقاطع مرئية</SubTitle>
+                  <IllustrationsSection
+                    illustrationsList={videosList}
+                    type="video"
+                    withModal={false}
                   />
                 </div>
               </div>
             </div>
-            <div className="mx-auto mb-20 w-[80%]">
-              <div className="overflow-hidden rounded-t-xl border">
-                {lawList.map((list: any, index: any) => (
-                  <QuestionAnswer
-                    key={list.id}
-                    term={list}
-                    handleToggle={handleToggle}
-                    index={index}
-                    selected={selected}
-                    responsable={true}
-                  />
-                ))}
-              </div>
-              <div className="mt-14 px-1">
-                <SubTitle>رسوم بيانية</SubTitle>
-                <IllustrationsSection
-                  illustrationsList={illustrationsList}
-                  type="image"
-                  withModal={false}
-                />
-              </div>
-              <div className="mt-14 px-1">
-                <SubTitle>مقاطع مرئية</SubTitle>
-                <IllustrationsSection
-                  illustrationsList={videosList}
-                  type="video"
-                  withModal={false}
-                />
-              </div>
-            </div>
-          </div>
-        )}
-        {(Router.asPath.includes('adminNiveau=') || Router.asPath.includes('parentId=')) && (
+          )}
+        {(Router.asPath.includes('adminNiveau=') ||
+          Router.asPath.includes('parentId=')) && (
           <div className="min-h-[500px] flex-1">
             <Modal
               handleClose={handleClose}
@@ -243,16 +265,39 @@ const EditContent: PageWithSecondaryLayoutType = ({
               niveau={adminNiveau}
               parentId={parentId}
             />
+            <Modal
+              handleClose={handleClose}
+              modal={editModal}
+              type={'editAdmin'}
+              categories={categories}
+              entites={entites}
+              entiteID={entiteID}
+              niveau={adminNiveau}
+              parentId={parentId}
+            />
             <div className="p-8">
-              {Router.asPath.includes('parentId=')?(<h1 className="text-lg underline">لائحة إدارات <span>{singleEntite.denomination_ar}</span></h1>):(<h1 className="text-lg underline">لائحة إدارات المستوى 1</h1>)}
-              
+              {Router.asPath.includes('parentId=') ? (
+                <div className="text-lg underline flex items-center gap-10">
+                  <h1>لائحة إدارات <span>{singleEntite.denomination_ar}</span></h1>
+                  <h3 onClick={handleReturn} className='text-main text-sm cursor-pointer flex items-center'>الرجوع إلى الأعلى <span className='text-xl'><UpIcon/></span></h3>
+                </div>
+              ) : (
+                <h1 className="text-lg underline">لائحة إدارات المستوى 1</h1>
+              )}
+
               <div className="text-left">
                 <button
                   onClick={handleAddAdmin}
                   className="mx-2 rounded-md bg-main py-1.5 px-2 text-white sm:px-3"
                 >
-                  {adminNiveau ?(<><span> إضافة إدارة من المستوى </span><span>{adminNiveau}</span></>):(<span> إضافة إدارة فرعية </span>)}
-                 
+                  {adminNiveau ? (
+                    <>
+                      <span> إضافة إدارة من المستوى </span>
+                      <span>{adminNiveau}</span>
+                    </>
+                  ) : (
+                    <span> إضافة إدارة فرعية </span>
+                  )}
                 </button>
               </div>
               <div className="mt-8 flex flex-col ">
@@ -273,7 +318,10 @@ const EditContent: PageWithSecondaryLayoutType = ({
                                 {row.category}
                               </td>
                               <td className="px-6 py-2">
-                                <button className="flex items-center gap-1 rounded-lg border border-black py-1 px-2">
+                                <button
+                                  onClick={() => handleEditAdmin(row.entite_id)}
+                                  className="flex items-center gap-1 rounded-lg border border-black py-1 px-2"
+                                >
                                   <span>تحيين</span>
                                   <span>
                                     <EditIcon />
@@ -308,8 +356,7 @@ export default EditContent
 export async function getServerSideProps({ query }: any) {
   const { adminNiveau, parentId } = query
   let entite: any
-  let singleEntite:any
-  
+  let singleEntite: any
 
   if (adminNiveau)
     entite = await axios(
@@ -323,12 +370,11 @@ export async function getServerSideProps({ query }: any) {
       `http://194.60.201.174:444/api/entite/${parentId}`
     )
   }
-    
 
   return {
     props: {
       entite: entite?.data ? entite?.data : null,
-      singleEntite:singleEntite?.data ? singleEntite?.data : null,
+      singleEntite: singleEntite?.data ? singleEntite?.data : null,
       adminNiveau: adminNiveau ? adminNiveau : '',
       parentId: parentId ? parentId : '',
     },
