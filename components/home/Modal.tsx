@@ -48,21 +48,29 @@ const Modal = ({
   niveau,
   parentId,
 }: any) => {
-  console.log('Entite',entiteID)
+  console.log('Entite', entiteID)
   const [category, setCategory] = useState('')
   const [categoryID, setCategoryID] = useState('')
-  console.log('category',category)
-  const [adminInitial, setAdminInitial] = useState('')
   const [administration, setAdministration] = useState('')
-  const [selected, setSelected] = useState(false)
-  
+  const [parentEntite, setParentEntite] = useState('')
+  const [parentEntiteID, setParentEntiteID] = useState('')
+
+  console.log('entiteID', entiteID)
+
   const Router = useRouter()
 
-  const sentData = {
+  const sentAddedData = {
     parentId: parentId ? parentId : null,
     entCategoryId: categoryID,
     denomination_ar: administration,
     niveau: niveau,
+  }
+
+  const sentEditedData = {
+    parentId: parentEntiteID ? parentEntiteID : 0,
+    entCategory: categoryID,
+    denomination_ar: administration,
+    niveau: !parentEntiteID ? 1 : null,
   }
 
   const handleCatChange = (e: any) => {
@@ -70,35 +78,60 @@ const Modal = ({
     setCategoryID(e.target.options[e.target.selectedIndex].dataset.id)
   }
 
-  const handleSave = () => {
-    axios
-      .post('http://194.60.201.174:444/api/entite', sentData)
-      .then((res: any) => {
-        if (res) {
-          Router.push(`${Router.asPath}`)
-          handleClose()
-        }
-      })
-    setCategory('')
-    setCategoryID('')
+  const handleParentChange = (e: any) => {
+    setParentEntite(e.target.value)
+    setParentEntiteID(e.target.options[e.target.selectedIndex].dataset.id)
   }
 
-  const getEntite = async (id:any) => {
-    if(id) {
-      const response = await axios(
-        `http://194.60.201.174:444/api/entite/${id}`
-      )
-      setAdministration(response?.data?.denomination_ar)
-      setCategory(response?.data?.entCategory?.title_ar)
+  const handleSave = (type: string) => {
+    if (type === 'add') {
+      console.log('add')
+      axios
+        .post('http://194.60.201.174:444/api/entite', sentAddedData)
+        .then((res: any) => {
+          if (res) {
+            Router.push(`${Router.asPath}`)
+            handleClose()
+          }
+        })
+    } else {
+      console.log('edit')
+      axios
+        .patch(
+          `http://194.60.201.174:444/api/entite/${entiteID}`,
+          sentEditedData
+        )
+        .then((res: any) => {
+          if (res) {
+            Router.push(`${Router.asPath}`)
+            handleClose()
+          }
+        })
     }
-   
   }
 
-   useEffect(()=>{
-    getEntite(entiteID)
-   },[entiteID])
+  const getEntite = async (id: any) => {
+    const response = await axios(`http://194.60.201.174:444/api/entite/${id}`)
+    setAdministration(response?.data?.denomination_ar)
+    setCategory(response?.data?.entCategory?.title_ar)
 
- 
+    const response2 = await axios(
+      `http://194.60.201.174:444/api/entite/${response?.data?.parentId}`
+    )
+    setParentEntite(response2?.data?.denomination_ar)
+  }
+
+  useEffect(() => {
+    getEntite(entiteID)
+
+    return () => {
+      setCategory('')
+      setCategoryID('')
+      setAdministration('')
+      setParentEntite('')
+    }
+  }, [entiteID])
+
   return (
     <div className={modal ? 'modal open' : 'modal'}>
       {type === 'image' && (
@@ -181,7 +214,7 @@ const Modal = ({
               <select
                 name="category"
                 className="mt-1 w-full rounded-md border border-gray-300 bg-white py-1 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
-                value={category}              
+                value={category}
                 onChange={handleCatChange}
               >
                 <option>-- إختيار الصنف --</option>
@@ -208,7 +241,7 @@ const Modal = ({
               إلغاء
             </button>
             <button
-              onClick={handleSave}
+              onClick={() => handleSave('add')}
               className="mx-2 rounded-md bg-main py-1.5 px-2 text-white sm:px-3"
             >
               حفظ
@@ -216,7 +249,7 @@ const Modal = ({
           </div>
         </div>
       )}
-       {type === 'editAdmin' && (
+      {type === 'editAdmin' && (
         <div className="h-[500px] w-[500px] overflow-hidden rounded bg-white">
           <h2 className="bg-gray-300 py-2 px-6 font-bold">تحيين الإدارة</h2>
           <div className="flex flex-col gap-10 p-10">
@@ -247,16 +280,20 @@ const Modal = ({
               />
             </div>
             <div>
-              <label className="">إختر الإنتماء: </label>
+              <label>إختر الإنتماء: </label>
               <select
-                name="category"
+                name="parentEntite"
                 className="mt-1 w-full rounded-md border border-gray-300 bg-white py-1 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
-                value={category}
-                onChange={handleCatChange}
+                value={parentEntite}
+                onChange={handleParentChange}
               >
                 <option>-- إختيار الإنتماء --</option>
                 {entites?.map((ent: any) => (
-                  <option key={ent.id} data-id={ent.id}>
+                  <option
+                    key={ent.id}
+                    data-id={ent.id}
+                    value={ent.denomination_ar}
+                  >
                     {ent.denomination_ar}
                   </option>
                 ))}
@@ -268,7 +305,7 @@ const Modal = ({
               إلغاء
             </button>
             <button
-              onClick={handleSave}
+              onClick={() => handleSave('edit')}
               className="mx-2 rounded-md bg-main py-1.5 px-2 text-white sm:px-3"
             >
               حفظ

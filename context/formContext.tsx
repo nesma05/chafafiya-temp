@@ -2,14 +2,7 @@ import { createContext, useContext, useReducer } from 'react'
 import { requestReducer } from './reducers'
 
 type InitialStateType = {
-  chosenOrgs: {
-    id: string
-    name: string
-    niveau: string
-    institOrProv1?:string
-    institOrProv2?:string
-    institOrProv3?:string
-  }[]
+  chosenOrgs: any[]
 }
 const initialState = {
   chosenOrgs: [],

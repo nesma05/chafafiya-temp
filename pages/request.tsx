@@ -8,11 +8,13 @@ import RequestedInfoSection from '../components/request/RequestedInfoSection'
 import FormContext from '../context/formContext'
 import DomainsSection from '../components/request/DomainsSection'
 
+
 const Request: NextPage = () => {
   return (
   
       <FormContext>
         <FormContainer title={'إيداع طلب الحصول على المعلومات'}>
+          
           <AdministrationSection />
           <RequestTypeSection />
           <DomainsSection/>

@@ -92,7 +92,6 @@ const EditContent: PageWithSecondaryLayoutType = ({
   const [categories, setCategories] = useState([])
   const [entites, setEntites] = useState([])
   const [entiteID, setEntiteID] = useState('')
-  console.log('entiteID', entiteID)
 
   const [modal, setModal] = useState(false)
   const [editModal, setEditModal] = useState(false)
@@ -122,8 +121,9 @@ const EditContent: PageWithSecondaryLayoutType = ({
     else return entite.secteurDetails
   }
 
-  const handleReturn = ()=>{
-    if(singleEntite.parentId) return Router.push(`/editContent?parentId=${singleEntite.parentId}`)
+  const handleReturn = () => {
+    if (singleEntite.parentId)
+      return Router.push(`/editContent?parentId=${singleEntite.parentId}`)
     else return Router.push(`/editContent?adminNiveau=1`)
   }
 
@@ -136,9 +136,11 @@ const EditContent: PageWithSecondaryLayoutType = ({
   }
 
   const getCategories = async () => {
+    const CatygoryType = Router.query.adminNiveau ? 'PRIMARY':'SECONDARY'
     const response = await axios(
-      `http://194.60.201.174:444/api/entite-category`
+      `http://194.60.201.174:444/api/entite-category/${CatygoryType}`
     )
+
     setCategories(response?.data)
   }
 
@@ -153,9 +155,9 @@ const EditContent: PageWithSecondaryLayoutType = ({
   }
 
   const handleEditAdmin = (id: any) => {
+    setEntiteID(id)
     getCategories()
     getEntites()
-    setEntiteID(id)
     setEditModal(true)
   }
 
@@ -165,9 +167,6 @@ const EditContent: PageWithSecondaryLayoutType = ({
       <div className="flex w-full justify-start border-t-2 border-gray-300">
         <div className="w-[250px] bg-gray-600 text-white">
           <ul className="p-2">
-            {/* <li className="mb-1 border-b border-black p-1 font-bold">
-              الصفحات
-            </li> */}
             {sideBarList.map((ls: any) => (
               <li
                 key={ls.id}
@@ -186,8 +185,8 @@ const EditContent: PageWithSecondaryLayoutType = ({
             ))}
           </ul>
         </div>
-        {!Router.asPath.includes('adminNiveau=') &&
-          !Router.asPath.includes('parentId=') && (
+        {!Router.query.adminNiveau &&
+          !Router.query.parentId && (
             <div className="flex-1">
               <div className="flex h-[200px] items-center">
                 <div className="mx-auto flex w-[70%] items-center gap-3">
@@ -254,8 +253,8 @@ const EditContent: PageWithSecondaryLayoutType = ({
               </div>
             </div>
           )}
-        {(Router.asPath.includes('adminNiveau=') ||
-          Router.asPath.includes('parentId=')) && (
+        {(Router.query.adminNiveau ||
+          Router.query.parentId) && (
           <div className="min-h-[500px] flex-1">
             <Modal
               handleClose={handleClose}
@@ -276,10 +275,20 @@ const EditContent: PageWithSecondaryLayoutType = ({
               parentId={parentId}
             />
             <div className="p-8">
-              {Router.asPath.includes('parentId=') ? (
-                <div className="text-lg underline flex items-center gap-10">
-                  <h1>لائحة إدارات <span>{singleEntite.denomination_ar}</span></h1>
-                  <h3 onClick={handleReturn} className='text-main text-sm cursor-pointer flex items-center'>الرجوع إلى الأعلى <span className='text-xl'><UpIcon/></span></h3>
+              {Router.query.parentId ? (
+                <div className="flex items-center gap-10 text-lg underline">
+                  <h1>
+                    لائحة إدارات <span>{singleEntite.denomination_ar}</span>
+                  </h1>
+                  <h3
+                    onClick={handleReturn}
+                    className="flex cursor-pointer items-center text-sm text-main"
+                  >
+                    الرجوع إلى الأعلى{' '}
+                    <span className="text-xl">
+                      <UpIcon />
+                    </span>
+                  </h3>
                 </div>
               ) : (
                 <h1 className="text-lg underline">لائحة إدارات المستوى 1</h1>
@@ -308,32 +317,32 @@ const EditContent: PageWithSecondaryLayoutType = ({
                         <tbody className="divide-y  divide-gray-200 bg-white">
                           {getResponse()?.map((row: any) => (
                             <tr
-                              key={row.entite_id}
+                              key={row.id}
                               className="cursor-pointer font-medium"
                             >
-                              <td className="px- py-2 font-bold text-gray-900">
+                              <td className="w-[50%] px-2 py-2 font-bold text-gray-900">
                                 {row.denomination_ar}
                               </td>
-                              <td className="px-6 py-2 text-gray-500">
-                                {row.category}
+                              <td className="px-2 py-2 text-left text-gray-500">
+                                {row.entCategory?.title_ar}
                               </td>
-                              <td className="px-6 py-2">
+                              <td className="flex items-center justify-end gap-3 px-2 py-2 ">
                                 <button
-                                  onClick={() => handleEditAdmin(row.entite_id)}
-                                  className="flex items-center gap-1 rounded-lg border border-black py-1 px-2"
+                                  onClick={() => handleEditAdmin(row.id)}
+                                  className="flex items-center gap-1 rounded-lg border border-main py-1 px-2 text-main"
                                 >
                                   <span>تحيين</span>
                                   <span>
                                     <EditIcon />
                                   </span>
                                 </button>
-                              </td>
-                              <td className="px-6 py-2 text-main underline">
                                 <NextLink
-                                  href={`/editContent?parentId=${row.entite_id}`}
+                                  href={`/editContent?parentId=${row.id}`}
                                   passHref
                                 >
-                                  <a>الإدارة الفرعية</a>
+                                  <a className="text-main underline">
+                                    الإدارة الفرعية
+                                  </a>
                                 </NextLink>
                               </td>
                             </tr>

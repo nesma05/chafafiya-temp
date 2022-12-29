@@ -1,325 +1,184 @@
 import axios from 'axios'
+import { v4 as uuidv4 } from 'uuid'
 import { useEffect, useState } from 'react'
 import { requestState } from '../../context/formContext'
-import { CloseIcon, PlusIcon } from '../icons'
+import { CloseIcon, NoteIcon, PlusIcon } from '../icons'
 
 const showInitialState = {
   showOrgSec: false,
-  showOrg: false,
-  showSubOrg: false,
-  showSecteurs: false,
-  showSubSecteurs: false,
-  showProv: false,
-  showCollec: false,
+  firstLevel: false,
+  children: false,
 }
 
 const inputsInitialState = {
-  selectedOrg: '',
-  idOrg: '',
-  selecSubAdm: '',
-  subAdmID: '',
-  subAdmVal: '',
-  secteurVal: '',
-  secteurID: '',
   category: '',
-  collecID: '',
-  collecVal: '',
-  selectedReg: '',
-  selectedSubReg: '',
-}
-
-const ListsInitialsState = {
-  organitations: [],
-  subAdministrations: [],
-  secteurs: {},
-  secteursDetails: [],
-  subSecteurs: [],
-  provinces: [],
-  collectives: [],
-}
-
-const instiOrProvInitialState = {
-  institution1: '',
-  institution2:'',
-  institution3: '',
-  region:'',
-  province: '',
+  level1Value: '',
+  level1ID: '',
 }
 
 function AdministrationDetails() {
   const [showElement, setShowElement] = useState(showInitialState)
   const [formInputs, setFormInputs] = useState(inputsInitialState)
-  const [lists, setLists] = useState<any>(ListsInitialsState)
-  const [institOrProv, setInstitOrProv] = useState(instiOrProvInitialState)
-  console.log('secteurs', lists.secteurs)
+  const [categories, setCategories] = useState([])
+  const [firstLevelEntites, setFirstLevelEntites] = useState([])
+  const [children, setChildren] = useState<any>([])
+  const [showNote, setShowNote] = useState(false)
 
+  console.log('childen', children)
   const {
     chosenState: { chosenOrgs },
     chosenDispatch,
   } = requestState()
-  console.log('category', formInputs.category)
+  console.log('chosenOrgs', chosenOrgs)
+  const getCategories = async () => {
+    const response = await axios(
+      'http://194.60.201.174:444/api/entite-category/PRIMARY'
+    )
+    setCategories(response?.data)
+    setShowElement({ ...showElement, showOrgSec: true })
+  }
 
-  const handleAdminChange = (e: any) => {
+  const getFirstLevelEntites = async (selected: string) => {
+    const response = await axios(
+      `http://194.60.201.174:444/api/entite/category/${selected}/niveau/1`
+    )
+    setFirstLevelEntites(response?.data)
+  }
+
+  const getChildren = async (id: string) => {
+    const emptyChildren: any[] = []
+    setChildren(emptyChildren)
+    const response = await axios(
+      `http://194.60.201.174:444/api/entite/children/${id}`
+    )
+    if (response?.data.secteurDetails.length > 0) {
+      const newChildren = {
+        id: uuidv4(),
+        subLevelValue: '',
+        subLevelID: '',
+        categories: response?.data?.categories,
+        subCategory: '',
+        filterChildren: [],
+        childrenDetails: response?.data?.secteurDetails,
+      }
+      setChildren([...children, newChildren])
+      setShowElement({ ...showElement, children: true })
+    }
+  }
+
+  const handleCategoriesChange = (e: any) => {
     setFormInputs({
       ...formInputs,
-      selectedOrg: e.target.value,
-      subAdmVal: '',
-      collecVal: '',
+      category: e.target.value,
     })
 
-    setShowElement({
-      ...showElement,
-      showProv: false,
-      showCollec: false,
-      showSecteurs: false,
-      showSubSecteurs: false,
-      showOrg: false,
-    })
-    setTimeout(() => {
-      setShowElement({
-        ...showElement,
-        showProv: false,
-        showCollec: false,
-        showSubOrg: false,
-        showSecteurs: false,
-        showSubSecteurs: false,
-        showOrg: true,
-      })
-    }, 200)
+    setShowElement({ ...showElement, firstLevel: true })
   }
 
-  const handleOrgChange = (e: any) => {
-    setShowElement({ ...showElement, showSubOrg: false })
+  const handleLevel1Change = (e: any) => {
+    setFormInputs({
+      ...formInputs,
+      level1Value: e.target.value,
+      level1ID: e.target.options[e.target.selectedIndex].dataset.id,
+    })
+  }
 
-    setFormInputs({ ...formInputs, selecSubAdm: '', idOrg: e.target.value })
+  const handleSubLevelChange = async (id: any, e: any, index: any) => {
+    const selectedID = e.target.options[e.target.selectedIndex].dataset.id
 
-    setInstitOrProv({
-      ...institOrProv,
-      institution1: e.target.options[e.target.selectedIndex].dataset.institution,
+    const newChildren = children.map((child: any) => {
+      if (id === child.id) {
+        child.subLevelValue = e.target.value
+        child.subLevelID = selectedID
+      }
+      return child
     })
 
-    setLists({ ...lists, subAdministrations: [] })
-    setTimeout(() => {
-      setShowElement({ ...showElement, showSubOrg: true })
-    }, 500)
-  }
+    setChildren(newChildren)
 
-  const handleRegChange = (e: any) => {
-    setFormInputs({ ...formInputs, selectedReg: e.target.value })
-    setInstitOrProv({
-      ...institOrProv,
-      region: e.target.options[e.target.selectedIndex].dataset.region,
-    })
-    setShowElement({ ...showElement, showProv: true, showCollec: false })
-  }
+    const updatedChildren = [...children].slice(0, index + 1)
+    console.log('updatedChildren', updatedChildren)
 
-  const handleSubRegChange = (e: any) => {
-    setFormInputs({ ...formInputs, selectedSubReg: e.target.value })
-    setInstitOrProv({
-      ...institOrProv,
-      province: e.target.options[e.target.selectedIndex].dataset.province,
-    })
-    setShowElement({ ...showElement, showCollec: true })
-  }
-
-  const handleNvChange = (e: any) => {
-    setFormInputs({ ...formInputs, selecSubAdm: e.target.value })
-  }
-
-  const handleCatChange = (e: any) => {
-    setFormInputs({ ...formInputs, category: e.target.value })
-    const filterd = lists.secteurs?.secteurDetails.filter(
-      (sec: any) => sec.category === e.target.value
+    const response = await axios(
+      `http://194.60.201.174:444/api/entite/children/${selectedID}`
     )
 
-    setLists({ ...lists, secteurDetails: filterd })
+    if (response?.data.secteurDetails.length > 0) {
+      const newChildren = {
+        id: uuidv4(),
+        subLevelValue: '',
+        subLevelID: '',
+        subCategory: '',
+        categories: response?.data?.categories,
+        filterChildren: [],
+        childrenDetails: response?.data?.secteurDetails,
+      }
+
+      setChildren([...updatedChildren, newChildren])
+    } else if (
+      response?.data.secteurDetails.length === 0 &&
+      children.length > index + 1
+    ) {
+      const removeLastChild = [...children].slice(0, -1)
+      setChildren(removeLastChild)
+    }
   }
 
-  const handleSubAdminChange = (e: any) => {
-    const selectedID = e.target.options[e.target.selectedIndex].dataset.id
-    setFormInputs({
-      ...formInputs,
-      subAdmVal: e.target.value,
-      subAdmID: selectedID,
+  const handleSubCategoryChange = (id: any, e: any) => {
+    const newChildren = children.map((child: any) => {
+      if (id === child.id) {
+        const filterd = child.childrenDetails.filter(
+          (childDet: any) => childDet.entCategory.slug === e.target.value
+        )
+        console.log('filterd', filterd)
+        child.subCategory = e.target.value
+        child.filterChildren = filterd
+      }
+      return child
     })
-    setTimeout(() => {
-      setShowElement({ ...showElement, showSecteurs: true })
-    }, 500)
-  }
 
-  const handleSecteurChange = (e: any) => {
-    const selecredSectId = e.target.options[e.target.selectedIndex].dataset.id
-    setFormInputs({
-      ...formInputs,
-      secteurVal: e.target.value,
-      secteurID: selecredSectId,
-    })
-    setInstitOrProv({
-      ...institOrProv,
-      institution2: e.target.value,
-    })
-    setTimeout(() => {
-      setShowElement({ ...showElement, showSubSecteurs: true })
-    }, 500)
-  }
-
-  const handleCollecChange = (e: any) => {
-    const selctedID = e.target.options[e.target.selectedIndex].dataset.id
-    setFormInputs({
-      ...formInputs,
-      collecVal: e.target.value,
-      collecID: selctedID,
-    })
-  }
-
-  const handleSubSecteurs2 = (e:any)=>{
-    setInstitOrProv({
-      ...institOrProv,
-      institution3: e.target.value,
-    })
+    setChildren(newChildren)
   }
 
   const handleAddChosenOrg = () => {
-    if (formInputs.subAdmVal) {
-      chosenDispatch({
-        type: 'ADD_CHOSEN_ORGS',
-        payload: {
-          id: formInputs.subAdmID,
-          name: institOrProv.institution3,
-          niveau: formInputs.selecSubAdm,
-          institOrProv1: institOrProv.institution1,
-          institOrProv2: formInputs.subAdmVal,
-          institOrProv3: institOrProv.institution2,
-        },
-      })
-      setFormInputs({ ...formInputs, subAdmVal: '' })
-    }
+    const childrenValues = children.map((child: any) => {
+      return { entiteValue: child.subLevelValue }
+    })
+    chosenDispatch({
+      type: 'ADD_CHOSEN_ORGS',
+      payload: {
+        id: uuidv4(),
+        values: [{ entiteValue: formInputs.level1Value }, ...childrenValues],
+      },
+    })
+    setFirstLevelEntites([])
+    setChildren([])
+    setFormInputs(inputsInitialState)
+    setCategories([])
+    setShowElement(showInitialState)
+  }
 
-    if (formInputs.collecVal) {
-      chosenDispatch({
-        type: 'ADD_CHOSEN_ORGS',
-        payload: {
-          id: formInputs.collecID,
-          name: formInputs.collecVal,
-          niveau: formInputs.selecSubAdm,
-          institOrProv1: institOrProv.region,
-          institOrProv2: institOrProv.province,
-        },
-      })
-      setFormInputs({ ...formInputs, collecVal: '' })
-    }
-
+  const handleCancel = () => {
+    setFirstLevelEntites([])
+    setChildren([])
+    setFormInputs(inputsInitialState)
+    setCategories([])
     setShowElement(showInitialState)
   }
 
   const handleRemoveChosenOrg = (orgID: string) => {
     chosenDispatch({ type: 'REMOVE_CHOSEN_ORGS', payload: orgID })
-    //   const newInstitOrProv = institOrProv.filter((el:any) => {
-    //     return chosenOrgs.some((ch:any)=> ch.institOrProv.indexOf(el) === -1);
-    //  });
-    //  setInstitOrProv(newInstitOrProv)
   }
-
-  const handleCancel = () => {
-    setShowElement(showInitialState)
-  }
-
-  const getOrg = async (selected: string) => {
-    const response = await axios(
-      `https://chafafiya-app-json-server-production.up.railway.app/${selected}`
-    )
-    setLists({ ...lists, organitations: response?.data })
-  }
-
-  const getSubAdm = async () => {
-    const response = await axios(
-      `http://194.60.201.174:444/api/entite/children/${formInputs.idOrg}`
-    )
-    setLists({ ...lists, subAdministrations: response?.data?.secteurDetails })
-  }
-  // console.log('subadmin', lists.subAdministrations)
-  // console.log('formInputs.idOrg',formInputs.idOrg)
-  const getSecteurs = async (selected: any) => {
-    const response = await axios(
-      `http://194.60.201.174:444/api/entite/children/${selected}`
-    )
-    setLists({
-      ...lists,
-      secteurs: response?.data,
-      secteurDetails: response?.data?.secteurDetails,
-    })
-  }
-  console.log('subadmin', lists.secteurs)
-  console.log('formInputs.subAdmID',formInputs.subAdmID)
-  const getSubSecteurs = async (selected: any) => {
-    const response = await axios(
-      `http://194.60.201.174:444/api/entite/children/${selected}`
-    )
-    setLists({
-      ...lists,
-      subSecteurs: response?.data?.secteurDetails,
-    })
-  }
-
-  const getProv = async (selected: string) => {
-    const response = await axios(
-      `https://chafafiya-app-json-server-production.up.railway.app/subRegions?region=${selected}`
-    )
-    setLists({ ...lists, provinces: response?.data })
-  }
-
-  const getColl = async (selected: string) => {
-    const response = await axios(
-      `https://chafafiya-app-json-server-production.up.railway.app/provinces?subRegion=${selected}`
-    )
-    setLists({ ...lists, collectives: response?.data })
-  }
-
-  //test api url
-  const testApi = async (selected: string) => {
-    const testResponse1 = await axios(
-      `http://194.60.201.174:444/api/entite/children/${selected}`
-    )
-    console.log('testReponse1',testResponse1?.data)
-    const testResponse2 = await axios(
-      `http://194.60.201.174:444/api/entite-category`
-    )
-    console.log('testReponse2',testResponse2?.data)
-    const testResponse3 = await axios(
-      `http://194.60.201.174:444/api/entite`
-    )
-    console.log('testReponse3',testResponse3?.data)
-  }
-  useEffect(() => {
-    testApi('39')
-  },[] )
-
 
   useEffect(() => {
-    setShowElement({ ...showElement, showSubOrg: false })
-
-    if (formInputs.selectedOrg) getOrg(formInputs.selectedOrg)
-  }, [formInputs.selectedOrg])
+    if (formInputs.category) getFirstLevelEntites(formInputs.category)
+  }, [formInputs.category])
 
   useEffect(() => {
-    getSubAdm()
-  }, [formInputs.idOrg])
-
-  useEffect(() => {
-    getSecteurs(formInputs.subAdmID)
-  }, [formInputs.subAdmID])
-
-  useEffect(() => {
-    getSubSecteurs(formInputs.secteurID)
-  }, [formInputs.secteurID])
-
-  useEffect(() => {
-    getProv(formInputs.selectedReg)
-  }, [formInputs.selectedReg])
-
-  useEffect(() => {
-    getColl(formInputs.selectedSubReg)
-  }, [formInputs.selectedSubReg])
+    if (formInputs.level1Value) getChildren(formInputs.level1ID)
+    console.log('level1Value', formInputs.level1Value)
+    console.log('level1ID', formInputs.level1ID)
+  }, [formInputs.level1Value])
 
   return (
     <div className="basis-2/3">
@@ -327,21 +186,27 @@ function AdministrationDetails() {
         {chosenOrgs.length > 0 ? (
           <div className="flex flex-wrap">
             {chosenOrgs.map((chOrg: any) => (
-              <div
-                className="ml-2 mb-2 flex w-fit cursor-pointer gap-2 rounded-md bg-cyan-600 px-2 py-0.5 text-white"
-                key={chOrg.id}
-                onClick={() => handleRemoveChosenOrg(chOrg.id)}
-              >
-                <span>{chOrg.institOrProv1}</span>
-                <span className="font-bold">/</span>
-                <span>{chOrg.institOrProv2}</span>
-                <span className="font-bold">/</span>
-                <span>{chOrg.institOrProv3}</span>
-                <span className="font-bold">/</span>
-                <span>{chOrg.name}</span>
-                <span>
-                  <CloseIcon />
-                </span>
+              <div key={chOrg.id} className="relative">
+                <div>
+                  <div className=" ml-2 mb-2 flex w-fit cursor-pointer gap-2 rounded-md bg-cyan-600 px-2 py-0.5 text-white">
+               
+                    {chOrg.values.map((val: any, index: any, arr: any) => (
+                      <div key={val.entiteValue} className="">
+                        <div>
+                        <span className="">{val.entiteValue} </span>
+                      {index != arr.length - 1 && (
+                        <span className="font-bold">/</span>
+                      )}
+                        </div>
+                      </div>
+                    ))}
+
+                    <span onClick={() => handleRemoveChosenOrg(chOrg.id)}>
+                      <CloseIcon />
+                    </span>
+                  </div>
+                </div>
+               
               </div>
             ))}
           </div>
@@ -351,237 +216,90 @@ function AdministrationDetails() {
       </div>
       {showElement.showOrgSec ? (
         <div>
-          <div>
-            <input
-              type="radio"
-              name="type"
-              className="ml-2"
-              value="administrations"
-              onChange={handleAdminChange}
-            />
-            <label>
-              الإدارات العمومية (الوزارات وكتابات الدولة والمندوبيات السامية
-              والوزارية)
-            </label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="type"
-              className="ml-2"
-              value="institutions"
-              onChange={handleAdminChange}
-            />
-            <label>المؤسسات والمقاولات العمومية</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="type"
-              className="ml-2"
-              value="regions"
-              onChange={handleAdminChange}
-            />
-            <label>الجماعات الترابية</label>
-          </div>
-          {showElement.showOrg && (
-            <>
-              <div className="mb-4">
-                {formInputs.selectedOrg === 'regions' ? (
-                  <select
-                    name="region"
-                    className="mt-2 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
-                    onChange={handleRegChange}
-                  >
-                    <option> -- إختر الجهة المعنية -- </option>
-                    {lists.organitations?.map((org: any, index: any) => (
-                      <option key={index} data-region={org.nom} value={org.identifiant}>
-                        {org.nom}
-                      </option>
-                    ))}
-                  </select>
-                ) : (
-                  <select
-                    name="organization"
-                    className="mt-2 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
-                    onChange={handleOrgChange}
-                  >
-                    <option> -- إختر المؤسسة أو الهيئة المعنية -- </option>
-                    {lists.organitations?.map((org: any, index: any) => (
-                      <option
-                        key={index}
-                        value={org.id}
-                        data-institution={org.denomination}
-                      >
-                        {org.denomination}
-                      </option>
-                    ))}
-                  </select>
-                )}
-              </div>
-              <hr />
-            </>
+          {categories && (
+            <div>
+              {categories?.map((cat: any) => (
+                <div key={cat.id}>
+                  <input
+                    type="radio"
+                    name="type"
+                    className="ml-2"
+                    value={cat.id}
+                    onChange={handleCategoriesChange}
+                  />
+                  <label>{cat.title_ar}</label>
+                </div>
+              ))}
+            </div>
           )}
-          {showElement.showSubOrg && (
+
+          {showElement.firstLevel && (
             <div className="mt-4">
-              {/* <div className="ml-8 inline-block">
-                <input
-                  type="radio"
-                  name="niveau"
-                  className="ml-2"
-                  value="0"
-                  onChange={handleNvChange}
-                />
-                <label>مركزية</label>
-              </div>
-              <div className="ml-8 inline-block">
-                <input
-                  type="radio"
-                  name="niveau"
-                  className="ml-2"
-                  value="1"
-                  onChange={handleNvChange}
-                />
-                <label>جهوية</label>
-              </div> */}
-              {/* <div className="ml-8 inline-block">
-                <input
-                  type="radio"
-                  name="niveau"
-                  className="ml-2"
-                  value="2"
-                  onChange={handleNvChange}
-                />
-                <label>إقليمية</label>
-              </div>
-              <div className="ml-8 inline-block">
-                <input
-                  type="radio"
-                  name="niveau"
-                  className="ml-2"
-                  value="3"
-                  onChange={handleNvChange}
-                />
-                <label>محلية</label>
-              </div> */}
               <div>
                 <select
                   name="activity"
-                  value={formInputs.subAdmVal}
+                  value={formInputs.level1Value}
                   className="mt-2 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
-                  onChange={handleSubAdminChange}
+                  onChange={handleLevel1Change}
                 >
-                  <option> -- إختر القطاع المعني -- </option>
-                  {lists.subAdministrations?.map((subAdm: any) => (
-                    <option key={subAdm.entite_id} data-id={subAdm.entite_id}>
-                      {subAdm.denomination_ar}
+                  <option> -- إختر المؤسسة أو الهيئة المعنية -- </option>
+                  {firstLevelEntites?.map((entite: any) => (
+                    <option key={entite.entite_id} data-id={entite.entite_id}>
+                      {entite.denomination_ar}
                     </option>
                   ))}
                 </select>
               </div>
             </div>
           )}
-          {showElement.showSecteurs && (
-            <div>
-              {lists.secteurs?.categories.length > 1 && (
-                <div className="mt-6 flex gap-4">
-                  {lists.secteurs?.categories.map((cat: any) => (
-                    <div key={cat.type} className="">
-                      <input
-                        type="radio"
-                        name="niveau"
-                        className="ml-2"
-                        value={cat.type}
-                        onChange={handleCatChange}
-                      />
-                      <label>{cat.type === 'CENTRAL' ? 'مركزية' : 'جهوية'}</label>
+          {showElement.children && (
+            <div className="mt-4">
+              {children?.map((child: any, index: any) => (
+                <div key={child.id}>
+                  {child.categories?.length > 1 && (
+                    <div className="mt-6 flex gap-4">
+                      {child.categories?.map((cat: any) => (
+                        <div key={cat.type} className="">
+                          <input
+                            type="radio"
+                            name="category"
+                            className="ml-2"
+                            value={cat.type}
+                            onChange={(e) =>
+                              handleSubCategoryChange(child.id, e)
+                            }
+                          />
+                          <label>
+                            {cat.type === 'CENTRAL' ? 'مركزية' : 'جهوية'}
+                          </label>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  )}
+                  <select
+                    name="activity"
+                    value={child.level1Value}
+                    className="mt-2 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
+                    onChange={(e) => handleSubLevelChange(child.id, e, index)}
+                  >
+                    <option> -- إختر المؤسسة الفرعية -- </option>
+                    {child.subCategory && child.categories.length > 1
+                      ? child.filterChildren?.map((childDet: any) => (
+                          <option key={childDet.id} data-id={childDet.id}>
+                            {childDet.denomination_ar}
+                          </option>
+                        ))
+                      : child.childrenDetails?.map((chDet: any) => (
+                          <option key={chDet.id} data-id={chDet.id}>
+                            {chDet.denomination_ar}
+                          </option>
+                        ))}
+                  </select>
                 </div>
-              )}
-              <select
-                name="secteur"
-                value={formInputs.secteurVal}
-                className="mt-2 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
-                onChange={handleSecteurChange}
-              >
-                <option> -- إختر القطاع الثانوي -- </option>
-                {formInputs.category
-                  ? lists.secteurDetails.map((sectDet: any) => (
-                      <option key={sectDet.entite_id} data-id={sectDet.entite_id} value={sectDet.denomination_ar}>
-                        {sectDet.denomination_ar}
-                      </option>
-                    ))
-                  : lists.secteurs?.categories.map((cat: any) => (
-                      <optgroup
-                        key={cat.type}
-                        label={cat.type === 'CENTRAL' ? 'مركزية' : 'جهوية'}
-                      >
-                        {lists.secteurDetails.map(
-                          (sectDet: any) =>
-                            sectDet.category === cat.type && (
-                              <option key={sectDet.entite_id} data-id={sectDet.entite_id}>
-                                {sectDet.denomination_ar}
-                              </option>
-                            )
-                        )}
-                      </optgroup>
-                    ))}
-              </select>
-            </div>
-          )}
-          {showElement.showSubSecteurs && (
-            <div className="mt-6">
-              <select
-                name="activity"
-                className="mt-2 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
-                onChange={handleSubSecteurs2}
-              >
-                <option> -- إختر القطاع الثانوي/2 -- </option>
-                {lists.subSecteurs?.map((subSect: any) => (
-                  <option key={subSect.entite_id} value={subSect.denomination_ar}>{subSect.denomination_ar}</option>
-                ))}
-              </select>
+              ))}
             </div>
           )}
 
-          {showElement.showProv && (
-            <div>
-              <select
-                name="activity"
-                className="mt-2 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
-                onChange={handleSubRegChange}
-              >
-                <option> -- إختر المجلس الجهوي أو العمالة / الإقليم -- </option>
-                {lists.provinces?.map((prov: any) => (
-                  <option
-                    key={prov.id}
-                    value={prov.id}
-                    data-province={prov.denomination}
-                  >
-                    {prov.denomination}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
-          {showElement.showCollec && (
-            <div>
-              <select
-                name="activity"
-                value={formInputs.collecVal}
-                className="mt-2 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
-                onChange={handleCollecChange}
-              >
-                <option> -- إختر المجلس الإقليمي أو الجماعة المعنية -- </option>
-                {lists.collectives?.map((coll: any) => (
-                  <option key={coll.id} data-id={coll.id}>
-                    {coll.denomination}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
           <div className="mt-3 flex justify-end gap-4 text-lg underline">
             <button className="flex gap-1 text-blue-900" onClick={handleCancel}>
               إلغاء
@@ -599,7 +317,7 @@ function AdministrationDetails() {
       ) : (
         <button
           className="flex items-center gap-1 text-blue-900"
-          onClick={() => setShowElement({ ...showElement, showOrgSec: true })}
+          onClick={getCategories}
         >
           <span className="text-md underline"> إضافة مؤسسة أو هيئة معنية </span>{' '}
           <span className="font-bold">
