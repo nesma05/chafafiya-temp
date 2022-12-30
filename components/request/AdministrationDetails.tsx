@@ -61,10 +61,10 @@ function AdministrationDetails() {
         filterChildren: [],
         childrenDetails: response?.data?.secteurDetails,
       }
-      setChildren([...children, newChildren])
+      setChildren([newChildren])
       setShowElement({ ...showElement, children: true })
     }
-  }
+  } 
 
   const handleCategoriesChange = (e: any) => {
     setFormInputs({
@@ -270,7 +270,7 @@ function AdministrationDetails() {
                             }
                           />
                           <label>
-                            {cat.type === 'CENTRAL' ? 'مركزية' : 'جهوية'}
+                            {cat.title}
                           </label>
                         </div>
                       ))}
