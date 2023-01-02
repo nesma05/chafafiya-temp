@@ -15,8 +15,6 @@ const ResDetails = ({ rows, open }: any) => {
   const indexOfLastRows = currentPage * rowsPerPage
   const indexOfFirstRows = indexOfLastRows - rowsPerPage
   const currentRows = rows.slice(indexOfFirstRows, indexOfLastRows)
-  console.log('indexOfFirstRows', indexOfFirstRows)
-  console.log('indexOfLastRows', indexOfLastRows)
 
   // const handleNextbtn = () => {
   //   setCurrentPage(currentPage + 1)

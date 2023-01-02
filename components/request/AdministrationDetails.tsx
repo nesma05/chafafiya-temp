@@ -3,36 +3,39 @@ import { v4 as uuidv4 } from 'uuid'
 import { useEffect, useState } from 'react'
 import { requestState } from '../../context/formContext'
 import { CloseIcon, NoteIcon, PlusIcon } from '../icons'
-
-const showInitialState = {
-  showOrgSec: false,
-  firstLevel: false,
-  children: false,
-}
-
-const inputsInitialState = {
-  category: '',
-  level1Value: '',
-  level1ID: '',
-}
+import config from '../../utils/config'
 
 function AdministrationDetails() {
+  const showInitialState = {
+    showOrgSec: false,
+    firstLevel: false,
+    children: false,
+  }
+
+  const inputsInitialState = {
+    category: '',
+    level1Value: '',
+    level1ID: '',
+  }
+
   const [showElement, setShowElement] = useState(showInitialState)
   const [formInputs, setFormInputs] = useState(inputsInitialState)
   const [categories, setCategories] = useState([])
   const [firstLevelEntites, setFirstLevelEntites] = useState([])
   const [children, setChildren] = useState<any>([])
-  const [showNote, setShowNote] = useState(false)
 
-  console.log('childen', children)
+  const { baseUrl,envMode } = config
+
+ 
   const {
     chosenState: { chosenOrgs },
     chosenDispatch,
   } = requestState()
-  console.log('chosenOrgs', chosenOrgs)
+  if(envMode == "development") console.log('chosenOrgs', chosenOrgs)
+ 
   const getCategories = async () => {
     const response = await axios(
-      'http://194.60.201.174:444/api/entite-category/PRIMARY'
+      `${baseUrl}/api/entite-category/PRIMARY`
     )
     setCategories(response?.data)
     setShowElement({ ...showElement, showOrgSec: true })
@@ -40,7 +43,7 @@ function AdministrationDetails() {
 
   const getFirstLevelEntites = async (selected: string) => {
     const response = await axios(
-      `http://194.60.201.174:444/api/entite/category/${selected}/niveau/1`
+      `${baseUrl}/api/entite/category/${selected}/niveau/1`
     )
     setFirstLevelEntites(response?.data)
   }
@@ -49,7 +52,7 @@ function AdministrationDetails() {
     const emptyChildren: any[] = []
     setChildren(emptyChildren)
     const response = await axios(
-      `http://194.60.201.174:444/api/entite/children/${id}`
+      `${baseUrl}/api/entite/children/${id}`
     )
     if (response?.data.secteurDetails.length > 0) {
       const newChildren = {
@@ -98,7 +101,7 @@ function AdministrationDetails() {
     setChildren(newChildren)
 
     const updatedChildren = [...children].slice(0, index + 1)
-    console.log('updatedChildren', updatedChildren)
+   
 
     const response = await axios(
       `http://194.60.201.174:444/api/entite/children/${selectedID}`
@@ -131,9 +134,9 @@ function AdministrationDetails() {
     const newChildren = updatedChildren.map((child: any) => {
       if (id === child.id) {
         const filterd = child.childrenDetails.filter(
-          (childDet: any) => childDet.entCategory.slug === e.target.value
+          (childDet: any) => childDet.entCategory?.slug === e.target.value
         )
-        console.log('filterd', filterd)
+       
         child.subCategory = e.target.value
         child.filterChildren = filterd
       }
@@ -179,8 +182,7 @@ function AdministrationDetails() {
 
   useEffect(() => {
     if (formInputs.level1Value) getChildren(formInputs.level1ID)
-    console.log('level1Value', formInputs.level1Value)
-    console.log('level1ID', formInputs.level1ID)
+
   }, [formInputs.level1Value])
 
   return (

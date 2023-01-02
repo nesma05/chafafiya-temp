@@ -3,6 +3,7 @@ import { requestState } from '../../context/formContext'
 import PageTitle from '../Layout/PageTitle'
 import { saveAs } from 'file-saver'
 import { useState } from 'react'
+import config from '../../utils/config'
 
 function FormContainer({ title, children }: any) {
   const [showButton, setShowButton] = useState(false)
@@ -10,6 +11,9 @@ function FormContainer({ title, children }: any) {
   const {
     chosenState: { chosenOrgs },
   } = requestState()
+
+ 
+ const { baseUrl,envMode } = config
 
   const handleSubmit = (e: any) => {
     e.preventDefault()
@@ -20,7 +24,7 @@ function FormContainer({ title, children }: any) {
 
     const requestedInfo = myFormData.getAll('requestedInfo')
     Object.assign(formDataObj, { requestedInfo })
-    console.log({ formDataObj })
+    if(envMode == "development") console.log({ formDataObj })
 
     // axios
     //   .post('http://localhost:5000/create-pdf', formDataObj)
@@ -39,11 +43,8 @@ function FormContainer({ title, children }: any) {
         msg: 'works',
       })
       .then((res) => {
-        console.log('dataBack', res.data)
         if (!res.data) {
-          console.log('not yet')
         } else {
-          console.log('ready')
           setTimeout(() => {
             setShowSpinner(false)
             setShowButton(true)

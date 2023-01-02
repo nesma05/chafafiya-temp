@@ -5,24 +5,18 @@ import DictionnaryTerms from './DictionnaryTerms'
 import ToggleDrawer from './ToggleDrawer'
 import { dictionaryList } from '../../utils/constants'
 
-
-
 const Drawer = () => {
   const [showDrawer, setShowDrawer] = useState(false)
   const [searchText, setSearchText] = useState('')
   const [listTerms, setListTerms] = useState<object[]>([])
   useEffect(() => {
-    console.log('dictionaryList', dictionaryList)
     const terms = dictionaryList
       .map((term: any) => {
         return [...term.termsList]
       })
       .flat()
-    console.log('terms', terms)
 
     setListTerms(terms)
-
-    console.log('dictionaryList2', dictionaryList)
   }, [])
   return (
     <>
@@ -65,7 +59,7 @@ const Drawer = () => {
             <div className="mt-4">
               {listTerms
                 .filter((t: any) => t.title.includes(searchText))
-                .map((term: any,index:any) => (
+                .map((term: any, index: any) => (
                   <Terms key={index} term={term} color={'white'} />
                 ))}
             </div>

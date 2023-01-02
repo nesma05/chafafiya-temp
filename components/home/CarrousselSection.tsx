@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import { MinusIcon, NextIcon, PreviousIcon } from '../icons'
 import Modal from './Modal'
+import ImageVideoModal from './ImageVideoModal'
 
 const slides = [
   {
@@ -28,8 +29,6 @@ const Carroussel = () => {
   const [tempSource, setTempSource] = useState('')
   const timeoutRef = useRef<any>(null)
   const { push } = useRouter()
-
-  console.log('currentIndex', currentIndex)
 
   function resetTimeout() {
     if (timeoutRef.current) {
@@ -73,12 +72,9 @@ const Carroussel = () => {
 
   return (
     <>
-      <Modal
-        tempSource={tempSource}
-        handleClose={handleClose}
-        modal={modal}
-        type={'video'}
-      />
+      <Modal handleClose={handleClose} modal={modal}>
+        <ImageVideoModal tempSource={tempSource} type="video" />
+      </Modal>
       <div className="group relative m-auto h-[350px] w-[60%] py-16 px-4">
         <div
           style={{ backgroundImage: `url(${slides[currentIndex].imagePath})` }}

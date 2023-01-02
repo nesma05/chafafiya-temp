@@ -5,8 +5,7 @@ import PageTitle from '../Layout/PageTitle'
 
 const Table = ({ rows }) => {
   const columns = Object.keys(rows[0])
-  console.log('columns', columns)
-  console.log('length', rows.length)
+
   const [query, setQuery] = useState({
     col1: '',
     col2: '',
@@ -17,7 +16,7 @@ const Table = ({ rows }) => {
     col7: '',
     col8: '',
   })
-  console.log('values', Object.values(query))
+
   const [currentPage, setCurrentPage] = useState(1)
   const [rowsPerPage] = useState(10)
   // const pageNumbers = []

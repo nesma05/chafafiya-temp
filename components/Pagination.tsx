@@ -14,8 +14,7 @@ const Pagination = ({
   setminPageNumberLimit,
 }: any) => {
   const pageNumbers: number[] = []
-  console.log('maxPageNumberLimit', maxPageNumberLimit)
-  console.log('pageNumbers', pageNumbers)
+
 
   //   const [pageNumberLimit] = useState(5)
   //   const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5)

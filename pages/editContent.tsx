@@ -12,9 +12,11 @@ import ResponsableHeader from '../components/responsable/ResponsableHeader'
 import axios from 'axios'
 import { illustrationsList, lawList, videosList } from '../utils/constants'
 import QuestionAnswer from '../components/law/QuestionAnswer'
-
+import config from '../utils/config'
 import IllustrationsSection from '../components/law/IllustrationsSection'
 import SubTitle from '../components/home/SubTitle'
+import EditEntitiesModal from '../components/editContent/EditEntitiesModal'
+import AddEntitiesModal from '../components/editContent/AddEntitiesModal'
 
 const sideBarList = [
   {
@@ -98,6 +100,9 @@ const EditContent: PageWithSecondaryLayoutType = ({
 
   const Router = useRouter()
 
+  
+ const {baseUrl}=config
+
   const handleClose = () => {
     setModal(false)
     setEditModal(false)
@@ -136,32 +141,31 @@ const EditContent: PageWithSecondaryLayoutType = ({
   }
 
   const getCategories = async () => {
-    const CatygoryType = Router.query.adminNiveau ? 'PRIMARY':'SECONDARY'
+    const CatygoryType = Router.query.adminNiveau ? 'PRIMARY' : 'SECONDARY'
     const response = await axios(
-      `http://194.60.201.174:444/api/entite-category/${CatygoryType}`
+      `${baseUrl}/api/entite-category/${CatygoryType}`
     )
 
     setCategories(response?.data)
   }
 
   const getEntites = async () => {
-    const response = await axios(`http://194.60.201.174:444/api/entite`)
+    const response = await axios(`${baseUrl}/api/entite`)
     setEntites(response?.data)
   }
 
   const getOneEntite = async (id: any) => {
     setOneEntite({})
-    const response = await axios(`http://194.60.201.174:444/api/entite/${id}`)
-   
+    const response = await axios(`${baseUrl}/api/entite/${id}`)
 
     const response2 = await axios(
-      `http://194.60.201.174:444/api/entite/${response?.data?.parentId}`
+      `${baseUrl}/api/entite/${response?.data?.parentId}`
     )
     const entiteToEdit = {
       id,
-      category:response?.data?.entCategory?.title_ar,
-      entiteName:response?.data?.denomination_ar,
-      parentName:response2?.data?.denomination_ar
+      category: response?.data?.entCategory?.title_ar,
+      entiteName: response?.data?.denomination_ar,
+      parentName: response2?.data?.denomination_ar,
     }
     setOneEntite(entiteToEdit)
   }
@@ -202,95 +206,91 @@ const EditContent: PageWithSecondaryLayoutType = ({
             ))}
           </ul>
         </div>
-        {!Router.query.adminNiveau &&
-          !Router.query.parentId && (
-            <div className="flex-1">
-              <div className="flex h-[200px] items-center">
-                <div className="mx-auto flex w-[70%] items-center gap-3">
-                  <div className="flex-1">
-                    <div className="flex gap-8">
-                      <label className="mb-1.5 inline-block">
-                        {' '}
-                        عنوان الصفحة:
-                      </label>
-                      <div>
-                        {langLists.map((lang: any, index: any) => (
-                          <span
-                            key={lang.id}
-                            className={`cursor-pointer border-r-2 border-main px-2 font-bold ${
-                              selectedItem === index ? 'text-main' : ''
-                            }`}
-                            onClick={() => handleItemClick(index)}
-                          >
-                            {lang.text}
-                          </span>
-                        ))}
-                      </div>
+        {!Router.query.adminNiveau && !Router.query.parentId && (
+          <div className="flex-1">
+            <div className="flex h-[200px] items-center">
+              <div className="mx-auto flex w-[70%] items-center gap-3">
+                <div className="flex-1">
+                  <div className="flex gap-8">
+                    <label className="mb-1.5 inline-block">
+                      {' '}
+                      عنوان الصفحة:
+                    </label>
+                    <div>
+                      {langLists.map((lang: any, index: any) => (
+                        <span
+                          key={lang.id}
+                          className={`cursor-pointer border-r-2 border-main px-2 font-bold ${
+                            selectedItem === index ? 'text-main' : ''
+                          }`}
+                          onClick={() => handleItemClick(index)}
+                        >
+                          {lang.text}
+                        </span>
+                      ))}
                     </div>
-                    <input
-                      dir={toggleIndex > 1 ? 'ltr' : 'rtl'}
-                      className="text-md mt-1.5 w-full rounded-md border border-gray-300 p-3 text-sm text-gray-800 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
-                      placeholder="عنوان الصفحة"
-                      name="firstname"
-                      type="text"
-                      value={inputContent()}
-                    />
                   </div>
-                </div>
-              </div>
-              <div className="mx-auto mb-20 w-[80%]">
-                <div className="overflow-hidden rounded-t-xl border">
-                  {lawList.map((list: any, index: any) => (
-                    <QuestionAnswer
-                      key={list.id}
-                      term={list}
-                      handleToggle={handleToggle}
-                      index={index}
-                      selected={selected}
-                      responsable={true}
-                    />
-                  ))}
-                </div>
-                <div className="mt-14 px-1">
-                  <SubTitle>رسوم بيانية</SubTitle>
-                  <IllustrationsSection
-                    illustrationsList={illustrationsList}
-                    type="image"
-                    withModal={false}
-                  />
-                </div>
-                <div className="mt-14 px-1">
-                  <SubTitle>مقاطع مرئية</SubTitle>
-                  <IllustrationsSection
-                    illustrationsList={videosList}
-                    type="video"
-                    withModal={false}
+                  <input
+                    dir={toggleIndex > 1 ? 'ltr' : 'rtl'}
+                    className="text-md mt-1.5 w-full rounded-md border border-gray-300 p-3 text-sm text-gray-800 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
+                    placeholder="عنوان الصفحة"
+                    name="firstname"
+                    type="text"
+                    defaultValue={inputContent()}
                   />
                 </div>
               </div>
             </div>
-          )}
-        {(Router.query.adminNiveau ||
-          Router.query.parentId) && (
+            <div className="mx-auto mb-20 w-[80%]">
+              <div className="overflow-hidden rounded-t-xl border">
+                {lawList.map((list: any, index: any) => (
+                  <QuestionAnswer
+                    key={list.id}
+                    term={list}
+                    handleToggle={handleToggle}
+                    index={index}
+                    selected={selected}
+                    responsable={true}
+                  />
+                ))}
+              </div>
+              <div className="mt-14 px-1">
+                <SubTitle>رسوم بيانية</SubTitle>
+                <IllustrationsSection
+                  illustrationsList={illustrationsList}
+                  type="image"
+                  withModal={false}
+                />
+              </div>
+              <div className="mt-14 px-1">
+                <SubTitle>مقاطع مرئية</SubTitle>
+                <IllustrationsSection
+                  illustrationsList={videosList}
+                  type="video"
+                  withModal={false}
+                />
+              </div>
+            </div>
+          </div>
+        )}
+        {(Router.query.adminNiveau || Router.query.parentId) && (
           <div className="min-h-[500px] flex-1">
-            <Modal
-              handleClose={handleClose}
-              modal={modal}
-              type={'addAdminLevel1'}
-              categories={categories}
-              niveau={adminNiveau}
-              parentId={parentId}
-            />
-            <Modal
-              handleClose={handleClose}
-              modal={editModal}
-              type={'editAdmin'}
-              categories={categories}
-              entites={entites}
-              oneEntite={oneEntite}
-              niveau={adminNiveau}
-              parentId={parentId}
-            />
+            <Modal handleClose={handleClose} modal={modal}>
+              <AddEntitiesModal
+                handleClose={handleClose}
+                categories={categories}
+                niveau={adminNiveau}
+                parentId={parentId}
+              />
+            </Modal>
+            <Modal modal={editModal}>
+              <EditEntitiesModal
+                handleClose={handleClose}
+                categories={categories}
+                entites={entites}
+                oneEntite={oneEntite}
+              />
+            </Modal>
             <div className="p-8">
               {Router.query.parentId ? (
                 <div className="flex items-center gap-10 text-lg underline">

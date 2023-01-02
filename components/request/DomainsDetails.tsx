@@ -6,13 +6,12 @@ const DomainsDetails = () => {
   const [selectedDomain, setSelectedDomain] = useState('')
   const [domains, setDomains] = useState<any>([])
   const [SubDomains, setSubDomains] = useState([])
-  console.log('domains', domains)
+ 
 
   const {
     chosenState: { chosenOrgs },
   } = requestState()
-  console.log('chosenOrgs2', chosenOrgs)
-
+  
   const getDomains = async (instId: any) => {
     const response = await axios(
       `https://chafafiya-app-json-server-production.up.railway.app/domains?institution=${instId}`

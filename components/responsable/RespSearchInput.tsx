@@ -7,7 +7,7 @@ const RespSearchInput = ({ button }: any) => {
   const [open, setOpen] = useState(false)
   const [searchValue, setSearchValue] = useState('')
   const [colleaguesList, setColleaguesList] = useState<object[]>([])
-  console.log('open', open)
+ 
   const handleClick = (value:string) => {
     setSearchValue(value)
   }

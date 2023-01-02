@@ -1,6 +1,8 @@
 import { useState } from 'react'
+
 import Modal from '../home/Modal'
 import { ChevronDown, DotsIcon } from '../icons'
+import EditContentModal from '../editContent/EditContentModal'
 
 const QuestionAnswer = ({
   term,
@@ -18,7 +20,9 @@ const QuestionAnswer = ({
 
   return (
     <div className=" w-[100%] ">
-      <Modal handleClose={handleClose} modal={modal} type={'respQuesAns'} />
+      <Modal handleClose={handleClose} modal={modal}>
+        <EditContentModal />
+      </Modal>
       <div className="flex">
         {responsable && (
           <div
@@ -33,10 +37,13 @@ const QuestionAnswer = ({
                   : 'invisible translate-y-0 opacity-0'
               }`}
             >
-              <li onClick={()=> setModal(true)} className="text-sm py-1 px-5 transition-all duration-200 hover:bg-gray-200">
+              <li
+                onClick={() => setModal(true)}
+                className="py-1 px-5 text-sm transition-all duration-200 hover:bg-gray-200"
+              >
                 تحيين
               </li>
-              <li className="text-sm py-1 px-5 transition-all duration-200 hover:bg-gray-200">
+              <li className="py-1 px-5 text-sm transition-all duration-200 hover:bg-gray-200">
                 حذف
               </li>
             </ul>

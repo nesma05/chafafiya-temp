@@ -38,17 +38,18 @@ const editorContent = `<div style='text-align:right'>
 </div>`
 
 const Modal = ({
-  tempSource,
+   tempSource,
   handleClose,
   modal,
-  type,
-  categories,
-  entites,
-  oneEntite,
-  niveau,
-  parentId,
+   type,
+  // categories,
+  // entites,
+  // oneEntite,
+  // niveau,
+  // parentId,
+  children
 }: any) => {
-  console.log('oneEntite', oneEntite)
+ 
   const [category, setCategory] = useState('')
   const [categoryID, setCategoryID] = useState('')
   const [administration, setAdministration] = useState('')
@@ -57,12 +58,12 @@ const Modal = ({
 
   const Router = useRouter()
 
-  const sentAddedData = {
-    parentId: parentId ? parentId : null,
-    entCategoryId: categoryID,
-    denomination_ar: administration,
-    niveau: niveau ? niveau : null,
-  }
+  // const sentAddedData = {
+  //   parentId: parentId ? parentId : null,
+  //   entCategoryId: categoryID,
+  //   denomination_ar: administration,
+  //   niveau: niveau ? niveau : null,
+  // }
 
   const sentEditedData = {
     parentId: parentEntiteID ? parentEntiteID : 0,
@@ -88,63 +89,65 @@ const Modal = ({
     handleClose()    
   }
 
-  const handleSave = (type: string, e: any) => {
-    e.target.disabled = true
-    if (type === 'add') {
-      console.log('add')
-      axios
-        .post('http://194.60.201.174:444/api/entite', sentAddedData)
-        .then((res: any) => {
-          if (res) {
-            e.target.disabled = false
-            Router.push(`${Router.asPath}`)
+  // const handleSave = (type: string, e: any) => {
+  //   e.target.disabled = true
+  //   if (type === 'add') {
+  //    
+  //     axios
+  //       .post('http://194.60.201.174:444/api/entite', sentAddedData)
+  //       .then((res: any) => {
+  //         if (res) {
+  //           e.target.disabled = false
+  //           Router.push(`${Router.asPath}`)
 
-            setCategory('')
-            setAdministration('')
-            handleClose()
-          }
-        })
-    } else {
-      console.log('edit')
-      axios
-        .patch(
-          `http://194.60.201.174:444/api/entite/${oneEntite?.id}`,
-          sentEditedData
-        )
-        .then((res: any) => {
-          if (res) {
-            e.target.disabled = false
-            Router.push(`${Router.asPath}`)
+  //           setCategory('')
+  //           setAdministration('')
+  //           handleClose()
+  //         }
+  //       })
+  //   } else {
+  //    
+  //     axios
+  //       .patch(
+  //         `http://194.60.201.174:444/api/entite/${oneEntite?.id}`,
+  //         sentEditedData
+  //       )
+  //       .then((res: any) => {
+  //         if (res) {
+  //           e.target.disabled = false
+  //           Router.push(`${Router.asPath}`)
 
-            setCategory('')
-            setAdministration('')
-            setParentEntite('')
-            handleClose()
-          }
-        })
-    }
-  }
+  //           setCategory('')
+  //           setAdministration('')
+  //           setParentEntite('')
+  //           handleClose()
+  //         }
+  //       })
+  //   }
+  // }
 
-  useEffect(() => {
-    setCategory(oneEntite?.category)
-    setAdministration(oneEntite?.entiteName)
-    setParentEntite(oneEntite?.parentName)
-  }, [oneEntite])
+  // useEffect(() => {
+  //   setCategory(oneEntite?.category)
+  //   setAdministration(oneEntite?.entiteName)
+  //   setParentEntite(oneEntite?.parentName)
+  // }, [oneEntite])
 
   return (
     <div className={modal ? 'modal open' : 'modal'}>
-      {type === 'image' && (
+      {children}
+      {/* {type === 'image' && (
         <img src={tempSource} className=" h-auto w-4/6 sm:w-3/6" />
-      )}
-      {type === 'video' && (
+      )} 
+      
+       {type === 'video' && (
         <iframe
           width="560"
           height="315"
           src={tempSource}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         ></iframe>
-      )}
-      {type === 'respQuesAns' && (
+      )} */}
+      {/* {type === 'respQuesAns' && (
         <div className="sm:w-6/6 flex h-[90%] w-5/6 items-start rounded-lg bg-white py-4">
           <div className="mx-auto w-[95%]">
             <div>
@@ -203,8 +206,8 @@ const Modal = ({
             </button>
           </div>
         </div>
-      )}
-      {type === 'addAdminLevel1' && (
+      )} */}
+      {/* {type === 'addAdminLevel1' && (
         <div className="h-[400px] w-[500px] overflow-hidden rounded bg-white">
           <h2 className="bg-gray-300 py-2 px-6 font-bold">إضافة إدارة جديدة</h2>
           <div className="flex flex-col gap-10 p-10">
@@ -311,7 +314,7 @@ const Modal = ({
             </button>
           </div>
         </div>
-      )}
+      )} */}
       <span className="close" onClick={handleClose}>
         <CloseIcon />
       </span>

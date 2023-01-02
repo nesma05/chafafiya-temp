@@ -4,6 +4,7 @@ import { SearchIcon } from '../icons'
 import useTranslation from '../../utils/customHooks'
 import { searchState } from '../../context/searchContext'
 import { InfoState } from '../../context/filterContext'
+import config from '../../utils/config'
 
 const SearchInput = ({ button }: any) => {
   const router = useRouter()
@@ -13,8 +14,10 @@ const SearchInput = ({ button }: any) => {
 
   const searchInput = useRef<HTMLInputElement>(null)
 
+  const {envMode}=config
+
   const handleSearch = (e: any) => {
-    console.log('works')
+    if (envMode == "development") console.log('works')
     e.preventDefault()
     const term = searchInput.current?.value
     dispatch({ type: 'SET_SEARCH_TERM', payload: term })

@@ -51,13 +51,13 @@ function AdministrationDetails() {
   const [formInputs, setFormInputs] = useState(inputsInitialState)
   const [lists, setLists] = useState<any>(ListsInitialsState)
   const [institOrProv, setInstitOrProv] = useState(instiOrProvInitialState)
-  console.log('secteurs', lists.secteurs)
+ 
 
   const {
     chosenState: { chosenOrgs },
     chosenDispatch,
   } = requestState()
-  console.log('category', formInputs.category)
+
 
   const handleAdminChange = (e: any) => {
     setFormInputs({
@@ -234,8 +234,7 @@ function AdministrationDetails() {
     )
     setLists({ ...lists, subAdministrations: response?.data?.secteurDetails })
   }
-  // console.log('subadmin', lists.subAdministrations)
-  // console.log('formInputs.idOrg',formInputs.idOrg)
+
   const getSecteurs = async (selected: any) => {
     const response = await axios(
       `http://194.60.201.174:444/api/entite/children/${selected}`
@@ -246,8 +245,7 @@ function AdministrationDetails() {
       secteurDetails: response?.data?.secteurDetails,
     })
   }
-  console.log('subadmin', lists.secteurs)
-  console.log('formInputs.subAdmID',formInputs.subAdmID)
+
   const getSubSecteurs = async (selected: any) => {
     const response = await axios(
       `http://194.60.201.174:444/api/entite/children/${selected}`
@@ -277,15 +275,15 @@ function AdministrationDetails() {
     const testResponse1 = await axios(
       `http://194.60.201.174:444/api/entite/children/${selected}`
     )
-    console.log('testReponse1',testResponse1?.data)
+   
     const testResponse2 = await axios(
       `http://194.60.201.174:444/api/entite-category`
     )
-    console.log('testReponse2',testResponse2?.data)
+  
     const testResponse3 = await axios(
       `http://194.60.201.174:444/api/entite`
     )
-    console.log('testReponse3',testResponse3?.data)
+   
   }
   useEffect(() => {
     testApi('39')
