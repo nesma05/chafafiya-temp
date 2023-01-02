@@ -24,19 +24,16 @@ function AdministrationDetails() {
   const [firstLevelEntites, setFirstLevelEntites] = useState([])
   const [children, setChildren] = useState<any>([])
 
-  const { baseUrl,envMode } = config
+  const { baseUrl, envMode } = config
 
- 
   const {
     chosenState: { chosenOrgs },
     chosenDispatch,
   } = requestState()
-  if(envMode == "development") console.log('chosenOrgs', chosenOrgs)
- 
+  if (envMode == 'development') console.log('chosenOrgs', chosenOrgs)
+
   const getCategories = async () => {
-    const response = await axios(
-      `${baseUrl}/api/entite-category/PRIMARY`
-    )
+    const response = await axios(`${baseUrl}/api/entite-category/PRIMARY`)
     setCategories(response?.data)
     setShowElement({ ...showElement, showOrgSec: true })
   }
@@ -51,9 +48,7 @@ function AdministrationDetails() {
   const getChildren = async (id: string) => {
     const emptyChildren: any[] = []
     setChildren(emptyChildren)
-    const response = await axios(
-      `${baseUrl}/api/entite/children/${id}`
-    )
+    const response = await axios(`${baseUrl}/api/entite/children/${id}`)
     if (response?.data.secteurDetails.length > 0) {
       const newChildren = {
         id: uuidv4(),
@@ -74,6 +69,8 @@ function AdministrationDetails() {
     setFormInputs({
       ...formInputs,
       category: e.target.value,
+      level1Value: '',
+      level1ID: '',
     })
 
     setShowElement({ ...showElement, firstLevel: true })
@@ -101,7 +98,6 @@ function AdministrationDetails() {
     setChildren(newChildren)
 
     const updatedChildren = [...children].slice(0, index + 1)
-   
 
     const response = await axios(
       `http://194.60.201.174:444/api/entite/children/${selectedID}`
@@ -136,7 +132,7 @@ function AdministrationDetails() {
         const filterd = child.childrenDetails.filter(
           (childDet: any) => childDet.entCategory?.slug === e.target.value
         )
-       
+
         child.subCategory = e.target.value
         child.filterChildren = filterd
       }
@@ -182,7 +178,6 @@ function AdministrationDetails() {
 
   useEffect(() => {
     if (formInputs.level1Value) getChildren(formInputs.level1ID)
-
   }, [formInputs.level1Value])
 
   return (
