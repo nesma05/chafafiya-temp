@@ -91,7 +91,7 @@ const EditContent: PageWithSecondaryLayoutType = ({
   const [toggleIndex, setToggleIndex] = useState(1)
   const [categories, setCategories] = useState([])
   const [entites, setEntites] = useState([])
-  const [entiteID, setEntiteID] = useState('')
+  const [oneEntite, setOneEntite] = useState({})
 
   const [modal, setModal] = useState(false)
   const [editModal, setEditModal] = useState(false)
@@ -149,13 +149,30 @@ const EditContent: PageWithSecondaryLayoutType = ({
     setEntites(response?.data)
   }
 
+  const getOneEntite = async (id: any) => {
+    setOneEntite({})
+    const response = await axios(`http://194.60.201.174:444/api/entite/${id}`)
+   
+
+    const response2 = await axios(
+      `http://194.60.201.174:444/api/entite/${response?.data?.parentId}`
+    )
+    const entiteToEdit = {
+      id,
+      category:response?.data?.entCategory?.title_ar,
+      entiteName:response?.data?.denomination_ar,
+      parentName:response2?.data?.denomination_ar
+    }
+    setOneEntite(entiteToEdit)
+  }
+
   const handleAddAdmin = () => {
     getCategories()
     setModal(true)
   }
 
   const handleEditAdmin = (id: any) => {
-    setEntiteID(id)
+    getOneEntite(id)
     getCategories()
     getEntites()
     setEditModal(true)
@@ -270,7 +287,7 @@ const EditContent: PageWithSecondaryLayoutType = ({
               type={'editAdmin'}
               categories={categories}
               entites={entites}
-              entiteID={entiteID}
+              oneEntite={oneEntite}
               niveau={adminNiveau}
               parentId={parentId}
             />

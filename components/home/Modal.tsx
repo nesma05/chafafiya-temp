@@ -44,18 +44,16 @@ const Modal = ({
   type,
   categories,
   entites,
-  entiteID,
+  oneEntite,
   niveau,
   parentId,
 }: any) => {
-  console.log('Entite', entiteID)
+  console.log('oneEntite', oneEntite)
   const [category, setCategory] = useState('')
   const [categoryID, setCategoryID] = useState('')
   const [administration, setAdministration] = useState('')
   const [parentEntite, setParentEntite] = useState('')
-  const [parentEntiteID, setParentEntiteID] = useState('')
-
-  console.log('entiteID', entiteID)
+  const [parentEntiteID, setParentEntiteID] = useState()
 
   const Router = useRouter()
 
@@ -63,7 +61,7 @@ const Modal = ({
     parentId: parentId ? parentId : null,
     entCategoryId: categoryID,
     denomination_ar: administration,
-    niveau: niveau,
+    niveau: niveau ? niveau : null,
   }
 
   const sentEditedData = {
@@ -83,14 +81,26 @@ const Modal = ({
     setParentEntiteID(e.target.options[e.target.selectedIndex].dataset.id)
   }
 
-  const handleSave = (type: string) => {
+  const handleCancel = () => {
+    setCategory('')
+    setAdministration('')
+    setParentEntite('')  
+    handleClose()    
+  }
+
+  const handleSave = (type: string, e: any) => {
+    e.target.disabled = true
     if (type === 'add') {
       console.log('add')
       axios
         .post('http://194.60.201.174:444/api/entite', sentAddedData)
         .then((res: any) => {
           if (res) {
+            e.target.disabled = false
             Router.push(`${Router.asPath}`)
+
+            setCategory('')
+            setAdministration('')
             handleClose()
           }
         })
@@ -98,39 +108,28 @@ const Modal = ({
       console.log('edit')
       axios
         .patch(
-          `http://194.60.201.174:444/api/entite/${entiteID}`,
+          `http://194.60.201.174:444/api/entite/${oneEntite?.id}`,
           sentEditedData
         )
         .then((res: any) => {
           if (res) {
+            e.target.disabled = false
             Router.push(`${Router.asPath}`)
+
+            setCategory('')
+            setAdministration('')
+            setParentEntite('')
             handleClose()
           }
         })
     }
   }
 
-  const getEntite = async (id: any) => {
-    const response = await axios(`http://194.60.201.174:444/api/entite/${id}`)
-    setAdministration(response?.data?.denomination_ar)
-    setCategory(response?.data?.entCategory?.title_ar)
-
-    const response2 = await axios(
-      `http://194.60.201.174:444/api/entite/${response?.data?.parentId}`
-    )
-    setParentEntite(response2?.data?.denomination_ar)
-  }
-
   useEffect(() => {
-    getEntite(entiteID)
-
-    return () => {
-      setCategory('')
-      setCategoryID('')
-      setAdministration('')
-      setParentEntite('')
-    }
-  }, [entiteID])
+    setCategory(oneEntite?.category)
+    setAdministration(oneEntite?.entiteName)
+    setParentEntite(oneEntite?.parentName)
+  }, [oneEntite])
 
   return (
     <div className={modal ? 'modal open' : 'modal'}>
@@ -237,11 +236,11 @@ const Modal = ({
             </div>
           </div>
           <div className="flex justify-end gap-4 px-10">
-            <button onClick={handleClose} className="text-main underline">
+            <button onClick={handleCancel} className="text-main underline">
               إلغاء
             </button>
             <button
-              onClick={() => handleSave('add')}
+              onClick={(e) => handleSave('add', e)}
               className="mx-2 rounded-md bg-main py-1.5 px-2 text-white sm:px-3"
             >
               حفظ
@@ -301,11 +300,11 @@ const Modal = ({
             </div>
           </div>
           <div className="flex justify-end gap-4 px-10">
-            <button onClick={handleClose} className="text-main underline">
+            <button onClick={handleCancel} className="text-main underline">
               إلغاء
             </button>
             <button
-              onClick={() => handleSave('edit')}
+              onClick={(e) => handleSave('edit', e)}
               className="mx-2 rounded-md bg-main py-1.5 px-2 text-white sm:px-3"
             >
               حفظ

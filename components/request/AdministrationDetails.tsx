@@ -64,9 +64,10 @@ function AdministrationDetails() {
       setChildren([newChildren])
       setShowElement({ ...showElement, children: true })
     }
-  } 
+  }
 
   const handleCategoriesChange = (e: any) => {
+    setChildren([])
     setFormInputs({
       ...formInputs,
       category: e.target.value,
@@ -124,8 +125,10 @@ function AdministrationDetails() {
     }
   }
 
-  const handleSubCategoryChange = (id: any, e: any) => {
-    const newChildren = children.map((child: any) => {
+  const handleSubCategoryChange = (id: any, e: any, index: any) => {
+    const updatedChildren = [...children].slice(0, index + 1)
+
+    const newChildren = updatedChildren.map((child: any) => {
       if (id === child.id) {
         const filterd = child.childrenDetails.filter(
           (childDet: any) => childDet.entCategory.slug === e.target.value
@@ -189,14 +192,13 @@ function AdministrationDetails() {
               <div key={chOrg.id} className="relative">
                 <div>
                   <div className=" ml-2 mb-2 flex w-fit cursor-pointer gap-2 rounded-md bg-cyan-600 px-2 py-0.5 text-white">
-               
                     {chOrg.values.map((val: any, index: any, arr: any) => (
                       <div key={val.entiteValue} className="">
                         <div>
-                        <span className="">{val.entiteValue} </span>
-                      {index != arr.length - 1 && (
-                        <span className="font-bold">/</span>
-                      )}
+                          <span className="">{val.entiteValue} </span>
+                          {index != arr.length - 1 && (
+                            <span className="font-bold">/</span>
+                          )}
                         </div>
                       </div>
                     ))}
@@ -206,7 +208,6 @@ function AdministrationDetails() {
                     </span>
                   </div>
                 </div>
-               
               </div>
             ))}
           </div>
@@ -266,12 +267,10 @@ function AdministrationDetails() {
                             className="ml-2"
                             value={cat.type}
                             onChange={(e) =>
-                              handleSubCategoryChange(child.id, e)
+                              handleSubCategoryChange(child.id, e, index)
                             }
                           />
-                          <label>
-                            {cat.title}
-                          </label>
+                          <label>{cat.title}</label>
                         </div>
                       ))}
                     </div>
@@ -283,15 +282,28 @@ function AdministrationDetails() {
                     onChange={(e) => handleSubLevelChange(child.id, e, index)}
                   >
                     <option> -- إختر المؤسسة الفرعية -- </option>
-                    {child.subCategory && child.categories.length > 1
+                    {child.subCategory
                       ? child.filterChildren?.map((childDet: any) => (
                           <option key={childDet.id} data-id={childDet.id}>
                             {childDet.denomination_ar}
                           </option>
                         ))
-                      : child.childrenDetails?.map((chDet: any) => (
-                          <option key={chDet.id} data-id={chDet.id}>
-                            {chDet.denomination_ar}
+                      : child.categories.length > 1
+                      ? child.categories?.map((cat: any) => (
+                          <optgroup key={cat.type} label={cat.title}>
+                            {child.childrenDetails?.map(
+                              (chDet: any) =>
+                                chDet.entCategory?.slug === cat.type && (
+                                  <option key={chDet.id} data-id={chDet.id}>
+                                    {chDet.denomination_ar}
+                                  </option>
+                                )
+                            )}
+                          </optgroup>
+                        ))
+                      : child.childrenDetails?.map((cDet: any) => (
+                          <option key={cDet.id} data-id={cDet.id}>
+                            {cDet.denomination_ar}
                           </option>
                         ))}
                   </select>
