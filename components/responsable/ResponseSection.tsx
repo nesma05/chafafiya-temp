@@ -57,7 +57,7 @@ const ResponseSection = () => {
           </button>
         </div>
         <ul>
-          {files.map((file: any) => (
+          {files?.map((file: any) => (
             <li
               key={file.name}
               className="m-1 flex w-fit items-center gap-1 rounded-full px-3 underline"

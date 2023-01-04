@@ -30,7 +30,7 @@ function AdministrationDetails() {
     chosenState: { chosenOrgs },
     chosenDispatch,
   } = requestState()
-  if (envMode == 'development') console.log('chosenOrgs', chosenOrgs)
+  if (envMode === 'development') console.log('chosenOrgs', chosenOrgs)
 
   const getCategories = async () => {
     const response = await axios(`${baseUrl}/api/entite-category/PRIMARY`)
@@ -130,7 +130,7 @@ function AdministrationDetails() {
     const newChildren = updatedChildren.map((child: any) => {
       if (id === child.id) {
         const filterd = child.childrenDetails.filter(
-          (childDet: any) => childDet.entCategory?.slug === e.target.value
+          (childDet: any) => childDet.entCategory?.slug === e.target.value 
         )
 
         child.subCategory = e.target.value
@@ -256,20 +256,23 @@ function AdministrationDetails() {
                 <div key={child.id}>
                   {child.categories?.length > 1 && (
                     <div className="mt-6 flex gap-4">
-                      {child.categories?.map((cat: any) => (
-                        <div key={cat.type} className="">
-                          <input
-                            type="radio"
-                            name="category"
-                            className="ml-2"
-                            value={cat.type}
-                            onChange={(e) =>
-                              handleSubCategoryChange(child.id, e, index)
-                            }
-                          />
-                          <label>{cat.title}</label>
-                        </div>
-                      ))}
+                      {child.categories?.map(
+                        (cat: any) =>
+                           (
+                            <div key={cat.type} className="">
+                              <input
+                                type="radio"
+                                name="category"
+                                className="ml-2"
+                                value={cat.type}
+                                onChange={(e) =>
+                                  handleSubCategoryChange(child.id, e, index)
+                                }
+                              />
+                              <label>{cat.title? cat.title :'الكل'}</label>
+                            </div>
+                          ) 
+                      )}
                     </div>
                   )}
                   <select
@@ -287,10 +290,11 @@ function AdministrationDetails() {
                         ))
                       : child.categories.length > 1
                       ? child.categories?.map((cat: any) => (
-                          <optgroup key={cat.type} label={cat.title}>
+                          <optgroup key={cat.type} label={cat.title? cat.title : 'أخرى'}>
                             {child.childrenDetails?.map(
                               (chDet: any) =>
-                                chDet.entCategory?.slug === cat.type && (
+                                (chDet.entCategory?.slug === cat.type ||
+                                  chDet.entCategory === cat.type) && (
                                   <option key={chDet.id} data-id={chDet.id}>
                                     {chDet.denomination_ar}
                                   </option>

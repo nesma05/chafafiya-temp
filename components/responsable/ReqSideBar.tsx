@@ -39,10 +39,10 @@ const ResSideBar = () => {
     <div
       className={`h-[700px] ${
         open ? 'w-[250px]' : 'w-[70px]'
-      } overflow-y-auto border-l-2 border-gray-300 bg-white px-2 text-sm transition-all duration-100 ease-in-out`}
+      } overflow-y-auto border-l-2 border-gray-300 bg-white px-0.5 text-sm transition-all duration-100 ease-in-out`}
     >
       <div
-        className="my-2 mx-3 cursor-pointer text-3xl text-main"
+        className="my-2 mx-4 cursor-pointer text-3xl text-main"
         onClick={() => setOpen(!open)}
       >
         <BurgerIcon />
@@ -53,7 +53,7 @@ const ResSideBar = () => {
             <li
               onClick={() => handleItemClick(i)}
               key={i}
-              className={`flex w-full cursor-pointer items-center py-2 px-0.5 ${
+              className={`flex w-full cursor-pointer items-center py-2 px-2 ${
                 selectedItem === i ? 'bg-secondary font-medium' : ''
               }`}
             >

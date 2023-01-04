@@ -6,7 +6,7 @@ import {
   } from '../../components/icons'
 
 
-const RequesterInfo = ({requester}:any) => {
+const RequesterInfo = ({request}:any) => {
   return (
     <div className="flex flex-col gap-3 border-b-2 p-4">
     <h2 className="font-medium text-lg">صاحب(ة) الطلب</h2>
@@ -15,32 +15,32 @@ const RequesterInfo = ({requester}:any) => {
         <AvatarIcon />
       </span>
       <span>
-        {requester.firstname} {requester.lastname}
+        {request?.applicant.firstname} {request?.applicant.lastname}
       </span>
     </p>
     <p className="flex items-center gap-3">
       <span className='text-secondary text-lg'>
         <LocationIcon />
       </span>
-      <span>{requester.address}</span>
+      <span>{request?.applicant?.address}</span>
     </p>
     <p className="flex items-center gap-3">
       <span className='text-secondary text-lg'>
         <EmailIcon />
       </span>
-      <span>{requester.email}</span>
+      <span>{request?.applicant?.email}</span>
     </p>
     <p className="flex items-center gap-3">
       <span className='text-secondary text-lg'>
         <PhoneIcon />
       </span>
-      <span>{requester.phone}</span>
+      <span>{request?.applicant?.phoneNumber}</span>
     </p>
     <p className="flex items-center gap-3">
       <span className='text-secondary text-lg'>
         <AvatarIcon />
       </span>
-      <span>مواطن(ة) مغربي(ة): {requester.cinNumber}</span>
+      <span>مواطن(ة) مغربي(ة): k350896</span>
     </p>
   </div>
   )

@@ -100,8 +100,7 @@ const EditContent: PageWithSecondaryLayoutType = ({
 
   const Router = useRouter()
 
-  
- const {baseUrl}=config
+  const { baseUrl } = config
 
   const handleClose = () => {
     setModal(false)

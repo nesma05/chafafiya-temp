@@ -84,16 +84,17 @@ const ResDetails = ({ rows, open }: any) => {
                     <tr
                       key={row.code}
                       className="cursor-pointer font-medium"
-                      onClick={() => router.push(`/reqResponsable/${row.code}`)}
+                      onClick={() => router.push(`/reqResponsable/${row.id}`)}
                     >
                       <td className="w-[150px] truncate whitespace-nowrap px-6 py-4 font-medium text-gray-900">
-                        {row.demandeur}
+                        {row.applicant?.firstname} {row.applicant?.lastname}
                       </td>
-                      <td className="truncate whitespace-nowrap px-6 py-4 text-gray-500">
-                        {row.contenu_demande}
+                      <td className="flex flex-col truncate whitespace-nowrap px-6 py-4 text-gray-900">
+                        <span className='truncate whitespace-nowrap'>{row.detail}</span>
+                        <span className='text-xs text-gray-500'>{new Date(row.createdAt).toLocaleDateString("fr")}</span>
                       </td>
                       <td className="w-[220px] truncate whitespace-nowrap px-6 py-4 text-left text-gray-500">
-                        {row.date_demande}
+                        {row.dueDate}
                       </td>
                     </tr>
                   ))}
