@@ -27,7 +27,7 @@ const Footer = () => {
   return (
     <footer className="shadow-top bg-main_dark py-8 px-10 text-white sm:px-[180px] ">
       <div>
-        <div className="md:flex md:gap-8">
+        <div className="md:flex md:justify-between md:gap-8">
           <Logo />
           <ul className="gap-4 md:flex">
             {tr('menuList').map((list: any, index: any, array: any) => {

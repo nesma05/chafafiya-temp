@@ -30,7 +30,7 @@ function AdministrationDetails() {
     chosenState: { chosenOrgs },
     chosenDispatch,
   } = requestState()
-  if (envMode === 'development') console.log('chosenOrgs', chosenOrgs)
+  if (envMode == 'development') console.log('chosenOrgs', chosenOrgs)
 
   const getCategories = async () => {
     const response = await axios(`${baseUrl}/api/entite-category/PRIMARY`)
@@ -209,7 +209,7 @@ function AdministrationDetails() {
             ))}
           </div>
         ) : (
-          <p>لم يتم إختيار أي مؤسسة أو هيئة معنية</p>
+          <p>اختر المؤسسة او الهيئة المعنية</p>
         )}
       </div>
       {showElement.showOrgSec ? (

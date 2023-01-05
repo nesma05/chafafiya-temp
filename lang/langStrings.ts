@@ -122,7 +122,11 @@ export const LangStrings = {
       {
         title: 'قبل تقديم الطلب',
         menuHeight: '190px',
-        subMenu: [    
+        subMenu: [  
+          {
+            text: 'كيف يمكنك البحث عن المعلومات',
+            link: '/howToInfo',
+          },  
           {
             text: 'المعلومات المنشورة حسب المجالات',
             link: '/searchengine?proactivPublish',
@@ -169,8 +173,12 @@ export const LangStrings = {
         menuHeight: '190px',
         subMenu: [
           {
+            text: 'كيف يمكنك تقديم الشكاية',
+            link: '/howCompl',
+          },
+          {
             text: 'تقديم شكاية للمؤسسة المعنية',
-            link: '/checkComplaintInstit',
+            link: '/checkComplaintInstit', 
           },
           {
             text: 'تقديم شكاية للجنة الحق في الحصول على المعلومات',
@@ -333,7 +341,12 @@ export const LangStrings = {
       {
         title: 'قبل تقديم الطلب',
         menuHeight: '190px',
-        subMenu: [    
+        subMenu: [   
+          {
+            text: 'كيف يمكنك البحث عن المعلومات',
+            link: '/howToInfo',
+            icon:'yes'
+          },   
           {
             text: 'المعلومات المنشورة حسب المجالات',
             link: '/searchengine?proactivPublish',
@@ -379,6 +392,11 @@ export const LangStrings = {
         title: 'تقديم شكاية',
         menuHeight: '190px',
         subMenu: [
+          {
+            text: 'كيف يمكنك تقديم الشكاية',
+            link: '/howCompl',
+            icon:'yes'
+          },
           {
             text: 'تقديم شكاية للمؤسسة المعنية',
             link: '/checkComplaintInstit',
@@ -531,6 +549,11 @@ export const LangStrings = {
         menuHeight: '190px',
         subMenu: [    
           {
+            text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
+            link: '/howToInfo',
+            icon:'yes'
+          },  
+          {
             text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
             link: '/searchengine?proactivPublish',
           },
@@ -575,6 +598,11 @@ export const LangStrings = {
         title: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
         menuHeight: '190px',
         subMenu: [
+          {
+            text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
+            link: '/howCompl',
+            icon:'yes'
+          },
           {
             text: 'ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ ⵜⵉⵏⴰⴼⵓⵜⵉⵏ',
             link: '/checkComplaintInstit',

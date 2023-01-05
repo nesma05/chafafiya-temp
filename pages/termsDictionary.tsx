@@ -22,18 +22,19 @@ const TermsDictionary: NextPage = () => {
     <>
       <PageTitle>قاموس/ مصطلحات</PageTitle>
       <div className="mx-auto my-20 w-[80%]">
-        <div className="mb-8 flex flex-wrap">
-          {dictionaryList.map((dict: any, index: any) => (
-            <span
+        <ul className="mb-8 flex flex-wrap">
+          {dictionaryList.map((dict: any, index: any) => dict.termsList.length > 0 && (
+            <li
               key={index}
-              className="m-1 p-1.5 cursor-pointer"
+              className="m-1 py-0.5 w-8 text-center cursor-pointer border text-main border-main"
               onClick={() => handleClick(dict.letter)}
             >
-              {dict.letter}
-            </span>
+              <span>{dict.letter}</span>
+              
+            </li>
           ))}
-        </div>
-        {dictionaryList.map((dict: any, index: any) => (
+        </ul>
+        {dictionaryList.map((dict: any) => (
           <DictionnaryTerms
             key={dict.letter}
             letter={dict.letter}

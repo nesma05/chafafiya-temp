@@ -52,7 +52,7 @@ const AddEntitiesModal = ({
   }
   return (
     <div className="h-[400px] w-[500px] overflow-hidden rounded bg-white">
-      <h2 className="bg-gray-300 py-2 px-6 font-bold">إضافة إدارة جديدة</h2>
+      <h2 className="bg-gray-300 py-2 px-6 font-bold">إضافة وحدة إدارية جديدة</h2>
       <div className="flex flex-col gap-10 p-10">
         <div>
           <label className="">اختر الصنف:</label>

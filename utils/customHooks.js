@@ -2,13 +2,17 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { LangStrings } from '../lang/langStrings'
 import axios from 'axios'
+import config from '../utils/config'
+
 
 export default function useTranslation() {
   const { locale, defaultLocale } = useRouter()
 
+  const { envMode } = config
+
   function tr(key) {
     if (!LangStrings[locale][key]) {
-      console.warn(`No string '${key}' for locale '${locale}'`)
+      if (envMode == 'development') console.warn(`No string '${key}' for locale '${locale}'`)
     }
 
     return (

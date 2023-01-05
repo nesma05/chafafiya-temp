@@ -16,14 +16,15 @@ const ResponseSection = () => {
   return (
     <div className="w-full border-t-2">
       <div className="flex gap-2 bg-[#eff6fc]">
-        <select className="my-2 block bg-white bg-transparent p-2 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500">
+        <select className="my-2 block bg-white p-2 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500">
           <option> -- اختيار -- </option>
           <option> تمديد مدة المعالجة</option>
           <option> رفض الطلب </option>
           <option> قبول الطلب </option>
           <option>قبول جزئي للطلب </option>
+          <option>أداء الرسوم</option>   
         </select>
-        <select className="my-2 block bg-white bg-transparent p-2 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500">
+        <select className="my-2 block bg-white p-2 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500">
           <option> -- اختيار -- </option>
           <option>المعلومات المطلوبة منشورة ومتاحة للعموم</option>
           <option>أسباب الرفض أو التمديد</option>
