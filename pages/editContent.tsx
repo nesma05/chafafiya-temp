@@ -157,14 +157,16 @@ const EditContent: PageWithSecondaryLayoutType = ({
     setOneEntite({})
     const response = await axios(`${baseUrl}/api/entite/${id}`)
 
-    const response2 = await axios(
-      `${baseUrl}/api/entite/${response?.data?.parentId}`
-    )
+    // const response2 = await axios(
+    //   `${baseUrl}/api/entite/${response?.data?.parentId}`
+    // )
     const entiteToEdit = {
       id,
-      category: response?.data?.entCategory?.title_ar,
+      //category: response?.data?.entCategory?.title_ar,
+      categoryId: response?.data?.entCategory?.id,
       entiteName: response?.data?.denomination_ar,
-      parentName: response2?.data?.denomination_ar,
+      //parentName: response2?.data?.denomination_ar,
+      parentEntiteId: response?.data?.parentId,
     }
     setOneEntite(entiteToEdit)
   }
@@ -274,7 +276,7 @@ const EditContent: PageWithSecondaryLayoutType = ({
         )}
         {(Router.query.adminNiveau || Router.query.parentId) && (
           <div className="min-h-[500px] flex-1">
-            <Modal handleClose={handleClose} modal={modal}>
+            <Modal showClose={false} modal={modal}>
               <AddEntitiesModal
                 handleClose={handleClose}
                 categories={categories}
@@ -282,7 +284,7 @@ const EditContent: PageWithSecondaryLayoutType = ({
                 parentId={parentId}
               />
             </Modal>
-            <Modal modal={editModal}>
+            <Modal showClose={false} modal={editModal}>
               <EditEntitiesModal
                 handleClose={handleClose}
                 categories={categories}

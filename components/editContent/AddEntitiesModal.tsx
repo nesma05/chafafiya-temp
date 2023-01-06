@@ -25,12 +25,14 @@ const AddEntitiesModal = ({
   }
 
   const handleCatChange = (e: any) => {
-    setCategory(e.target.value)
-    setCategoryID(e.target.options[e.target.selectedIndex].dataset.id)
+    // setCategory(e.target.value)
+    // setCategoryID(e.target.options[e.target.selectedIndex].dataset.id)
+    setCategoryID(e.target.value)
   }
 
   const handleCancel = () => {
-    setCategory('')
+    //setCategory('')
+    setCategoryID('')
     setAdministration('')
     handleClose()
   }
@@ -44,7 +46,8 @@ const AddEntitiesModal = ({
           e.target.disabled = false
           Router.push(`${Router.asPath}`)
 
-          setCategory('')
+          //setCategory('')
+          setCategoryID('')
           setAdministration('')
           handleClose()
         }
@@ -59,12 +62,12 @@ const AddEntitiesModal = ({
           <select
             name="category"
             className="mt-1 w-full rounded-md border border-gray-300 bg-white py-1 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
-            value={category}
+            value={categoryID}
             onChange={handleCatChange}
           >
-            <option>-- إختيار الصنف --</option>
+            <option value=''>-- إختيار الصنف --</option>
             {categories?.map((cat: any) => (
-              <option key={cat.id} data-id={cat.id} value={cat.title_ar}>
+              <option key={cat.id} data-id={cat.id} value={cat.id}>
                 {cat.title_ar}
               </option>
             ))}

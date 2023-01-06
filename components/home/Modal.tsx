@@ -41,6 +41,7 @@ const Modal = ({
    tempSource,
   handleClose,
   modal,
+  showClose=true,
    type,
   // categories,
   // entites,
@@ -65,29 +66,29 @@ const Modal = ({
   //   niveau: niveau ? niveau : null,
   // }
 
-  const sentEditedData = {
-    parentId: parentEntiteID ? parentEntiteID : 0,
-    entCategory: categoryID,
-    denomination_ar: administration,
-    niveau: !parentEntiteID ? 1 : null,
-  }
+  // const sentEditedData = {
+  //   parentId: parentEntiteID ? parentEntiteID : 0,
+  //   entCategory: categoryID,
+  //   denomination_ar: administration,
+  //   niveau: !parentEntiteID ? 1 : null,
+  // }
 
-  const handleCatChange = (e: any) => {
-    setCategory(e.target.value)
-    setCategoryID(e.target.options[e.target.selectedIndex].dataset.id)
-  }
+  // const handleCatChange = (e: any) => {
+  //   setCategory(e.target.value)
+  //   setCategoryID(e.target.options[e.target.selectedIndex].dataset.id)
+  // }
 
-  const handleParentChange = (e: any) => {
-    setParentEntite(e.target.value)
-    setParentEntiteID(e.target.options[e.target.selectedIndex].dataset.id)
-  }
+  // const handleParentChange = (e: any) => {
+  //   setParentEntite(e.target.value)
+  //   setParentEntiteID(e.target.options[e.target.selectedIndex].dataset.id)
+  // }
 
-  const handleCancel = () => {
-    setCategory('')
-    setAdministration('')
-    setParentEntite('')  
-    handleClose()    
-  }
+  // const handleCancel = () => {
+  //   setCategory('')
+  //   setAdministration('')
+  //   setParentEntite('')  
+  //   handleClose()    
+  // }
 
   // const handleSave = (type: string, e: any) => {
   //   e.target.disabled = true
@@ -315,9 +316,9 @@ const Modal = ({
           </div>
         </div>
       )} */}
-      <span className="close" onClick={handleClose}>
+      {showClose && <span className="close" onClick={handleClose}>
         <CloseIcon />
-      </span>
+      </span>}
     </div>
   )
 }

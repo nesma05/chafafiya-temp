@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { on } from 'events'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import config from '../../utils/config'
@@ -13,55 +14,82 @@ const EditEntitiesModal = ({
   const [categoryID, setCategoryID] = useState('')
   const [administration, setAdministration] = useState('')
   const [parentEntite, setParentEntite] = useState('')
-  const [parentEntiteID, setParentEntiteID] = useState()
+  const [parentEntiteID, setParentEntiteID] = useState('')
+  const [filteredEntites, setFilteredEntites] = useState([])
 
-  const { baseUrl } = config
+  const { baseUrl, envMode } = config
 
   const Router = useRouter()
 
   const sentEditedData = {
     parentId: parentEntiteID ? parentEntiteID : 0,
-    entCategory: categoryID,
+    entCategory: categoryID ? categoryID : null,
     denomination_ar: administration,
     niveau: !parentEntiteID ? 1 : null,
   }
+  // console.log('parentEntiteID', parentEntiteID)
+  // console.log('categoryID', categoryID)
   const handleCatChange = (e: any) => {
-    setCategory(e.target.value)
-    setCategoryID(e.target.options[e.target.selectedIndex].dataset.id)
+    //setCategory(e.target.value)
+    //setCategoryID(e.target.options[e.target.selectedIndex].dataset.id)
+    setCategoryID(e.target.value)
+  }
+
+  const entitesFiltered = (entiteName: any) => {
+    const filtered = entites.filter((ent: any) => ent.denomination_ar != entiteName)
+    setFilteredEntites(filtered)
+  }
+
+  const handleAdminChange = (e: any) => {
+    setAdministration(e.target.value)
+    entitesFiltered(e.target.value)
   }
 
   const handleParentChange = (e: any) => {
-    setParentEntite(e.target.value)
-    setParentEntiteID(e.target.options[e.target.selectedIndex].dataset.id)
+    //setParentEntite(e.target.value)
+    //setParentEntiteID(e.target.options[e.target.selectedIndex].dataset.id)
+    setParentEntiteID(e.target.value)
   }
   const handleCancel = () => {
-    setCategory('')
+    //setCategory('')
     setAdministration('')
-    setParentEntite('')
+    //setParentEntite('')
+    setCategoryID('')
+    setParentEntiteID('')
+    setFilteredEntites([])
     handleClose()
   }
   const handleSave = (e: any) => {
     e.target.disabled = true
-
+    if (envMode == 'development') console.log('sentEditedData', sentEditedData)
     axios
       .patch(`${baseUrl}/api/entite/${oneEntite?.id}`, sentEditedData)
       .then((res: any) => {
         if (res) {
           e.target.disabled = false
+
           Router.push(`${Router.asPath}`)
 
-          setCategory('')
+          // setCategory('')
           setAdministration('')
-          setParentEntite('')
+          // setParentEntite('')
+          setCategoryID('')
+          setParentEntiteID('')
+          setFilteredEntites([])
           handleClose()
         }
       })
   }
 
   useEffect(() => {
-    setCategory(oneEntite?.category)
+    //   setCategory(oneEntite?.category)
     setAdministration(oneEntite?.entiteName)
-    setParentEntite(oneEntite?.parentName)
+    //  setParentEntite(oneEntite?.parentName)
+    //   setCategoryID(oneEntite?.categoryId)
+    //   setParentEntiteID(oneEntite?.parentEntiteId)
+    setCategoryID(oneEntite?.categoryId)
+    setParentEntiteID(oneEntite?.parentEntiteId)
+    entitesFiltered(oneEntite?.entiteName)
   }, [oneEntite])
   return (
     <div className="h-[500px] w-[500px] overflow-hidden rounded bg-white">
@@ -72,12 +100,12 @@ const EditEntitiesModal = ({
           <select
             name="category"
             className="mt-1 w-full rounded-md border border-gray-300 bg-white py-1 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
-            value={category}
+            value={categoryID}
             onChange={handleCatChange}
           >
-            <option>-- إختيار الصنف --</option>
+            <option value="">-- إختيار الصنف --</option>
             {categories?.map((cat: any) => (
-              <option key={cat.id} data-id={cat.id} value={cat.title_ar}>
+              <option key={cat.id} data-id={cat.id} value={cat.id}>
                 {cat.title_ar}
               </option>
             ))}
@@ -90,7 +118,7 @@ const EditEntitiesModal = ({
             name="administration"
             value={administration}
             className="mt-1 w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
-            onChange={(e) => setAdministration(e.target.value)}
+            onChange={handleAdminChange}
           />
         </div>
         <div>
@@ -98,12 +126,12 @@ const EditEntitiesModal = ({
           <select
             name="parentEntite"
             className="mt-1 w-full rounded-md border border-gray-300 bg-white py-1 px-3 text-gray-600 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500"
-            value={parentEntite}
+            value={parentEntiteID}
             onChange={handleParentChange}
           >
-            <option>-- إختيار الإنتماء --</option>
-            {entites?.map((ent: any) => (
-              <option key={ent.id} data-id={ent.id} value={ent.denomination_ar}>
+            <option value="">-- إختيار الإنتماء --</option>
+            {filteredEntites?.map((ent: any) => (
+              <option key={ent.id} data-id={ent.id} value={ent.id}>
                 {ent.denomination_ar}
               </option>
             ))}
