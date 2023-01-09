@@ -2,7 +2,9 @@ import { NextPage } from 'next'
 import { requestFollow } from '../utils/constants'
 import ConverHistory from '../components/responsable/ConverHistory'
 import { StarIcon } from '../components/icons'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import config from '../utils/config'
+import axios from 'axios'
 
 const FollowReq: NextPage = () => {
   const [currentRating, setCurrentRating] = useState(0)
@@ -10,10 +12,24 @@ const FollowReq: NextPage = () => {
   const [feedback, setFeedback] = useState<any>(null)
   const textRef=useRef<HTMLTextAreaElement>(null)
 
+  const { baseUrl} = config
+
+  const [user,setUser]=useState('CITIZEN')
+  const [history,setHistory]=useState<any>([])
+
   const handleClick =()=>{
     setFeedback({data:{rating:currentRating,review:textRef.current?.value}})
     
   }
+
+  const getHistory = async(requestId:any)=>{
+    const response = await axios(`${baseUrl}/api/reqHistory/${requestId}`)
+    setHistory(response?.data)
+  }
+
+  useEffect(()=>{
+    getHistory('7')
+  },[])
   return (
     <>
       <div className="bg-gray-100 p-12">
@@ -40,7 +56,7 @@ const FollowReq: NextPage = () => {
           </p>
           <p>{requestFollow[0].note}</p>
         </div>
-        <ConverHistory requestFollow={requestFollow[0]} user="citizen" />
+        <ConverHistory history={history} user={user} />
       </div>
       <div className="mx-auto w-[60%]  text-center text-sm">
         <h5 className="text-lg">
@@ -86,3 +102,18 @@ const FollowReq: NextPage = () => {
   )
 }
 export default FollowReq
+
+export async function getServerSideProps({ query }: any) {
+  const { requestId } = query
+
+  const { baseUrl} = config
+
+  const response = await axios(`${baseUrl}/api/reqHistory/${requestId}`)
+
+  return {
+    props: {
+      
+      history:response?.data
+    },
+  }
+}

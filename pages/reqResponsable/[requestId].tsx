@@ -15,8 +15,11 @@ import ResponsableHeader from '../../components/responsable/ResponsableHeader'
 import ReqSideBar from '../../components/responsable/ReqSideBar'
 import config from '../../utils/config'
 import axios from 'axios'
+import { useState } from 'react'
 
-const ResRequest: PageWithSecondaryLayoutType = ({ request,historique }: any) => {
+const ResRequest: PageWithSecondaryLayoutType = ({ request,history }: any) => {
+  const [user,setUser]=useState('CI')
+  console.log('historique',history)
   return (
     <div>
       <ResponsableHeader responsable={'الإدارة: المسؤول عن الطلبات'} />
@@ -37,7 +40,7 @@ const ResRequest: PageWithSecondaryLayoutType = ({ request,historique }: any) =>
               </div>
             </div>
             <div className="relative w-[47%] border-l-2 pt-6">
-              <ConverHistory requestFollow={historique} user="responsable" />
+              <ConverHistory history={history} user={user} />
               <ResponseSection />
             </div>
             <div className="relative flex-1  pt-2">
@@ -54,18 +57,20 @@ export default ResRequest
 export async function getServerSideProps({ query }: any) {
   const { requestId } = query
 
-   const historique = requestFollow.filter(
-    (request: any) => request.code === query.requestId
- )[0]
+//    const historique = requestFollow.filter(
+//     (request: any) => request.code === query.requestId
+//  )[0]
 
   const { baseUrl} = config
 
   const response = await axios(`${baseUrl}/api/request/${requestId}`)
 
+  const response2 = await axios(`${baseUrl}/api/reqHistory/${requestId}`)
+
   return {
     props: {
       request: response?.data,
-      historique
+      history:response2?.data
     },
   }
 }
